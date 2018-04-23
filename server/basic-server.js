@@ -9,7 +9,7 @@ const flash = require('connect-flash');
 const app = express();
 module.exports.app = app;
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8081));
 
 require('../config/passport')(passport);
 

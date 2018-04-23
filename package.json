@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "nodemon server/basic-server.js",
+    "start": "node server/basic-server.js",
     "style": "sass ./client/src/stylesheets/styles.scss ./client/dist/styles.css"
   },
   "author": "Sam Getlan",
