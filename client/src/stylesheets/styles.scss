@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'fortNite';
+  src: local('fortNite'), url(./fonts/fortNite.otf) format('opentype');
+}
+
+@import 'UserForm';
+@import 'FilterLocations';
+@import 'Tile';
+@import 'BackSplash';
+@import 'Navbar';
+@import 'ActionButton';
+@import 'ActiveTile';
+
+button:hover {
+  cursor: pointer;
+}
+
+html {
+  font-size: 10px;
+  font-family: 'fortNite';
+}

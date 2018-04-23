@@ -1,0 +1,20 @@
+.navbar {
+  height: 42px;
+  background: indigo;
+  padding-top: 0;
+  display: flex;
+}
+
+.navButton {
+  height: 100%;
+  color: white;
+  background: indigo;
+  flex: 1;
+  margin: 0px 0px;
+  border: none;
+  font-size: large;
+  font-family: fortNite;
+}
+.navButton:hover {
+  filter: brightness(125%);
+}

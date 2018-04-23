@@ -1,0 +1,29 @@
+.tile {
+  width: 30%;
+}
+.tile:hover {
+  cursor: pointer;
+  filter: brightness(110%);
+}
+.tileTitle {
+  font-size: large;
+  text-align: center;
+}
+
+.tileStats {
+  display: flex;
+  margin: 0 5%;
+}
+
+.tileStat {
+  flex: 1;
+  font-size: medium;
+}
+
+.tileAvgPlace {
+  text-align: start;
+}
+
+.tileAvgKills {
+  text-align: end;
+}

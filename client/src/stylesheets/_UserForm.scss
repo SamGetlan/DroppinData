@@ -1,0 +1,134 @@
+#userFormContainerWrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+
+#userFormContainer {
+  width: 40%;
+  margin: auto;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+#userFormBox {
+  background: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
+  button:hover {
+    filter: brightness(125%);
+  }
+}
+
+#userFormOptionsBar {
+  display: flex;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.userFormOptionsButton {
+  width: 50%;
+  border: 1px solid rgba(180, 180, 180, 0.5);
+  font-size: 2rem;
+  background: indigo;
+  color: white;
+  font-family: 'fortnite';
+}
+
+#x {
+  position: absolute;
+  right: -2rem;
+  top: 0;
+  border: none;
+  box-shadow: none;
+  font-size: 1.4rem;
+  color: gray;
+  padding: 0;
+}
+
+#closeButtonContainer {
+  text-align: center;
+  padding-top: 1.3rem;
+}
+
+#close {
+  border: none;
+  box-shadow: none;
+  font-size: 1.4rem;
+  color: gray;
+  text-decoration: underline;
+  padding: 0;
+}
+
+#signUpForm {
+  display: flex;
+  flex-wrap: wrap;
+  label {
+    font-size: 1.4rem;
+    width: 100%;
+    text-align: start;
+  }
+  input {
+    width: 85%;
+  }
+}
+
+#submitSignUpForm {
+  margin: 1.5rem 0;
+  border: none;
+  background: indigo;
+  color: white;
+  font-family: 'fortnite';
+  padding: 0.5rem 5rem;
+  font-size: 1.8rem;
+}
+
+.passwordsMatch {
+  border: solid 1px green;
+}
+
+.passwordsNoMatch {
+  border: solid 1px red;
+}
+
+input:focus {
+  outline: none;
+}
+
+.usernameUniq {
+  border: solid 1px green;
+}
+
+.usernameTaken {
+  border: solid 1px red;
+}
+
+.disabled:hover {
+  cursor: not-allowed;
+}
+
+#userFormTitle {
+  font-size: 3rem;
+  margin: 3vh 0;
+}
+
+#userFormSubTitle {
+  font-size: 1.8rem;
+}
+
+#signUpForm {
+  label {
+    font-size: 1.8rem;
+    margin: 1.5vh 0;
+    margin-left: 1rem;
+  }
+  input {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+  }
+}

@@ -1,0 +1,20 @@
+#actionButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#actionButton {
+  font-size: 72px;
+  color: white;
+  background: indigo;
+  width: 75%;
+  margin: 25px 0px;
+  padding: 5px 0px;
+  border-radius: 10px;
+  border: none;
+  font-family: fortNite;
+}
+
+#actionButton:hover {
+  filter: brightness(125%);
+}
