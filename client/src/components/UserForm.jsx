@@ -30,7 +30,7 @@ class UserForm extends React.Component {
     const context = this;
     console.log('inside checkUsername');
     const username = document.getElementById('usernameInput').value;
-    axios.post('http://127.0.0.1:3000/api/checkUsername', {
+    axios.post('/api/checkUsername', {
       username,
     })
       .then((data) => {

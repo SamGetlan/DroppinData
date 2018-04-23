@@ -70,7 +70,7 @@ class App extends React.Component {
 
   handleAccountSignUp(username, password) {
     const context = this;
-    axios.post('http://127.0.0.1:3000/api/signup', {
+    axios.post('/api/signup', {
       username,
       password,
     })
@@ -89,7 +89,7 @@ class App extends React.Component {
 
   handleAccountSignIn(username, password) {
     const context = this;
-    axios.post('http://127.0.0.1:3000/api/login', {
+    axios.post('/api/login', {
       username,
       password,
     })
@@ -133,7 +133,7 @@ class App extends React.Component {
     console.log(`kills --> ${kills}`);
     console.log(`Game Type --> ${gameType}`);
     if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn) {
-      axios.post('http://127.0.0.1:3000/api/games', {
+      axios.post('/api/games', {
         user: this.state.loggedIn,
         date: new Date(),
         location: this.state.filteredLocations[this.state.activeIndex].name,
