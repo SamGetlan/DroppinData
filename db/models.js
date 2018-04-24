@@ -15,11 +15,11 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.generateHash = function generateHash(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
-}; // <-- Why doesn't arrow function work here
+};
 
 userSchema.methods.validPassword = function validPassword(password) {
   return bcrypt.compareSync(password, this.password);
-}; // <-- Why doesn't arrow function work here
+}; // <-- Why doesn't arrow function work here  --- Scope it is defined in!
 
 const gameSchema = mongoose.Schema({
   user: {

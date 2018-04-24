@@ -264,13 +264,35 @@ input:focus {
 .activeTileContainer .tile {
   width: 45%;
   text-align: center;
-  margin-bottom: 5px;
   font-size: 1.8rem;
+  padding: 1rem;
 }
 .activeTileContainer .statBox {
   text-align: center;
   width: 45%;
   font-size: 1.8rem;
+  padding: 1rem;
+}
+
+#gameTypeOptions {
+  margin: 10px 0;
+}
+
+.temporaryGameTypeSelector span {
+  margin: 0 5px;
+  padding: 2px 3px;
+}
+.temporaryGameTypeSelector span:hover {
+  cursor: pointer;
+}
+.temporaryGameTypeSelector .selected {
+  background: indigo;
+  color: white;
+}
+
+.activeMapImage {
+  width: 90%;
+  height: 90%;
 }
 
 button:hover {
@@ -280,4 +302,8 @@ button:hover {
 html {
   font-size: 10px;
   font-family: "fortNite";
+}
+
+body {
+  margin: 0;
 }

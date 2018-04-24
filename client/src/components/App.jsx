@@ -14,7 +14,7 @@ class App extends React.Component {
       focus: '',
       locations,
       filteredLocations: locations.slice(),
-      userFormActive: false,
+      userFormActive: true,
       filterLocationsActive: false,
       signUpForm: false,
       loggedIn: false,
@@ -32,6 +32,7 @@ class App extends React.Component {
     this.filterIn = this.filterIn.bind(this);
     this.handleGameSubmit = this.handleGameSubmit.bind(this);
     this.handleActionClick = this.handleActionClick.bind(this);
+    this.handleTileClick = this.handleTileClick.bind(this);
   }
 
   handleUserFormClick() {
@@ -81,6 +82,13 @@ class App extends React.Component {
           loggedIn: user,
           userFormActive: false,
         });
+        axios.get('/api/games')
+          .then((data) => {
+            console.log('data received -->', data);
+            context.setState({
+              userGames: data.data,
+            });
+          });
       })
       .catch((err) => {
         console.log('There was an error:', err);
@@ -101,6 +109,13 @@ class App extends React.Component {
             loggedIn: user,
             userFormActive: false,
           });
+          axios.get('/api/games')
+            .then((data) => {
+              console.log('data received -->', data);
+              context.setState({
+                userGames: data.data,
+              });
+            });
         } else {
           console.log('Login failed:', data.data);
         }
@@ -144,7 +159,7 @@ class App extends React.Component {
         .then((data) => {
           console.log('We have received Data -->', data);
           context.setState({
-            userGames: data,
+            userGames: data.data,
           });
           const $confirm = document.createElement('p');
           $confirm.innerHTML = 'Game was successfully submitted';
@@ -176,6 +191,21 @@ class App extends React.Component {
     }
   }
 
+  handleTileClick(location) {
+    console.log('inside handleTileClick:', location);
+    const index = this.state.filteredLocations.findIndex((element) => {
+      return (element.camelCase === location.camelCase);
+    });
+    console.log('active Location -->', location);
+    console.log('active index -->', index);
+    this.setState({
+      active: location.camelCase,
+      activeIndex: index,
+    });
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For everything else
+  }
+
   render() {
     return (
       <div id="app">
@@ -192,6 +222,8 @@ class App extends React.Component {
           handleSubmit={this.handleGameSubmit}
           active={this.state.active}
           handleActionClick={this.handleActionClick}
+          userGames={this.state.userGames}
+          handleTileClick={this.handleTileClick}
         />
         {this.state.userFormActive &&
         <UserForm

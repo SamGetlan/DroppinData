@@ -11,10 +11,13 @@ const getSelectedGameType = () => {
 
 const StatBox = props => (
   <div className="statBox">
-    <h3>Avg. Place: </h3>
-    <h3>Avg. Kills: </h3>
-    <h3>Most Recent Place: </h3>
-    <h3>Most Recent Kill Count: </h3>
+    <div className="temporaryGameTypeSelector">
+      <span className={props.currentGameType === 'solo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('solo')}>Solo</span><span className={props.currentGameType === 'duo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('duo')} >Duo</span><span className={props.currentGameType === 'squad' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('squad')} >Squad</span><span className={props.currentGameType === 'all' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('all')} >All</span>
+    </div>
+    <h3>Avg. Place: {props.stats.averagePlace}</h3>
+    <h3>Avg. Kills: {props.stats.averageKills}</h3>
+    <h3>Most Recent Place: {props.stats.mostRecentPlace}</h3>
+    <h3>Most Recent Kill Count: {props.stats.mostRecentKills}</h3>
     <h3>What place did you come in? </h3> <input type="number" id="placeInput" />
     <h3>How many kills did you have? </h3> <input type="number" id="killsInput" />
     <div id="gameTypeOptions">

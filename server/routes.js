@@ -23,7 +23,9 @@ module.exports = (app, passport) => {
 
   app.get('/api/games', isLoggedIn, (req, res) => {
     // load games of user on login
-    db.loadGames(user, (results) => {
+    console.log('req.user -->:', req.user);
+    db.loadGames(req.user.username, (results) => {
+      console.log('results of loadGames -->:', results);
       res.send(JSON.stringify(results));
     });
   });
