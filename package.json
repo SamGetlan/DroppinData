@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "node server/basic-server.js",
-    "style": "sass ./client/src/stylesheets/styles.scss ./client/dist/styles.css"
+    "style": "sass ./client/src/stylesheets/styles.scss ./client/dist/styles.css",
+    "zip": "zip ../droppinData.zip -r * .[^.]*"
   },
   "author": "Sam Getlan",
   "license": "ISC",
