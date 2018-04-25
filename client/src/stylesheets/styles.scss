@@ -10,6 +10,7 @@
 @import 'Navbar';
 @import 'ActionButton';
 @import 'ActiveTile';
+@import 'StatBox';
 
 button:hover {
   cursor: pointer;
@@ -22,4 +23,8 @@ html {
 
 body {
   margin: 0;
+}
+
+button {
+  font-family: 'fortNite';
 }

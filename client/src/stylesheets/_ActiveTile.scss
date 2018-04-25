@@ -7,33 +7,14 @@
     font-size: 1.8rem;
     padding: 1rem;
   }
-  .statBox {
-    text-align: center;
-    width: 45%;
-    font-size: 1.8rem;
-    padding: 1rem;
-  }
-}
-
-#gameTypeOptions {
-  margin: 10px 0;
-}
-
-.temporaryGameTypeSelector {
-  span {
-    margin: 0 5px;
-    padding: 2px 3px;
-  }
-  span:hover {
-    cursor: pointer;
-  }
-  .selected {
-    background: indigo;
-    color: white;
-  }
 }
 
 .activeMapImage {
   width: 90%;
   height: 90%;
+}
+
+.activeTileTitle {
+  margin: 0;
+  font-size: 2.5rem;
 }

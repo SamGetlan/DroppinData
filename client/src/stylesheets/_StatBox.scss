@@ -1,0 +1,80 @@
+#gameTypeOptions {
+  margin: 10px 0;
+}
+
+.temporaryGameTypeSelector {
+  display: flex;
+  span {
+    flex: 1;
+    margin: 0 5px;
+    padding: 2px 3px;
+    font-size: 3rem;
+  }
+  span:hover {
+    cursor: pointer;
+  }
+  .selected {
+    background: indigo;
+    color: white;
+  }
+}
+
+.statBox {
+  text-align: center;
+  width: 45%;
+  font-size: 1.8rem;
+  padding: 1rem;
+}
+
+.statGridContainer {
+  display: grid;
+  grid-template-columns: 40% 20% 20% 20%;
+  padding: 2rem;
+  font-size: 2.4rem;
+  .gridItem {
+    padding-top: 0.5rem;
+    padding-bottom: 0.4rem;
+  }
+  .best {
+    background: #e4b14f;
+  }
+  .average {
+    background: #007de8;
+  }
+  .prev {
+    background: #c6c7d1;
+  }
+}
+
+.entryContainer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-evenly;
+  .inputLabel {
+    margin: 0;
+    width: 60%;
+    text-align: center;
+  }
+  input {
+    width: 20%;
+    margin: 0;
+  }
+}
+
+#submitGameButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#submitGameButton {
+  border: none;
+  width: 50%;
+  background: indigo;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 0;
+}
+#submitGameButton:hover {
+  filter: brightness(125%);
+}
+

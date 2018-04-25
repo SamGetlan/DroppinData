@@ -267,20 +267,29 @@ input:focus {
   font-size: 1.8rem;
   padding: 1rem;
 }
-.activeTileContainer .statBox {
-  text-align: center;
-  width: 45%;
-  font-size: 1.8rem;
-  padding: 1rem;
+
+.activeMapImage {
+  width: 90%;
+  height: 90%;
+}
+
+.activeTileTitle {
+  margin: 0;
+  font-size: 2.5rem;
 }
 
 #gameTypeOptions {
   margin: 10px 0;
 }
 
+.temporaryGameTypeSelector {
+  display: flex;
+}
 .temporaryGameTypeSelector span {
+  flex: 1;
   margin: 0 5px;
   padding: 2px 3px;
+  font-size: 3rem;
 }
 .temporaryGameTypeSelector span:hover {
   cursor: pointer;
@@ -290,9 +299,65 @@ input:focus {
   color: white;
 }
 
-.activeMapImage {
-  width: 90%;
-  height: 90%;
+.statBox {
+  text-align: center;
+  width: 45%;
+  font-size: 1.8rem;
+  padding: 1rem;
+}
+
+.statGridContainer {
+  display: grid;
+  grid-template-columns: 40% 20% 20% 20%;
+  padding: 2rem;
+  font-size: 2.4rem;
+}
+.statGridContainer .gridItem {
+  padding-top: 0.5rem;
+  padding-bottom: 0.4rem;
+}
+.statGridContainer .best {
+  background: #e4b14f;
+}
+.statGridContainer .average {
+  background: #007de8;
+}
+.statGridContainer .prev {
+  background: #c6c7d1;
+}
+
+.entryContainer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+.entryContainer .inputLabel {
+  margin: 0;
+  width: 60%;
+  text-align: center;
+}
+.entryContainer input {
+  width: 20%;
+  margin: 0;
+}
+
+#submitGameButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#submitGameButton {
+  border: none;
+  width: 50%;
+  background: indigo;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 0;
+}
+
+#submitGameButton:hover {
+  filter: brightness(125%);
 }
 
 button:hover {
@@ -306,4 +371,8 @@ html {
 
 body {
   margin: 0;
+}
+
+button {
+  font-family: "fortNite";
 }
