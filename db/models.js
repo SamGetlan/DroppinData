@@ -41,6 +41,11 @@ const gameSchema = mongoose.Schema({
     min: 0,
     max: 99,
   },
+  loot: {
+    type: Number,
+    min: 0,
+    max: 10,
+  },
   gameType: String,
 });
 

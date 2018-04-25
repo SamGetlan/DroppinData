@@ -141,11 +141,12 @@ class App extends React.Component {
     this.setState({ filteredLocations });
   }
 
-  handleGameSubmit(place, kills, gameType) {
+  handleGameSubmit(place, kills, loot, gameType) {
     const context = this;
     console.log('Inside the handleSubmit function');
     console.log(`place --> ${place}`);
     console.log(`kills --> ${kills}`);
+    console.log('loot -->', loot);
     console.log(`Game Type --> ${gameType}`);
     if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn) {
       axios.post('/api/games', {
@@ -154,6 +155,7 @@ class App extends React.Component {
         location: this.state.filteredLocations[this.state.activeIndex].name,
         place,
         kills,
+        loot,
         gameType,
       })
         .then((data) => {
@@ -177,6 +179,8 @@ class App extends React.Component {
         suggestion = 'Your place needs to be between 1 and 100.';
       } else if (kills < 0 || kills > 100 || kills === undefined) {
         suggestion = 'Your kills need to be between 0 and 100.';
+      } else if (loot < 0 || loot > 10) {
+        suggestion = 'Loot rating must be between 0 and 10.';
       } else if (!gameType) {
         suggestion = 'A game type must be selected.';
       } else if (!this.state.loggedIn) {
@@ -193,9 +197,7 @@ class App extends React.Component {
 
   handleTileClick(location) {
     console.log('inside handleTileClick:', location);
-    const index = this.state.filteredLocations.findIndex((element) => {
-      return (element.camelCase === location.camelCase);
-    });
+    const index = this.state.filteredLocations.findIndex(element => (element.camelCase === location.camelCase));
     console.log('active Location -->', location);
     console.log('active index -->', index);
     this.setState({

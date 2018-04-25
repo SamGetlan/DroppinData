@@ -49,7 +49,7 @@ const StatBox = props => (
       <input type="radio" value="squad" id="squadRadio" name="gameType" /><label htmlFor="squadRadio">Squad</label>
     </div>
     <div id="submitGameButtonContainer">
-      <button id="submitGameButton" onClick={() => { props.handleSubmit(document.getElementById('placeInput').value, document.getElementById('killsInput').value, getSelectedGameType()); }}>Submit Game</button>
+      <button id="submitGameButton" onClick={() => { props.handleSubmit(document.getElementById('placeInput').value, document.getElementById('killsInput').value, document.getElementById('lootInput').value, getSelectedGameType()); }}>Submit Game</button>
     </div>
   </div>
 );

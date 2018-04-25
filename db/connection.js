@@ -17,6 +17,7 @@ const saveGame = (gamePlayed, callback) => {
     location: gamePlayed.location,
     place: gamePlayed.place,
     kills: gamePlayed.kills,
+    loot: gamePlayed.loot,
     gameType: gamePlayed.gameType,
   });
 
@@ -43,13 +44,13 @@ const loadGames = (user, callback) => {
 const checkUsername = (username, callback) => {
   console.log('username -->', username);
   User.findOne({ username }, (err, result) => {
-    if (err) { 
+    if (err) {
       console.log('There was an error:', err);
     } else {
       callback(result);
     }
   });
-}
+};
 
 module.exports.saveGame = saveGame;
 module.exports.loadGames = loadGames;
