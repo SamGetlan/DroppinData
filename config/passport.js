@@ -27,6 +27,7 @@ module.exports = function configurePassport(passport) {
           const newUser = new User();
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
+          newUser.createdAt = req.body.createdAt;
 
           newUser.save((error) => {
             if (error) { throw error; }

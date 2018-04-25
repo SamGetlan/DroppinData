@@ -39,7 +39,7 @@ module.exports = (app, passport) => {
     }),
   );
 
-  app.post('/api/login', function(req, res, next) {
+  app.post('/api/login', (req, res, next) => {
     passport.authenticate('local-login', function(err, user, info) {
       if (err) { return next(err); }
       if (!user) { return res.json(info) }

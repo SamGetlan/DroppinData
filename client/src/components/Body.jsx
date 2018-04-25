@@ -14,11 +14,6 @@ class Body extends React.Component {
     this.changeGameType = this.changeGameType.bind(this);
   }
 
-  changeGameType(gameType) {
-    this.setState({
-      gameType,
-    });
-  }
 
   getStatsForActiveLocation(location, gameType) {
     let totalKills = 0;
@@ -122,6 +117,12 @@ class Body extends React.Component {
       bestPlace,
       bestLoot,
     };
+  }
+
+  changeGameType(gameType) {
+    this.setState({
+      gameType,
+    });
   }
 
   render() {

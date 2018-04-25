@@ -74,6 +74,7 @@ class App extends React.Component {
     axios.post('/api/signup', {
       username,
       password,
+      createdAt: new Date(),
     })
       .then((data) => {
         console.log('signUp successful:', data.config.data);
@@ -179,8 +180,8 @@ class App extends React.Component {
         suggestion = 'Your place needs to be between 1 and 100.';
       } else if (kills < 0 || kills > 100 || kills === undefined) {
         suggestion = 'Your kills need to be between 0 and 100.';
-      } else if (loot < 0 || loot > 10) {
-        suggestion = 'Loot rating must be between 0 and 10.';
+      } else if (loot < 1 || loot > 10) {
+        suggestion = 'Loot rating must be between 1 and 10.';
       } else if (!gameType) {
         suggestion = 'A game type must be selected.';
       } else if (!this.state.loggedIn) {
