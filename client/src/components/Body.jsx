@@ -9,7 +9,7 @@ class Body extends React.Component {
     super(props);
     this.state = {
       gameType: 'all',
-    }
+    };
     this.getStatsForActiveLocation = this.getStatsForActiveLocation.bind(this);
     this.changeGameType = this.changeGameType.bind(this);
   }
@@ -23,11 +23,17 @@ class Body extends React.Component {
   getStatsForActiveLocation(location, gameType) {
     let totalKills = 0;
     let totalPlace = 0;
-    let averageKills = 0;
-    let averagePlace = 0;
-    let mostRecentKills = 0;
-    let mostRecentPlace = 0;
-    let relevantGames = [];
+    let totalLoot = 0;
+    let averageKills = 'N/A';
+    let averagePlace = 'N/A';
+    let mostRecentKills = 'N/A';
+    let mostRecentPlace = 'N/A';
+    let bestKills = 'N/A';
+    let bestPlace = 'N/A';
+    let averageLoot = 'N/A';
+    let mostRecentLoot = 'N/A';
+    let bestLoot = 'N/A';
+    const relevantGames = [];
     const userGames = this.props.userGames;
     if (userGames === null) {
       return {
@@ -35,21 +41,52 @@ class Body extends React.Component {
         averagePlace,
         mostRecentKills,
         mostRecentPlace,
-      }
+        bestKills,
+        bestPlace,
+        averageLoot,
+        mostRecentLoot,
+        bestLoot,
+      };
     }
     if (gameType === 'all') {
       for (let i = 0; i < userGames.length; i++) {
         if (userGames[i].location === location.name) {
+          if (bestLoot === 'N/A' || userGames[i].loot > bestLoot) {
+            bestLoot = userGames[i].loot;
+          }
+          if (bestPlace === 'N/A' || userGames[i].place > bestPlace) {
+            bestPlace = userGames[i].place;
+          }
+          if (bestKills === 'N/A' || userGames[i].kills > bestKills) {
+            bestKills = userGames[i].kills;
+          }
           totalKills += userGames[i].kills;
-          totalPlace += userGames[i].place;
+          if (userGames[i].gameType === 'squad') {
+            totalPlace += (userGames[i].place * 4);
+          } else if (userGames[i].gameType === 'duo') {
+            totalPlace += (userGames[i].place * 2);
+          } else {
+            totalPlace += userGames[i].place;
+          }
+          totalLoot += userGames[i].loot;
           relevantGames.push(userGames[i]);
         }
       }
     } else {
       for (let i = 0; i < userGames.length; i++) {
         if (userGames[i].location === location.name && userGames[i].gameType === gameType) {
+          if (bestLoot === 'N/A' || userGames[i].loot > bestLoot) {
+            bestLoot = userGames[i].loot;
+          }
+          if (bestPlace === 'N/A' || userGames[i].place > bestPlace) {
+            bestPlace = userGames[i].place;
+          }
+          if (bestKills === 'N/A' || userGames[i].kills > bestKills) {
+            bestKills = userGames[i].kills;
+          }
           totalKills += userGames[i].kills;
           totalPlace += userGames[i].place;
+          totalLoot += userGames[i].loot;
           relevantGames.push(userGames[i]);
         }
       }
@@ -60,19 +97,31 @@ class Body extends React.Component {
         averagePlace,
         mostRecentKills,
         mostRecentPlace,
-      }
+        bestKills,
+        bestPlace,
+        averageLoot,
+        mostRecentLoot,
+        bestLoot,
+      };
     }
     averageKills = Math.round((totalKills / relevantGames.length) * 10) / 10;
     averagePlace = Math.round((totalPlace / relevantGames.length) * 10) / 10;
+    averageLoot = Math.round((totalLoot / relevantGames.length) * 10) / 10;
     const mostRecentGame = relevantGames.pop();
     mostRecentKills = mostRecentGame.kills;
     mostRecentPlace = mostRecentGame.place;
+    mostRecentLoot = mostRecentGame.loot;
     return {
       averageKills,
       averagePlace,
+      averageLoot,
       mostRecentKills,
       mostRecentPlace,
-    }
+      mostRecentLoot,
+      bestKills,
+      bestPlace,
+      bestLoot,
+    };
   }
 
   render() {

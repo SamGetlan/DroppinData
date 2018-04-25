@@ -17,23 +17,7 @@ const StatBox = props => (
     <div className="temporaryGameTypeSelector">
       <span className={props.currentGameType === 'solo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('solo')}>Solo</span><span className={props.currentGameType === 'duo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('duo')} >Duo</span><span className={props.currentGameType === 'squad' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('squad')} >Squad</span><span className={props.currentGameType === 'all' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => props.changeGameType('all')} >All</span>
     </div>
-    <StatGrid
-      kills={{
-        best: 4,
-        average: props.stats.averageKills,
-        prev: props.stats.mostRecentKills,
-      }}
-      place={{
-        best: 3,
-        average: props.stats.averageKills,
-        prev: props.stats.mostRecentKills,
-      }}
-      loot={{
-        best: 9,
-        average: 5.6,
-        prev: 6,
-      }}
-    />
+    <StatGrid stats={props.stats} />
     <div className="entryContainer">
       <h3 className="inputLabel">What place did you come in?</h3> <input type="number" id="placeInput" />
     </div>
