@@ -21,7 +21,7 @@ module.exports = function configurePassport(passport) {
         User.findOne({ username }, (err, user) => {
           if (err) { return done(err); }
           if (user) {
-            console.log('Sorry, that username is already in user');
+            console.log('Sorry, that username is already taken');
             return done(null, false, { message: 'That username is already taken' });
           }
           const newUser = new User();

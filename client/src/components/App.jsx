@@ -21,6 +21,7 @@ class App extends React.Component {
       active: false,
       activeIndex: false,
       userGames: null,
+      submitButtonState: true,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -144,6 +145,9 @@ class App extends React.Component {
 
   handleGameSubmit(place, kills, loot, gameType) {
     const context = this;
+    this.setState({
+      submitButtonState: false,
+    })
     console.log('Inside the handleSubmit function');
     console.log(`place --> ${place}`);
     console.log(`kills --> ${kills}`);
@@ -191,6 +195,11 @@ class App extends React.Component {
       $denied.innerHTML = `There was an error submitting your game. ${suggestion}`;
       document.getElementsByClassName('statBox')[0].appendChild($denied);
       setTimeout(() => {
+        context.setState({
+          submitButtonState: true,
+        })
+      }, 1000);
+      setTimeout(() => {
         $denied.remove();
       }, 4000);
     }
@@ -227,6 +236,7 @@ class App extends React.Component {
           handleActionClick={this.handleActionClick}
           userGames={this.state.userGames}
           handleTileClick={this.handleTileClick}
+          submitButtonState={this.state.submitButtonState}
         />
         {this.state.userFormActive &&
         <UserForm

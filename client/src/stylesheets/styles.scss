@@ -28,3 +28,7 @@ body {
 button {
   font-family: 'fortNite';
 }
+
+.disabledButton:hover {
+  cursor: not-allowed;
+}
