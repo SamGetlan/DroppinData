@@ -19,7 +19,8 @@
 @media only screen and (max-width: 700px) {
   #filterLocationsContainer {
     width: 85%;
-    height: 85;
+    height: 85%;
+    overflow: auto;
   }
 }
 
@@ -30,7 +31,6 @@
   padding: 1vh 0;
   justify-content: space-evenly;
   box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
-  overflow-y: auto;
 }
 
 .filterSelection {
