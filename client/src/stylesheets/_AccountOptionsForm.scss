@@ -1,0 +1,22 @@
+.accountOptionsButtonsContainer {
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.accountOptionsButton {
+  margin: 1.5rem 0;
+  border: none;
+  background: indigo;
+  color: white;
+  font-family: 'fortnite';
+  padding: 0.5rem 5rem;
+  font-size: 3rem;
+  width: 80%;
+}
+
+.accountOptionsButton:hover {
+  cursor: pointer;
+  filter: brightness(125%);
+}

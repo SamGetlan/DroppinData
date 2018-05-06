@@ -9,6 +9,15 @@
   }
 }
 
+@media only screen and (max-width: 700px) {
+  .activeTileContainer {
+    flex-wrap: wrap;
+    .tile {
+      width: 100%
+    }
+  }
+}
+
 .activeMapImage {
   width: 90%;
   height: 90%;

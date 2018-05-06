@@ -4,7 +4,7 @@
 }
 
 #actionButton {
-  font-size: 72px;
+  font-size: 7.2rem;
   color: white;
   background: indigo;
   width: 75%;
@@ -13,6 +13,14 @@
   border-radius: 10px;
   border: none;
   font-family: fortNite;
+}
+
+@media only screen and (max-width: 700px) {
+  #actionButton {
+    font-size: 5rem;
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 
 #actionButton:hover {

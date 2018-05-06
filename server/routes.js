@@ -54,4 +54,9 @@ module.exports = (app, passport) => {
       res.send(JSON.stringify(result));
     });
   });
+
+  app.get('/api/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
 };

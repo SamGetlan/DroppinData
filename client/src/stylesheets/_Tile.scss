@@ -1,6 +1,14 @@
 .tile {
   width: 30%;
 }
+
+@media only screen and (max-width: 700px) {
+  .tile {
+    width: 49%;
+    margin: 5px 0;
+  }
+}
+
 .tile:hover {
   cursor: pointer;
   filter: brightness(110%);

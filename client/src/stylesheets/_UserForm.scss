@@ -17,6 +17,12 @@
   background: rgba(255, 255, 255, 0.9);
 }
 
+@media only screen and (max-width: 700px) {
+  #userFormContainer {
+    width: 100%;
+  }
+}
+
 #userFormBox {
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
@@ -52,14 +58,18 @@
 }
 
 #closeButtonContainer {
-  text-align: center;
+  display: flex;
   padding-top: 1.3rem;
+  justify-content: space-evenly;
+  button: {
+    flex: 1;
+  }
 }
 
-#close {
+.closeButton {
   border: none;
   box-shadow: none;
-  font-size: 1.4rem;
+  font-size: 3rem;
   color: gray;
   text-decoration: underline;
   padding: 0;
@@ -126,6 +136,12 @@ input:focus {
     font-size: 1.8rem;
     margin: 1.5vh 0;
     margin-left: 1rem;
+  }
+  .labelTrue {
+    color: green;
+  }
+  .labelFalse {
+    color: red;
   }
   input {
     font-size: 1.8rem;

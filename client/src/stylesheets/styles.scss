@@ -3,6 +3,7 @@
   src: local('fortNite'), url(./fonts/fortNite.otf) format('opentype');
 }
 
+
 @import 'UserForm';
 @import 'FilterLocations';
 @import 'Tile';
@@ -11,6 +12,7 @@
 @import 'ActionButton';
 @import 'ActiveTile';
 @import 'StatBox';
+@import 'AccountOptionsForm';
 
 button:hover {
   cursor: pointer;

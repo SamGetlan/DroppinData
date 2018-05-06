@@ -16,18 +16,40 @@
   position: relative;
 }
 
+@media only screen and (max-width: 700px) {
+  #filterLocationsContainer {
+    width: 85%;
+    height: 85;
+  }
+}
+
 #filterLocationsBox {
   background: white;
   display: flex;
   flex-wrap: wrap;
+  padding: 1vh 0;
+  justify-content: space-evenly;
   box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
 }
 
 .filterSelection {
-  padding: 1vw;
+  p {
+    margin: 0;
+  }
   color: green;
   font-family: fortNite;
   font-size: 1.6vw;
+  width: 30%;
+  padding-left: 1vh;
+  text-align: center;
+  margin: 1vh 0;
+}
+
+@media only screen and (max-width: 700px) {
+  .filterSelection {
+    font-size: 4.5vw;
+    width: 49%;
+  }
 }
 .filterSelection:hover {
   cursor: pointer;
@@ -35,4 +57,22 @@
 }
 .filteredOut {
   color: red;
+}
+
+#filterGroupingsButtonContainer {
+  display: flex;
+  .filterGroupButton {
+    flex: 1;
+  }
+}
+
+.filterGroupButton {
+  background: indigo;
+  color: white;
+  font-family: 'fortNite';
+  border: none;
+  font-size: 3rem;
+}
+.filterGroupButton:hover {
+  filter: brightness(125%);
 }

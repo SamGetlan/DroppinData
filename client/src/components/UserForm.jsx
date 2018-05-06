@@ -54,7 +54,7 @@ class UserForm extends React.Component {
   render() {
     return (
       <div id="userFormContainerWrapper">
-        <div id="userFormContainer">
+        <div id="userFormContainer" className="mobile-85">
           <button id="x" onClick={this.props.handleUserFormClick}>X</button>
           <div id="userFormBox">
             <div id="userFormOptionsBar">
@@ -63,12 +63,12 @@ class UserForm extends React.Component {
             </div>
             {this.props.signUpForm ||
             <div id="userFormMain">
-              <h2 id="userFormTitle" >Log In</h2>
-              <h4 id="userFormSubTitle" >Please fill in your unsername and password to login</h4>
+              <h2 id="userFormTitle">Log In</h2>
+              <h4 id="userFormSubTitle">Please fill in your username and password to login</h4>
               <form id="signUpForm">
-                <label htmlFor="usernameInput" >Username</label>
+                <label htmlFor="usernameInput" >Username {this.props.logInFailed === true && <span className="labelFalse"> - username or password is incorrect</span>}</label>
                 <input type="text" placeholder="Enter Username" id="usernameInput" />
-                <label htmlFor="passwordInput" >Password</label>
+                <label htmlFor="passwordInput" >Password {this.props.logInFailed === true && <span className="labelFalse"> - username or password is incorrect</span>}</label>
                 <input type="password" placeholder="Enter Password" id="passwordInput" />
               </form>
               <button id="submitSignUpForm" onClick={() => this.props.handleAccountSignIn(document.getElementById('usernameInput').value, document.getElementById('passwordInput').value)} >Log In</button>
@@ -78,11 +78,11 @@ class UserForm extends React.Component {
               <h2 id="userFormTitle">Sign Up</h2>
               <h4 id="userFormSubTitle">Please fill in this form to create an account</h4>
               <form id="signUpForm">
-                <label htmlFor="usernameInput" >Username</label>
+                <label htmlFor="usernameInput" className={this.state.usernameUniq === false ? 'label labelFalse' : (this.state.usernameUniq === true ? 'label labelTrue' : 'label')}>{this.state.usernameUniq === false ? 'Username taken' : (this.state.usernameUniq === true ? 'Username available' : 'Username')}</label>
                 <input type="text" onBlur={this.checkUsername} placeholder="Enter Username" id="usernameInput" className={this.state.usernameUniq === true ? 'usernameUniq' : (this.state.usernameUniq === false ? 'usernameTaken' : 'usernameNotChecked')} />
                 <label htmlFor="passwordInput" >Password</label>
                 <input type="password" onChange={this.passwordCheck} placeholder="Enter Password" id="passwordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
-                <label htmlFor="repeatPasswordInput" >Repeat Password</label>
+                <label htmlFor="repeatPasswordInput" >Repeat Password {this.state.passwordsMatch === false && <span className="labelFalse"> - passwords do not match</span>}</label>
                 <input type="password" onChange={this.passwordCheck} placeholder="Repeat Password" id="repeatPasswordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
               </form>
               {(this.state.passwordsMatch === true && this.state.usernameUniq === true) &&
@@ -94,7 +94,7 @@ class UserForm extends React.Component {
             </div>}
           </div>
           <div id="closeButtonContainer">
-            <button id="close" onClick={this.props.handleUserFormClick}>Close</button>
+            <button className="closeButton" onClick={this.props.handleUserFormClick}>Close</button>
           </div>
         </div>
       </div>

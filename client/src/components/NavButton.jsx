@@ -4,7 +4,7 @@ import React from 'react';
 const NavButton = (props) => {
   if (props.class === 'login' && props.loggedIn !== false) {
     return (
-      <button className="navButton col-3 col-s-6 login" onClick={props.handleUserFormClick}>
+      <button className="navButton col-3 col-s-6 login" onClick={props.handleAccountOptionsClick}>
         {`Hey ${props.loggedIn}!`}
       </button>
     );

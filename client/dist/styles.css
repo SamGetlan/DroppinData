@@ -21,6 +21,11 @@
   background: rgba(255, 255, 255, 0.9);
 }
 
+@media only screen and (max-width: 700px) {
+  #userFormContainer {
+    width: 100%;
+  }
+}
 #userFormBox {
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
@@ -56,14 +61,16 @@
 }
 
 #closeButtonContainer {
-  text-align: center;
+  display: flex;
   padding-top: 1.3rem;
+  justify-content: space-evenly;
+  button-flex: 1;
 }
 
-#close {
+.closeButton {
   border: none;
   box-shadow: none;
-  font-size: 1.4rem;
+  font-size: 3rem;
   color: gray;
   text-decoration: underline;
   padding: 0;
@@ -130,6 +137,12 @@ input:focus {
   margin: 1.5vh 0;
   margin-left: 1rem;
 }
+#signUpForm .labelTrue {
+  color: green;
+}
+#signUpForm .labelFalse {
+  color: red;
+}
 #signUpForm input {
   font-size: 1.8rem;
   margin-left: 1rem;
@@ -153,20 +166,40 @@ input:focus {
   position: relative;
 }
 
+@media only screen and (max-width: 700px) {
+  #filterLocationsContainer {
+    width: 85%;
+    height: 85;
+  }
+}
 #filterLocationsBox {
   background: white;
   display: flex;
   flex-wrap: wrap;
+  padding: 1vh 0;
+  justify-content: space-evenly;
   box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
 }
 
 .filterSelection {
-  padding: 1vw;
   color: green;
   font-family: fortNite;
   font-size: 1.6vw;
+  width: 30%;
+  padding-left: 1vh;
+  text-align: center;
+  margin: 1vh 0;
+}
+.filterSelection p {
+  margin: 0;
 }
 
+@media only screen and (max-width: 700px) {
+  .filterSelection {
+    font-size: 4.5vw;
+    width: 49%;
+  }
+}
 .filterSelection:hover {
   cursor: pointer;
   filter: brightness(120%);
@@ -176,10 +209,35 @@ input:focus {
   color: red;
 }
 
+#filterGroupingsButtonContainer {
+  display: flex;
+}
+#filterGroupingsButtonContainer .filterGroupButton {
+  flex: 1;
+}
+
+.filterGroupButton {
+  background: indigo;
+  color: white;
+  font-family: "fortNite";
+  border: none;
+  font-size: 3rem;
+}
+
+.filterGroupButton:hover {
+  filter: brightness(125%);
+}
+
 .tile {
   width: 30%;
 }
 
+@media only screen and (max-width: 700px) {
+  .tile {
+    width: 49%;
+    margin: 5px 0;
+  }
+}
 .tile:hover {
   cursor: pointer;
   filter: brightness(110%);
@@ -242,7 +300,7 @@ input:focus {
 }
 
 #actionButton {
-  font-size: 72px;
+  font-size: 7.2rem;
   color: white;
   background: indigo;
   width: 75%;
@@ -253,6 +311,13 @@ input:focus {
   font-family: fortNite;
 }
 
+@media only screen and (max-width: 700px) {
+  #actionButton {
+    font-size: 5rem;
+    width: 100%;
+    margin: 10px 0;
+  }
+}
 #actionButton:hover {
   filter: brightness(125%);
 }
@@ -268,6 +333,14 @@ input:focus {
   padding: 1rem;
 }
 
+@media only screen and (max-width: 700px) {
+  .activeTileContainer {
+    flex-wrap: wrap;
+  }
+  .activeTileContainer .tile {
+    width: 100%;
+  }
+}
 .activeMapImage {
   width: 90%;
   height: 90%;
@@ -306,6 +379,11 @@ input:focus {
   padding: 1rem;
 }
 
+@media only screen and (max-width: 700px) {
+  .statBox {
+    width: 100%;
+  }
+}
 .statGridContainer {
   display: grid;
   grid-template-columns: 40% 20% 20% 20%;
@@ -357,6 +435,29 @@ input:focus {
 }
 
 #submitGameButton:hover {
+  filter: brightness(125%);
+}
+
+.accountOptionsButtonsContainer {
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.accountOptionsButton {
+  margin: 1.5rem 0;
+  border: none;
+  background: indigo;
+  color: white;
+  font-family: "fortnite";
+  padding: 0.5rem 5rem;
+  font-size: 3rem;
+  width: 80%;
+}
+
+.accountOptionsButton:hover {
+  cursor: pointer;
   filter: brightness(125%);
 }
 

@@ -125,11 +125,20 @@ class Body extends React.Component {
     });
   }
 
+  checkActiveIsOk(active) {
+    return this.props.filteredLocations.reduce((acc, curr) => {
+      if (curr.camelCase === active) {
+        acc = true;
+      }
+      return acc;
+    }, false);
+  }
+
   render() {
     return (
       <div>
         <ActionButton handleActionClick={this.props.handleActionClick} />
-        {this.props.active !== false &&
+        {(this.props.active !== false && this.checkActiveIsOk(this.props.active)) &&
           <div className="activeTileContainer">
             <ActiveTile location={this.props.filteredLocations[this.props.activeIndex]} />
             <StatBox currentGameType={this.state.gameType} changeGameType={this.changeGameType} stats={this.getStatsForActiveLocation(this.props.filteredLocations[this.props.activeIndex], this.state.gameType)} handleSubmit={this.props.handleSubmit} submitButtonState={this.props.submitButtonState} />

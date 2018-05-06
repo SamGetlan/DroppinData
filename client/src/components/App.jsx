@@ -4,6 +4,7 @@ import Navbar from './Navbar.jsx';
 import Body from './Body.jsx';
 import UserForm from './UserForm.jsx';
 import FilterLocations from './FilterLocations.jsx';
+import AccountOptionsForm from './AccountOptionsForm.jsx';
 import locations from '../data.js';
 
 
@@ -22,6 +23,9 @@ class App extends React.Component {
       activeIndex: false,
       userGames: null,
       submitButtonState: true,
+      accountOptionsForm: false,
+      logInFailed: null,
+      userGameData: null,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -34,6 +38,16 @@ class App extends React.Component {
     this.handleGameSubmit = this.handleGameSubmit.bind(this);
     this.handleActionClick = this.handleActionClick.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
+    this.handleAccountOptionsClick = this.handleAccountOptionsClick.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.getUserGameData = this.getUserGameData.bind(this);
+    this.hardGroupClick = this.hardGroupClick.bind(this);
+    this.notRecentGroupClick = this.notRecentGroupClick.bind(this);
+    this.killsGroupClick = this.killsGroupClick.bind(this);
+    this.placeGroupClick = this.placeGroupClick.bind(this);
+    this.popularGroupClick = this.popularGroupClick.bind(this);
+    this.filterAllIn = this.filterAllIn.bind(this);
+    this.filterAllOut = this.filterAllOut.bind(this);
   }
 
   handleUserFormClick() {
@@ -84,13 +98,6 @@ class App extends React.Component {
           loggedIn: user,
           userFormActive: false,
         });
-        axios.get('/api/games')
-          .then((data) => {
-            console.log('data received -->', data);
-            context.setState({
-              userGames: data.data,
-            });
-          });
       })
       .catch((err) => {
         console.log('There was an error:', err);
@@ -110,16 +117,22 @@ class App extends React.Component {
           context.setState({
             loggedIn: user,
             userFormActive: false,
+            logInFailed: false,
           });
           axios.get('/api/games')
             .then((data) => {
               console.log('data received -->', data);
+              const userGameData = context.getUserGameData(data.data);
               context.setState({
                 userGames: data.data,
+                userGameData,
               });
             });
         } else {
           console.log('Login failed:', data.data);
+          context.setState({
+            logInFailed: true,
+          });
         }
       })
       .catch((err) => {
@@ -130,17 +143,21 @@ class App extends React.Component {
 
   filterIn(location) {
     console.log(this.state.filteredLocations);
-    this.state.filteredLocations.push(location);
-    const filteredLocations = this.state.filteredLocations;
-    this.setState({ filteredLocations });
+    if (this.state.filteredLocations.indexOf(location) === -1) {
+      this.state.filteredLocations.push(location);
+      const filteredLocations = this.state.filteredLocations;
+      this.setState({ filteredLocations });
+    }
   }
 
   filterOut(location) {
     console.log(this.state.filteredLocations);
     const index = this.state.filteredLocations.indexOf(location);
-    this.state.filteredLocations.splice(index, 1);
-    const filteredLocations = this.state.filteredLocations;
-    this.setState({ filteredLocations });
+    if (index !== -1) {
+      this.state.filteredLocations.splice(index, 1);
+      const filteredLocations = this.state.filteredLocations;
+      this.setState({ filteredLocations });
+    }
   }
 
   handleGameSubmit(place, kills, loot, gameType) {
@@ -218,6 +235,205 @@ class App extends React.Component {
     document.documentElement.scrollTop = 0; // For everything else
   }
 
+  handleAccountOptionsClick() {
+    console.log('inside handleAccountOptionsClick');
+    this.setState({
+      accountOptionsForm: !this.state.accountOptionsForm,
+    });
+  }
+
+  handleLogout() {
+    const context = this;
+    axios.get('/api/logout')
+      .then((data) => {
+        context.setState({
+          loggedIn: false,
+          accountOptionsForm: false,
+          userGames: null,
+        })
+      })
+      .catch((err) => {
+        console.log('err:', err);
+      })
+  }
+
+  getUserGameData(games) {
+    const results = {};
+    const getPlace = (game) => {
+      if (game.gameType === 'solo') {
+        return game.place;
+      } else if (game.gameType === 'duo') {
+        return game.place * 2;
+      } else if (game.gameType === 'squad') {
+        return game.place * 4;
+      }
+    }
+    const updateStats = (results, game, gameType) => {
+      results[game.location][gameType].totalKills += game.kills;
+      results[game.location][gameType].totalPlace += (gameType === 'all' ? getPlace(game) : game.place);
+      results[game.location][gameType].totalLoot += game.loot;
+      results[game.location][gameType].bestKills = Math.max(results[game.location][gameType].bestKills, game.kills);
+      results[game.location][gameType].bestPlace = Math.min(results[game.location][gameType].bestPlace, (gameType === 'all' ? getPlace(game) : game.place));
+      results[game.location][gameType].bestLoot = Math.max(results[game.location][gameType].bestLoot, game.loot);
+      results[game.location][gameType].recentKills = game.kills;
+      results[game.location][gameType].recentPlace = (gameType === 'all' ? getPlace(game) : game.place);
+      results[game.location][gameType].recentLoot = game.loot;
+      results[game.location][gameType].totalGames++;
+      if (game.date > results[game.location][gameType].mostRecent) {
+        results[game.location][gameType].mostRecent = game.date;
+      }
+    }
+    games.forEach((game, index, games) => {
+      if (!results[game.location]) {
+        results[game.location] = {
+          solo: {
+            averageKills: 0,
+            averagePlace: 0,
+            averageLoot: 0,
+            bestKills: 0,
+            bestPlace: 0,
+            bestLoot: 0,
+            totalKills: 0,
+            totalPlace: 0,
+            totalLoot: 0,
+            totalGames: 0,
+            recentKills: 0,
+            recentPlace: 0,
+            recentLoot: 0,
+            mostRecent: game.date,
+          },
+          duo: {
+            averageKills: 0,
+            averagePlace: 0,
+            averageLoot: 0,
+            bestKills: 0,
+            bestPlace: 0,
+            bestLoot: 0,
+            totalKills: 0,
+            totalPlace: 0,
+            totalLoot: 0,
+            totalGames: 0,
+            recentKills: 0,
+            recentPlace: 0,
+            recentLoot: 0,
+            mostRecent: game.date,
+          },
+          squad: {
+            averageKills: 0,
+            averagePlace: 0,
+            averageLoot: 0,
+            bestKills: 0,
+            bestPlace: 0,
+            bestLoot: 0,
+            totalKills: 0,
+            totalPlace: 0,
+            totalLoot: 0,
+            totalGames: 0,
+            recentKills: 0,
+            recentPlace: 0,
+            recentLoot: 0,
+            mostRecent: game.date,
+          },
+          all: {
+            averageKills: 0,
+            averagePlace: 0,
+            averageLoot: 0,
+            bestKills: 0,
+            bestPlace: 0,
+            bestLoot: 0,
+            totalKills: 0,
+            totalPlace: 0,
+            totalLoot: 0,
+            totalGames: 0,
+            recentKills: 0,
+            recentPlace: 0,
+            recentLoot: 0,
+            mostRecent: game.date,
+          },
+        }
+      }
+      updateStats(results, game, 'all');
+      updateStats(results, game, game.gameType);
+    });
+    for (var location in results) {
+      results[location].solo.averageKills = results[location].solo.totalKills / results[location].solo.totalGames;
+      results[location].duo.averageKills = results[location].duo.totalKills / results[location].duo.totalGames;
+      results[location].squad.averageKills = results[location].squad.totalKills / results[location].squad.totalGames;
+      results[location].all.averageKills = results[location].all.totalKills / results[location].all.totalGames;
+      results[location].solo.averagePlace = results[location].solo.totalPlace / results[location].solo.totalGames;
+      results[location].duo.averagePlace = results[location].duo.totalPlace / results[location].duo.totalGames;
+      results[location].squad.averagePlace = results[location].squad.totalPlace / results[location].squad.totalGames;
+      results[location].all.averagePlace = results[location].all.totalPlace / results[location].all.totalGames;
+    }
+    return results;
+  }
+
+  hardGroupClick() {
+    const type = 'all';
+    if (this.state.userGames.length > 9) {
+      const results = [];
+      const userGameData = this.state.userGameData;
+      const hardGroup = Object.keys(this.state.userGameData);
+      hardGroup.sort((a, b) => {
+        return userGameData[a][type].averagePlace - userGameData[b][type].averagePlace;
+      });
+      for (var i = 0; i < Math.min(hardGroup.length, 8); i++) {
+        for (var ii = 0; ii < locations.length; ii++) {
+          if (locations[ii].name === hardGroup[i]) {
+            results.push(locations[ii]);
+          }
+        }
+      }
+      this.setState({
+        filteredLocations: results,
+      })
+
+    } else {
+      console.log('Need to save at least 10 games in order for customSorting to work');
+    }
+  }
+
+  notRecentGroupClick(gameType = 'all') {
+    if (userGameData !== null) {
+      
+    }
+  }
+
+  killsGroupClick(gameType = 'all') {
+    console.log('inside killsGroupClick');
+    if (userGameData !== null) {
+      
+    }
+  }
+
+  placeGroupClick(gameType = 'all') {
+    console.log('inside placeGroupClick');
+    if (userGameData !== null) {
+      
+    }
+  }
+
+  popularGroupClick(gameType = 'all') {
+    console.log('inside popularGroupClick');
+    if (userGameData !== null) {
+      
+    }
+  }
+
+  filterAllIn() {
+    this.setState({
+      filteredLocations: locations.slice(),
+    });
+  }
+
+  filterAllOut() {
+    console.log('inside filterAllOut');
+    this.setState({
+      filteredLocations: [],
+    });
+  }
+
+
   render() {
     return (
       <div id="app">
@@ -227,6 +443,7 @@ class App extends React.Component {
           handleUserFormClick={this.handleUserFormClick}
           handleFilterClick={this.handleFilterClick}
           loggedIn={this.state.loggedIn}
+          handleAccountOptionsClick={this.handleAccountOptionsClick}
         />
         <Body
           filteredLocations={this.state.filteredLocations}
@@ -246,6 +463,7 @@ class App extends React.Component {
           signUpUserFormOption={this.signUpUserFormOption}
           handleAccountSignIn={this.handleAccountSignIn}
           handleAccountSignUp={this.handleAccountSignUp}
+          logInFailed={this.state.logInFailed}
         />}
         {this.state.filterLocationsActive &&
         <FilterLocations
@@ -254,6 +472,19 @@ class App extends React.Component {
           filterOut={this.filterOut}
           filterIn={this.filterIn}
           handleFilterClick={this.handleFilterClick}
+          hardGroupClick={this.hardGroupClick}
+          notRecentGroupClick={this.notRecentGroupClick}
+          killsGroupClick={this.killsGroupClick}
+          placeGroupClick={this.placeGroupClick}
+          popularGroupClick={this.popularGroupClick}
+          filterAllIn={this.filterAllIn}
+          filterAllOut={this.filterAllOut}
+        />}
+        {this.state.accountOptionsForm &&
+        <AccountOptionsForm
+          handleAccountOptionsClick={this.handleAccountOptionsClick}
+          loggedIn={this.state.loggedIn}
+          handleLogout={this.handleLogout}
         />}
       </div>
     );
