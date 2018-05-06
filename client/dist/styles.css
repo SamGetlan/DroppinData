@@ -179,6 +179,7 @@ input:focus {
   padding: 1vh 0;
   justify-content: space-evenly;
   box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
+  overflow-y: auto;
 }
 
 .filterSelection {
@@ -194,12 +195,6 @@ input:focus {
   margin: 0;
 }
 
-@media only screen and (max-width: 700px) {
-  .filterSelection {
-    font-size: 4.5vw;
-    width: 49%;
-  }
-}
 .filterSelection:hover {
   cursor: pointer;
   filter: brightness(120%);
@@ -480,4 +475,15 @@ button {
 
 .disabledButton:hover {
   cursor: not-allowed;
+}
+
+@media only screen and (max-width: 700px) {
+  .filterSelection {
+    font-size: 5vw;
+    width: 40%;
+  }
+
+  .filterGroupButton {
+    font-size: 5vw;
+  }
 }

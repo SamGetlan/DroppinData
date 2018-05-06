@@ -34,3 +34,12 @@ button {
 .disabledButton:hover {
   cursor: not-allowed;
 }
+@media only screen and (max-width: 700px) {
+  .filterSelection {
+    font-size: 5vw;
+    width: 40%;
+  }
+  .filterGroupButton {
+    font-size: 5vw;
+  }
+}
