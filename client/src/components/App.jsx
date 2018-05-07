@@ -192,6 +192,11 @@ class App extends React.Component {
           $confirm.innerHTML = 'Game was successfully submitted';
           document.getElementsByClassName('statBox')[0].appendChild($confirm);
           setTimeout(() => {
+            context.setState({
+              submitButtonState: true,
+            })
+          }, 1000);
+          setTimeout(() => {
             $confirm.remove();
           }, 4000);
         })
