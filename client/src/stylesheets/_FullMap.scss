@@ -1,0 +1,198 @@
+#fullMapContainer {
+  width: 40%;
+  margin: auto;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media only screen and (max-width: 1300px) {
+  #fullMapContainer {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #fullMapContainer {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #fullMapContainer {
+    width: 100%;
+    overflow-y: auto;
+  }
+}
+
+#fullMap {
+  position: relative;
+  margin: auto; 
+}
+
+.fullMapImage {
+  width: 100%;
+  height: auto;
+}
+
+.imageButtonsContainer {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(84, 1fr);
+  grid-template-rows: repeat(84, 1fr);
+}
+
+
+
+#junkJunction {
+  grid-area: 7 / 7 / 15 / 20;
+}
+
+#hauntedHills {
+  grid-area: 15 / 7 / 27 / 19;
+}
+
+#buildingsEastOfJunkJunction {
+  grid-area: 3 / 20 / 11 / 27;
+}
+
+#townWestOfMotel {
+  grid-area: 11 / 20 / 19 / 28;
+}
+
+#motel {
+  grid-area: 11 / 29 / 19 / 37;
+}
+
+#anarchyAcres {
+  grid-area: 15 / 40 / 27 / 51;
+}
+
+#tomatoTown {
+  grid-area: 25 / 52 / 32 / 61;
+}
+
+#wailingWoods {
+  grid-area: 19 / 61 / 32 / 77;
+}
+
+#pleasantPark {
+  grid-area: 19 / 19 / 31 / 31;
+}
+
+#northLootLake {
+  grid-area: 25 / 32 / 29 / 43;
+}
+
+#lootLakeHouse {
+  grid-area: 29 / 36 / 35 / 43;
+}
+
+#westLootLake {
+  grid-area: 29 / 31 / 37 / 36;
+}
+
+#snobbyShores {
+  grid-area: 35 / 3 / 43 / 11;
+}
+
+#siloNortheastOfSnobbyShores {
+  grid-area: 31 / 11 / 39 / 19;
+}
+
+#buildingsWestOfTiltedTowers {
+  grid-area: 37 / 17 / 45 / 25;
+  z-index: 5;
+}
+
+#shiftyShafts {
+  grid-area: 49 / 27 / 57 / 37;
+}
+
+#greasyGrove {
+  grid-area: 48 / 15 / 57 / 25;
+}
+
+#townNorthEastOfFlushFactory {
+  grid-area: 65 / 34 / 73 / 41;
+  z-index: 5;
+}
+
+#flushFactory {
+  grid-area: 70 / 25 / 78 / 37;
+}
+
+#chair {
+  grid-area: 59 / 28 / 66 / 34;
+}
+
+#riskyReels {
+  grid-area: 11 / 58 / 22 / 67;
+  z-index: 5;
+}
+
+#tiltedTowers {
+  grid-area: 37 / 27 / 47 / 37;
+}
+
+#luckyLanding {
+  grid-area: 71 / 43 / 83 / 55;
+}
+
+#houseOnHill {
+  grid-area: 57 / 39 / 63 / 46;
+}
+
+#fatalFields {
+  grid-area: 59 / 46 / 71 / 58;
+}
+
+#moistyMire {
+  grid-area: 59 / 62 / 77 / 80;
+}
+
+#prison {
+  grid-area: 59 / 62 / 65 / 68;
+  z-index: 5;
+}
+
+#saltySprings {
+  grid-area: 49 / 43 / 57 / 53;
+}
+
+#dustyDivot {
+  grid-area: 39 / 47 / 49 / 55;
+}
+
+#retailRow {
+  grid-area: 41 / 59 / 49 / 68;
+}
+
+#shippingContainers {
+  grid-area: 32 / 59 / 38 / 65;
+  z-index: 5;
+}
+
+#lonelyLodge {
+  grid-area: 32 / 71 / 42 / 81;
+}
+
+#mansionSouthOfLonelyLodge {
+  grid-area: 41 / 78 / 46 / 86;
+  z-index: 5;
+}
+
+#buildingsNorthOfPrison {
+  grid-area: 49 / 67 / 57 / 72;
+}
+#dustyDepot {
+  grid-area: 36 / 46 / 39 / 54;
+}
+
+.chooseLocationButton:hover {
+  cursor: pointer;
+}

@@ -4,7 +4,7 @@ function Location(name, camelCase, image) {
   this.image = image;
   this.checked = true;
 }
-const names = ['Chair', 'Loot Lake House', 'West of Loot Lake', 'North of Loot Lake', 'Prison', 'Shipping Containers', 'Lucky Landing', 'Flush Factory', 'Tilted Towers', 'Shifty Shafts', 'Haunted Hills', 'Anarchy Acres', 'Lonely Lodge', 'Wailing Woods', 'Moisty Mire', 'Fatal Fields', 'Greasy Grove', 'Snobby Shores', 'Junk Junction', 'Pleasant Park', 'Dusty Depot', 'Salty Springs', 'Retail Row', 'Tomato Town', 'House on the Hill', 'Town west of Motel', 'Town south of Dusty Depot', 'Town northeast of Flush Factory', 'Buildings West of Tilted Towers', 'Buildings North of the Prison', 'Motel', 'Risky Reels', 'Dusty Divot', 'Mansion South of Lonely Lodge', 'Buildings East of Flush Factory', 'Lair in Mountain Northeast of Snobby Shores'];
+const names = ['Chair', 'Loot Lake House', 'West of Loot Lake', 'North of Loot Lake', 'Prison', 'Shipping Containers', 'Lucky Landing', 'Flush Factory', 'Tilted Towers', 'Shifty Shafts', 'Haunted Hills', 'Anarchy Acres', 'Lonely Lodge', 'Wailing Woods', 'Moisty Mire', 'Fatal Fields', 'Greasy Grove', 'Snobby Shores', 'Junk Junction', 'Pleasant Park', 'Dusty Depot', 'Salty Springs', 'Retail Row', 'Tomato Town', 'House on the Hill', 'Town west of Motel', 'Town south of Dusty Depot', 'Town northeast of Flush Factory', 'Buildings West of Tilted Towers', 'Buildings North of the Prison', 'Motel', 'Risky Reels', 'Mansion South of Lonely Lodge', 'Dusty Divot', 'Buildings East of Junk Junction', 'Silo in Mountain Northeast of Snobby Shores'];
 const chair = new Location(names[0], 'chair', './placeHolder.jpg');
 const lootLakeHouse = new Location(names[1], 'lootLakeHouse', './placeHolder.jpg');
 const westLootLake = new Location(names[2], 'westLootLake', './placeHolder.jpg');
@@ -39,8 +39,8 @@ const motel = new Location(names[30], 'motel', './placeHolder.jpg');
 const riskyReels = new Location(names[31], 'riskyReels', './placeHolder.jpg');
 const mansionSouthOfLonelyLodge = new Location(names[32], 'mansionSouthOfLonelyLodge', './placeHolder.jpg');
 const dustyDivot = new Location(names[33], 'dustyDivot', './placeHolder.jpg');
-const buildingsEastOfFlushFactory = new Location(names[34], 'buildingsEastOfFlushFactory', './placeHolder.jpg');
-const lairNortheastOfSnobbyShores = new Location(names[35], 'lairNortheastOfSnobbyShores', './placeHolder.jpg');
-const locations = [chair, lootLakeHouse, westLootLake, northLootLake, prison, shippingContainers, luckyLanding, flushFactory, tiltedTowers, shiftyShafts, hauntedHills, anarchyAcres, lonelyLodge, wailingWoods, moistyMire, fatalFields, greasyGrove, snobbyShores, junkJunction, pleasantPark, dustyDepot, saltySprings, retailRow, tomatoTown, houseOnHill, townWestOfMotel, townSouthOfDustyDepot, townNorthEastOfFlushFactory, buildingsWestOfTiltedTowers, buildingsNorthOfPrison, motel, riskyReels, mansionSouthOfLonelyLodge, dustyDivot, buildingsEastOfFlushFactory, lairNortheastOfSnobbyShores];
+const buildingsEastOfJunkJunction = new Location(names[34], 'buildingsEastOfJunkJunction', './placeHolder.jpg');
+const siloNortheastOfSnobbyShores = new Location(names[35], 'siloNortheastOfSnobbyShores', './placeHolder.jpg');
+const locations = [chair, lootLakeHouse, westLootLake, northLootLake, prison, shippingContainers, luckyLanding, flushFactory, tiltedTowers, shiftyShafts, hauntedHills, anarchyAcres, lonelyLodge, wailingWoods, moistyMire, fatalFields, greasyGrove, snobbyShores, junkJunction, pleasantPark, dustyDepot, saltySprings, retailRow, tomatoTown, houseOnHill, townWestOfMotel, townSouthOfDustyDepot, townNorthEastOfFlushFactory, buildingsWestOfTiltedTowers, buildingsNorthOfPrison, motel, riskyReels, mansionSouthOfLonelyLodge, dustyDivot, buildingsEastOfJunkJunction, siloNortheastOfSnobbyShores];
 
 export default locations;

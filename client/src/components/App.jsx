@@ -51,6 +51,7 @@ class App extends React.Component {
     this.filterAllIn = this.filterAllIn.bind(this);
     this.filterAllOut = this.filterAllOut.bind(this);
     this.handleShowMapClick = this.handleShowMapClick.bind(this);
+    this.handleMapChoiceClick = this.handleMapChoiceClick.bind(this);
   }
 
   handleUserFormClick() {
@@ -447,6 +448,23 @@ class App extends React.Component {
     });
   }
 
+  handleMapChoiceClick(e) {
+    console.log('inside handleMapChoiceClick from div -->', e.target.id);
+    for (var i = 0; i < locations.length; i++) {
+      if (locations[i].camelCase === e.target.id) {
+        this.filterIn(locations[i]);
+      }
+    }
+    for (var k = 0; k < this.state.filteredLocations.length; k++) {
+      if (this.state.filteredLocations[k].camelCase === e.target.id) {
+        this.setState({
+          active: e.target.id,
+          activeIndex: k,
+          showFullMap: false,
+        });
+      }
+    }
+  }
 
   render() {
     return (
@@ -504,6 +522,8 @@ class App extends React.Component {
         {this.state.showFullMap &&
         <FullMap
           handleShowMapClick={this.handleShowMapClick}
+          locations={this.state.locations}
+          handleMapChoiceClick={this.handleMapChoiceClick}
         />}
       </div>
     );
