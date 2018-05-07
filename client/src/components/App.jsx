@@ -5,6 +5,7 @@ import Body from './Body.jsx';
 import UserForm from './UserForm.jsx';
 import FilterLocations from './FilterLocations.jsx';
 import AccountOptionsForm from './AccountOptionsForm.jsx';
+import FullMap from './FullMap.jsx';
 import locations from '../data.js';
 
 
@@ -26,6 +27,7 @@ class App extends React.Component {
       accountOptionsForm: false,
       logInFailed: null,
       userGameData: null,
+      showFullMap: false,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -48,6 +50,7 @@ class App extends React.Component {
     this.popularGroupClick = this.popularGroupClick.bind(this);
     this.filterAllIn = this.filterAllIn.bind(this);
     this.filterAllOut = this.filterAllOut.bind(this);
+    this.handleShowMapClick = this.handleShowMapClick.bind(this);
   }
 
   handleUserFormClick() {
@@ -433,6 +436,12 @@ class App extends React.Component {
     });
   }
 
+  handleShowMapClick() {
+    this.setState({
+      showFullMap: !this.state.showFullMap,
+    });
+  }
+
 
   render() {
     return (
@@ -444,6 +453,7 @@ class App extends React.Component {
           handleFilterClick={this.handleFilterClick}
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
+          handleShowMapClick={this.handleShowMapClick}
         />
         <Body
           filteredLocations={this.state.filteredLocations}
@@ -485,6 +495,10 @@ class App extends React.Component {
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           loggedIn={this.state.loggedIn}
           handleLogout={this.handleLogout}
+        />}
+        {this.state.showFullMap &&
+        <FullMap
+          handleShowMapClick={this.handleShowMapClick}
         />}
       </div>
     );
