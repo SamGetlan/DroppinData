@@ -543,8 +543,8 @@ class App extends React.Component {
     return (
       <div id="app">
         <Navbar
-          navButtons={['Home', 'Games', 'Filter Locations', 'Sign Up or Login']}
-          classes={['home', 'games', 'filter', 'login']}
+          navButtons={['Home', 'Map', 'Filter Locations', 'Sign Up or Login']}
+          classes={['home', 'map', 'filter', 'login']}
           handleUserFormClick={this.handleUserFormClick}
           handleFilterClick={this.handleFilterClick}
           loggedIn={this.state.loggedIn}

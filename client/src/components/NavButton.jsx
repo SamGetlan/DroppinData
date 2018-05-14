@@ -20,7 +20,7 @@ const NavButton = (props) => {
         {props.value}
       </button>
     );
-  } else if (props.class === 'games') {
+  } else if (props.class === 'map') {
     return (
       <button className={`navButton col-2 col-s-6 ${props.class}`} onClick={props.handleShowMapClick}>
         {props.value}
