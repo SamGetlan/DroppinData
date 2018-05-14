@@ -384,7 +384,7 @@ class App extends React.Component {
       const userGameData = this.state.userGameData;
       const hardGroup = Object.keys(this.state.userGameData);
       hardGroup.sort((a, b) => {
-        return userGameData[a][type].averagePlace - userGameData[b][type].averagePlace;
+        return userGameData[b][type].averagePlace - userGameData[a][type].averagePlace;
       });
       for (var i = 0; i < Math.min(hardGroup.length, 8); i++) {
         for (var ii = 0; ii < locations.length; ii++) {
@@ -395,7 +395,7 @@ class App extends React.Component {
       }
       this.setState({
         filteredLocations: results,
-      })
+      });
 
     } else {
       console.log('Need to save at least 10 games in order for customSorting to work');
@@ -403,29 +403,102 @@ class App extends React.Component {
   }
 
   notRecentGroupClick(gameType = 'all') {
-    if (userGameData !== null) {
-      
+    console.log('inside notRecentGroupClick');
+    const type = 'all';
+    if (this.state.userGames.length > 9) {
+      const results = [];
+      const userGameData = this.state.userGameData;
+      const notRecentGroup = Object.keys(this.state.userGameData);
+      notRecentGroup.sort((a, b) => {
+        return userGameData[a][type].mostRecent - userGameData[b][type].mostRecent;
+      });
+      for (var i = 0; i < Math.min(notRecentGroup.length, 8); i++) {
+        for (var ii = 0; ii < locations.length; ii++) {
+          if (locations[ii].name === notRecentGroup[i]) {
+            results.push(locations[ii]);
+          }
+        }
+      }
+      this.setState({
+        filteredLocations: results,
+      });
     }
   }
 
-  killsGroupClick(gameType = 'all') {
+  killsGroupClick() {
     console.log('inside killsGroupClick');
-    if (userGameData !== null) {
-      
+    const type = 'all';
+    if (this.state.userGames.length > 9) {
+      const results = [];
+      const userGameData = this.state.userGameData;
+      const killsGroup = Object.keys(this.state.userGameData);
+      killsGroup.sort((a, b) => {
+        return userGameData[b][type].averageKills - userGameData[a][type].averageKills;
+      });
+      for (var i = 0; i < Math.min(killsGroup.length, 8); i++) {
+        for (var ii = 0; ii < locations.length; ii++) {
+          if (locations[ii].name === killsGroup[i]) {
+            results.push(locations[ii]);
+          }
+        }
+      }
+      this.setState({
+        filteredLocations: results,
+      });
+    } else {
+      console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
 
-  placeGroupClick(gameType = 'all') {
+  placeGroupClick() {
     console.log('inside placeGroupClick');
-    if (userGameData !== null) {
-      
+    const type = 'all';
+    if (this.state.userGames.length > 9) {
+      const results = [];
+      const userGameData = this.state.userGameData;
+      const easyGroup = Object.keys(this.state.userGameData);
+      easyGroup.sort((a, b) => {
+        return userGameData[a][type].averagePlace - userGameData[b][type].averagePlace;
+      });
+      for (var i = 0; i < Math.min(easyGroup.length, 8); i++) {
+        for (var ii = 0; ii < locations.length; ii++) {
+          if (locations[ii].name === easyGroup[i]) {
+            results.push(locations[ii]);
+          }
+        }
+      }
+      this.setState({
+        filteredLocations: results,
+      });
+
+    } else {
+      console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
 
-  popularGroupClick(gameType = 'all') {
+  popularGroupClick() {
     console.log('inside popularGroupClick');
-    if (userGameData !== null) {
-      
+    const type = 'all';
+    if (this.state.userGames.length > 9) {
+      const results = [];
+      const userGameData = this.state.userGameData;
+      const popularGroup = Object.keys(this.state.userGameData);
+      popularGroup.sort((a, b) => {
+        return userGameData[b][type].totalGames - userGameData[a][type].totalGames;
+      });
+      for (var i = 0; i < Math.min(popularGroup.length, 8); i++) {
+        for (var ii = 0; ii < locations.length; ii++) {
+          if (locations[ii].name === popularGroup[i]) {
+            results.push(locations[ii]);
+          }
+        }
+      }
+      this.setState({
+        filteredLocations: results,
+      });
+
+    } else {
+      console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
 
