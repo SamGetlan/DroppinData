@@ -10,28 +10,39 @@ mongoose.connection.once('open', () => {
   console.log('Connection error:', error);
 });
 
-const saveGame = (gamePlayed, callback) => {
-  const game = new Game({
-    user: gamePlayed.user,
-    date: new Date(),
-    location: gamePlayed.location,
-    place: gamePlayed.place,
-    kills: gamePlayed.kills,
-    loot: gamePlayed.loot,
-    gameType: gamePlayed.gameType,
-  });
+const checkGamePlayed = (gamePlayed) => {
+  gamePlayed.place = Number(gamePlayed.place);
+  gamePlayed.kills = Number(gamePlayed.kills);
+  gamePlayed.loot = Number(gamePlayed.loot);
+  return (typeof gamePlayed.user === 'string' && typeof gamePlayed.location === 'string' && typeof gamePlayed.place === 'number' && gamePlayed.place > 0 && gamePlayed.place < 101 && typeof gamePlayed.kills === 'number' && gamePlayed.kills >= 0 && gamePlayed.kills < 100 && typeof gamePlayed.loot === 'number' && gamePlayed.loot > 0 && gamePlayed.loot <= 10 && (gamePlayed.gameType === 'solo' || gamePlayed.gameType === 'duo' || gamePlayed.gameType === 'squad') && typeof gamePlayed.death === 'string' && gamePlayed.death !== 'null')
+}
 
-  game.save((err, results) => {
-    if (err) {
-      console.log('There was an error:', err);
-    } else {
-      callback(results);
-    }
-  });
+const saveGame = (gamePlayed, callback) => {
+  if (checkGamePlayed(gamePlayed)) {
+    const game = new Game({
+      user: gamePlayed.user,
+      date: new Date(),
+      location: gamePlayed.location,
+      place: gamePlayed.place,
+      kills: gamePlayed.kills,
+      loot: gamePlayed.loot,
+      gameType: gamePlayed.gameType,
+      deathLocation: gamePlayed.death,
+    });
+  
+    game.save((err, results) => {
+      if (err) {
+        console.log('There was an error:', err);
+      } else {
+        callback(results);
+      }
+    });
+  } else {
+    callback(gamePlayed);
+  }
 };
 
 const loadGames = (user, callback) => {
-  console.log('user -->', user);
   Game.find({ user }, null, null, (err, games) => {
     if (err) {
       console.log('There has been an error:', err);
@@ -42,7 +53,6 @@ const loadGames = (user, callback) => {
 };
 
 const checkUsername = (username, callback) => {
-  console.log('username -->', username);
   User.findOne({ username }, (err, result) => {
     if (err) {
       console.log('There was an error:', err);

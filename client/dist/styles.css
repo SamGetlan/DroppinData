@@ -411,7 +411,11 @@ input:focus {
   text-align: center;
 }
 .entryContainer input {
-  width: 20%;
+  width: 30%;
+  margin: 0;
+}
+.entryContainer select {
+  width: 30%;
   margin: 0;
 }
 

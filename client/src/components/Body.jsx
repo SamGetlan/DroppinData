@@ -141,7 +141,7 @@ class Body extends React.Component {
         {(this.props.active !== false && this.checkActiveIsOk(this.props.active)) &&
           <div className="activeTileContainer">
             <ActiveTile location={this.props.filteredLocations[this.props.activeIndex]} />
-            <StatBox currentGameType={this.state.gameType} changeGameType={this.changeGameType} stats={this.getStatsForActiveLocation(this.props.filteredLocations[this.props.activeIndex], this.state.gameType)} handleSubmit={this.props.handleSubmit} submitButtonState={this.props.submitButtonState} />
+            <StatBox currentGameType={this.state.gameType} changeGameType={this.changeGameType} stats={this.getStatsForActiveLocation(this.props.filteredLocations[this.props.activeIndex], this.state.gameType)} handleSubmit={this.props.handleSubmit} submitButtonState={this.props.submitButtonState} locations={this.props.locations} />
           </div>
         }
         <BackSplash handleTileClick={this.props.handleTileClick} userGames={this.props.userGames} filteredLocations={this.props.filteredLocations} />

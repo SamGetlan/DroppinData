@@ -12,10 +12,7 @@ const isLoggedIn = (req, res, next) => {
 module.exports = (app, passport) => {
   app.post('/api/games', isLoggedIn, (req, res) => {
     db.saveGame(req.body, (postedGame) => {
-      console.log('req.user is -->', req.user);
-      console.log('posted game:', postedGame);
       db.loadGames(postedGame.user, (results) => {
-        console.log(results);
         res.send(JSON.stringify(results));
       });
     });
@@ -23,9 +20,7 @@ module.exports = (app, passport) => {
 
   app.get('/api/games', isLoggedIn, (req, res) => {
     // load games of user on login
-    console.log('req.user -->:', req.user);
     db.loadGames(req.user.username, (results) => {
-      console.log('results of loadGames -->:', results);
       res.send(JSON.stringify(results));
     });
   });

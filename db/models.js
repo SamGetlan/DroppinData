@@ -47,7 +47,14 @@ const gameSchema = mongoose.Schema({
     min: 0,
     max: 10,
   },
-  gameType: String,
+  gameType: {
+    type: String,
+    required: true,
+  },
+  deathLocation: {
+    type: String,
+    required: true,
+  },
 });
 
 const User = mongoose.model('User', userSchema);

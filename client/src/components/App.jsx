@@ -164,17 +164,18 @@ class App extends React.Component {
     }
   }
 
-  handleGameSubmit(place, kills, loot, gameType) {
+  handleGameSubmit(place, kills, loot, gameType, death) {
     const context = this;
     this.setState({
       submitButtonState: false,
     })
-    console.log('Inside the handleSubmit function');
-    console.log(`place --> ${place}`);
-    console.log(`kills --> ${kills}`);
-    console.log('loot -->', loot);
-    console.log(`Game Type --> ${gameType}`);
-    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn) {
+    // console.log('Inside the handleSubmit function');
+    // console.log(`place --> ${place}`);
+    // console.log(`kills --> ${kills}`);
+    // console.log('loot -->', loot);
+    // console.log('death -->', death);
+    // console.log(`Game Type --> ${gameType}`);
+    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn && death !== 'null') {
       axios.post('/api/games', {
         user: this.state.loggedIn,
         date: new Date(),
@@ -183,6 +184,7 @@ class App extends React.Component {
         kills,
         loot,
         gameType,
+        death,
       })
         .then((data) => {
           console.log('We have received Data -->', data);
@@ -214,6 +216,8 @@ class App extends React.Component {
         suggestion = 'Loot rating must be between 1 and 10.';
       } else if (!gameType) {
         suggestion = 'A game type must be selected.';
+      } else if (death === 'null') {
+        suggestion = 'A death location must be selected.';
       } else if (!this.state.loggedIn) {
         suggestion = 'You must log in to submit a game.';
       }
@@ -560,6 +564,7 @@ class App extends React.Component {
           userGames={this.state.userGames}
           handleTileClick={this.handleTileClick}
           submitButtonState={this.state.submitButtonState}
+          locations={this.state.locations}
         />
         {this.state.userFormActive &&
         <UserForm
