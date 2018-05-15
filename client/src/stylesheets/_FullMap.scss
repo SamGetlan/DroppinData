@@ -2,9 +2,9 @@
   width: 40%;
   margin: auto;
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
-  background-image: url('thickStormLinesAlpha.png');
-
+  background-color: rgba(139, 4, 217, 0.8);
+  background-image: url('thinStormLinesAlpha.png');
+  background-size: cover;
 }
 
 @media only screen and (max-width: 1300px) {
