@@ -9,6 +9,7 @@
   top: 0px;
   left: 0px;
   background-color: rgba(255, 255, 255, 0.9);
+  background-image: url("thickStormLinesAlpha.png");
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -155,6 +156,7 @@ input:focus {
   top: 0px;
   left: 0px;
   background-color: rgba(255, 255, 255, 0.9);
+  background-image: url("thickStormLinesAlpha.png");
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -466,6 +468,7 @@ input:focus {
   margin: auto;
   position: relative;
   background: rgba(255, 255, 255, 0.9);
+  background-image: url("thickStormLinesAlpha.png");
 }
 
 @media only screen and (max-width: 1300px) {
