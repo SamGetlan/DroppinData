@@ -144,7 +144,6 @@ class App extends React.Component {
       });
   }
 
-
   filterIn(location) {
     console.log(this.state.filteredLocations);
     if (this.state.filteredLocations.indexOf(location) === -1) {
@@ -304,7 +303,7 @@ class App extends React.Component {
             averagePlace: 0,
             averageLoot: 0,
             bestKills: 0,
-            bestPlace: 0,
+            bestPlace: 101,
             bestLoot: 0,
             totalKills: 0,
             totalPlace: 0,
@@ -320,7 +319,7 @@ class App extends React.Component {
             averagePlace: 0,
             averageLoot: 0,
             bestKills: 0,
-            bestPlace: 0,
+            bestPlace: 101,
             bestLoot: 0,
             totalKills: 0,
             totalPlace: 0,
@@ -336,7 +335,7 @@ class App extends React.Component {
             averagePlace: 0,
             averageLoot: 0,
             bestKills: 0,
-            bestPlace: 0,
+            bestPlace: 101,
             bestLoot: 0,
             totalKills: 0,
             totalPlace: 0,
@@ -352,7 +351,7 @@ class App extends React.Component {
             averagePlace: 0,
             averageLoot: 0,
             bestKills: 0,
-            bestPlace: 0,
+            bestPlace: 101,
             bestLoot: 0,
             totalKills: 0,
             totalPlace: 0,
