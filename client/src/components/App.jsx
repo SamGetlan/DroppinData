@@ -26,7 +26,7 @@ class App extends React.Component {
       submitButtonState: true,
       accountOptionsForm: false,
       logInFailed: null,
-      userGameData: null,
+      userGameData: {},
       showFullMap: false,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
@@ -187,8 +187,10 @@ class App extends React.Component {
       })
         .then((data) => {
           console.log('We have received Data -->', data);
+          const userGameData = context.getUserGameData(data.data);
           context.setState({
             userGames: data.data,
+            userGameData,
           });
           const $confirm = document.createElement('p');
           $confirm.innerHTML = 'Game was successfully submitted';

@@ -16,7 +16,8 @@
   width: 40%;
   margin: auto;
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
+  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
 }
 
 @media only screen and (max-width: 700px) {
@@ -28,7 +29,6 @@
 #userFormBox {
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
-  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
   button:hover {
     filter: brightness(125%);
   }

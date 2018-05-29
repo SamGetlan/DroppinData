@@ -46,7 +46,12 @@ class Body extends React.Component {
             />
           </div>
         }
-        <BackSplash handleTileClick={this.props.handleTileClick} userGames={this.props.userGames} filteredLocations={this.props.filteredLocations} />
+        <BackSplash 
+          handleTileClick={this.props.handleTileClick} 
+          userGames={this.props.userGames} 
+          filteredLocations={this.props.filteredLocations} 
+          userGameData={this.props.userGameData}
+        />
       </div>
     );
   }

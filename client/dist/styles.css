@@ -20,7 +20,8 @@
   width: 40%;
   margin: auto;
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
+  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
 }
 
 @media only screen and (max-width: 700px) {
@@ -31,7 +32,6 @@
 #userFormBox {
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
-  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
 }
 #userFormBox button:hover {
   filter: brightness(125%);
@@ -168,6 +168,8 @@ input:focus {
   width: 65%;
   margin: auto;
   position: relative;
+  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
+  background: white;
 }
 
 @media only screen and (max-width: 700px) {
@@ -184,7 +186,6 @@ input:focus {
   flex-wrap: wrap;
   padding: 1vh 0;
   justify-content: space-evenly;
-  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
 }
 
 .filterSelection {
@@ -469,9 +470,8 @@ input:focus {
   width: 40%;
   margin: auto;
   position: relative;
-  background-color: rgba(139, 4, 217, 0.8);
-  background-image: url("thinStormLinesAlpha.png");
-  background-size: cover;
+  background: white;
+  box-shadow: 0 0 4px 0 rgba(168, 168, 168, 0.4);
 }
 
 @media only screen and (max-width: 1300px) {
