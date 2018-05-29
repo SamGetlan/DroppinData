@@ -119,7 +119,7 @@ class UserForm extends React.Component {
                 <input type="text" onChange={this.checkEmailValidity} placeholder="Email address for password recovery" id="emailInput" className={this.state.validEmail === true ? 'passwordsMatch' : (this.state.validEmail === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
               </form>
               {(this.state.passwordsMatch === true && this.state.usernameUniq === true) &&
-                <button id="submitSignUpForm" onClick={() => this.props.handleAccountSignUp(document.getElementById('usernameInput').value, document.getElementById('passwordInput').value)} >Submit</button> 
+                <button id="submitSignUpForm" onClick={() => this.props.handleAccountSignUp(document.getElementById('usernameInput').value, document.getElementById('passwordInput').value, document.getElementById('emailInput').value)} >Submit</button> 
               }
               {(this.state.passwordsMatch === true && this.state.usernameUniq === true) ||
                 <button id="submitSignUpForm" className="disabled" >Submit</button>

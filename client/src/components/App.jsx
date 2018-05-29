@@ -89,12 +89,13 @@ class App extends React.Component {
     });
   }
 
-  handleAccountSignUp(username, password) {
+  handleAccountSignUp(username, password, emailAddress) {
     const context = this;
     axios.post('/api/signup', {
       username,
       password,
       createdAt: new Date(),
+      emailAddress,
     })
       .then((data) => {
         console.log('signUp successful:', data.config.data);

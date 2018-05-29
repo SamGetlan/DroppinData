@@ -18,6 +18,7 @@ module.exports = function configurePassport(passport) {
     },
     (req, username, password, done) => {
       process.nextTick(() => {
+        console.log('inside local-signup');
         User.findOne({ username }, (err, user) => {
           if (err) { return done(err); }
           if (user) {
@@ -28,6 +29,7 @@ module.exports = function configurePassport(passport) {
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
           newUser.createdAt = req.body.createdAt;
+          newUser.email = req.body.emailAddress;
 
           newUser.save((error) => {
             if (error) { throw error; }
