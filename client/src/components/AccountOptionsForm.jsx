@@ -7,6 +7,7 @@ const AccountOptionsForm = props => (
       <div id="userFormBox">
         <div id="accountOptionsButtonsContainer">
           <button id="accountSettingsButton" className="accountOptionsButton">Account Settings</button>
+          <button id="myGamesButton" className="accountOptionsButton">My Games</button>
           <button id="logoutButton" className="accountOptionsButton" onClick={props.handleLogout} >Logout</button>
         </div>
       </div>
