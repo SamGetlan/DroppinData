@@ -8,9 +8,11 @@ class UserForm extends React.Component {
     this.state = {
       passwordsMatch: null,
       usernameUniq: null,
+      validEmail: '',
     };
     this.passwordCheck = this.passwordCheck.bind(this);
     this.checkUsername = this.checkUsername.bind(this);
+    this.checkEmailValidity = this.checkEmailValidity.bind(this);
   }
 
   passwordCheck() {
@@ -49,7 +51,36 @@ class UserForm extends React.Component {
       .catch((err) => {
         console.log('There was an error:', err);
       });
+  }
 
+  checkEmailValidity() {
+    const context = this;
+    let valid = false;
+    let email;
+    if (document.getElementById('emailInput')) {
+      email = document.getElementById('emailInput').value;
+    } else {
+      email = [];
+    }
+    if (email.length > 0) {
+      email = email.split('@');
+      if (email[0].length > 0 && email[1] !== undefined) {
+        email = email[1].split('.');
+        if (email[1] !== undefined && email[1].length > 1) {
+          console.log('valid email');
+          valid = true;
+          context.setState({
+            validEmail: true,
+          });
+        }
+      }
+    }
+    if (!valid) {
+      console.log('invalid email');
+      context.setState({
+        validEmail: false,
+      });
+    }
   }
 
   render() {
@@ -84,6 +115,8 @@ class UserForm extends React.Component {
                 <input type="password" onChange={this.passwordCheck} placeholder="Enter Password" id="passwordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
                 <label htmlFor="repeatPasswordInput" >Repeat Password {this.state.passwordsMatch === false && <span className="labelFalse"> - passwords do not match</span>}</label>
                 <input type="password" onChange={this.passwordCheck} placeholder="Repeat Password" id="repeatPasswordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
+                <label htmlFor="emailInput" >Email {this.state.validEmail === false && <span className="labelFalse"> - please enter a valid email</span>}</label>
+                <input type="text" onChange={this.checkEmailValidity} placeholder="Email address for password recovery" id="emailInput" className={this.state.validEmail === true ? 'passwordsMatch' : (this.state.validEmail === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
               </form>
               {(this.state.passwordsMatch === true && this.state.usernameUniq === true) &&
                 <button id="submitSignUpForm" onClick={() => this.props.handleAccountSignUp(document.getElementById('usernameInput').value, document.getElementById('passwordInput').value)} >Submit</button> 
