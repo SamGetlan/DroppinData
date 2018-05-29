@@ -1,9 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FullMap = props => (
   <div id="userFormContainerWrapper">
     <div id="fullMapContainer">
-      <button id="x"onClick={props.handleShowMapClick} >X</button>
       <div id="userFormBox">
         <div id="fullMap">
           <img className="fullMapImage" src="./fortNite-s4map.jpg" alt="Full Map" height="100%" width="100%"/>
@@ -14,9 +14,9 @@ const FullMap = props => (
           </div>
         </div>
       </div>
-      <div id="closeButtonContainer">
+      <Link id="closeButtonContainer" to="/home">
         <button className="closeButton" onClick={props.handleShowMapClick}>Close</button>
-      </div>
+      </Link>
     </div>
   </div>
 )

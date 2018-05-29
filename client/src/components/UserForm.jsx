@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -55,7 +56,6 @@ class UserForm extends React.Component {
     return (
       <div id="userFormContainerWrapper">
         <div id="userFormContainer" className="mobile-85">
-          <button id="x" onClick={this.props.handleUserFormClick}>X</button>
           <div id="userFormBox">
             <div id="userFormOptionsBar">
               <button className="userFormOptionsButton" id="loginUserFormOptionButton" onClick={this.props.loginUserFormOption}>Login</button>
@@ -93,9 +93,9 @@ class UserForm extends React.Component {
               }
             </div>}
           </div>
-          <div id="closeButtonContainer">
+          <Link id="closeButtonContainer" to="/home">
             <button className="closeButton" onClick={this.props.handleUserFormClick}>Close</button>
-          </div>
+          </Link>
         </div>
       </div>
     );

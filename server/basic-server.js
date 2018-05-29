@@ -5,6 +5,7 @@ const parser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const path = require('path');
 
 const app = express();
 module.exports.app = app;
@@ -27,6 +28,10 @@ require('./routes.js')(app, passport);
 
 
 app.use(express.static(`${__dirname}/../client/dist`));
+
+app.get(`*`, function(req, res) {
+  res.sendFile(path.resolve(__dirname, `../client/dist`, `index.html`));
+});
 
 if (!module.parent) {
   app.listen(app.get('port'));

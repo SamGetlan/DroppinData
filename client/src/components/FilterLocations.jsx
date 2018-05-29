@@ -1,10 +1,10 @@
 import React from 'react';
 import FilterSelection from './FilterSelection.jsx';
+import { Link } from 'react-router-dom';
 
 const FilterLocations = props => (
   <div id="filterLocationsContainerWrapper">
     <div id="filterLocationsContainer">
-      <button id="x"onClick={props.handleFilterClick} >X</button>
       <div id="filterGroupingsButtonContainer">
         <button id="hardGroupButton" className="filterGroupButton"onClick={props.hardGroupClick}>Give me a challenge</button>
         <button id="notRecentGroupButton" className="filterGroupButton"onClick={props.notRecentGroupClick}>It has been in a while</button>
@@ -17,7 +17,9 @@ const FilterLocations = props => (
       </div>
       <div id="closeButtonContainer">
         <button id="filterAllInButton" className="closeButton" onClick={props.filterAllIn}>Filter All In</button>
-        <button className="closeButton" onClick={props.handleFilterClick}>Close</button>
+        <Link to='/home'>
+          <button className="closeButton" onClick={props.handleFilterClick}>Close</button>
+        </Link>
         <button id="filterAllOutButton" className="closeButton" onClick={props.filterAllOut}>Filter All Out</button>
       </div>
     </div>

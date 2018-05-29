@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Redirect, Link, Route, withRouter } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import Body from './Body.jsx';
 import UserForm from './UserForm.jsx';
@@ -127,6 +128,7 @@ class App extends React.Component {
             .then((data) => {
               console.log('data received -->', data);
               const userGameData = context.getUserGameData(data.data);
+              context.props.history.push('/home');
               context.setState({
                 userGames: data.data,
                 userGameData,
@@ -264,6 +266,7 @@ class App extends React.Component {
           loggedIn: false,
           accountOptionsForm: false,
           userGames: null,
+          userGameData: {},
         })
       })
       .catch((err) => {
@@ -572,8 +575,8 @@ class App extends React.Component {
           locations={this.state.locations}
           userGameData={this.state.userGameData}
         />
-        {this.state.userFormActive &&
-        <UserForm
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
+        <Route path="/login" render={props => <UserForm {...props}
           handleUserFormClick={this.handleUserFormClick}
           signUpForm={this.state.signUpForm}
           loginUserFormOption={this.loginUserFormOption}
@@ -581,9 +584,8 @@ class App extends React.Component {
           handleAccountSignIn={this.handleAccountSignIn}
           handleAccountSignUp={this.handleAccountSignUp}
           logInFailed={this.state.logInFailed}
-        />}
-        {this.state.filterLocationsActive &&
-        <FilterLocations
+        />} />
+        <Route path="/filterLocations" render={props => <FilterLocations {...props}
           locations={this.state.locations}
           filteredLocations={this.state.filteredLocations}
           filterOut={this.filterOut}
@@ -596,22 +598,20 @@ class App extends React.Component {
           popularGroupClick={this.popularGroupClick}
           filterAllIn={this.filterAllIn}
           filterAllOut={this.filterAllOut}
-        />}
-        {this.state.accountOptionsForm &&
-        <AccountOptionsForm
+        />} />
+        <Route path="/accountOptions" render={props => <AccountOptionsForm {...props}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           loggedIn={this.state.loggedIn}
           handleLogout={this.handleLogout}
-        />}
-        {this.state.showFullMap &&
-        <FullMap
+        />} />
+        <Route path="/map" render={props => <FullMap {...props}
           handleShowMapClick={this.handleShowMapClick}
           locations={this.state.locations}
           handleMapChoiceClick={this.handleMapChoiceClick}
-        />}
+        />} />
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
