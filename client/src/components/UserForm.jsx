@@ -96,6 +96,9 @@ class UserForm extends React.Component {
             <div id="userFormMain">
               <h2 id="userFormTitle">Log In</h2>
               <h4 id="userFormSubTitle">Please fill in your username and password to login</h4>
+              <Link to="/accountRecovery">
+                <p id="forgotPasswordLink">Forgot username/password?</p>
+              </Link>
               <form id="signUpForm">
                 <label htmlFor="usernameInput" >Username {this.props.logInFailed === true && <span className="labelFalse"> - username or password is incorrect</span>}</label>
                 <input type="text" placeholder="Enter Username" id="usernameInput" />
@@ -116,7 +119,7 @@ class UserForm extends React.Component {
                 <label htmlFor="repeatPasswordInput" >Repeat Password {this.state.passwordsMatch === false && <span className="labelFalse"> - passwords do not match</span>}</label>
                 <input type="password" onChange={this.passwordCheck} placeholder="Repeat Password" id="repeatPasswordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
                 <label htmlFor="emailInput" >Email {this.state.validEmail === false && <span className="labelFalse"> - please enter a valid email</span>}</label>
-                <input type="text" onChange={this.checkEmailValidity} placeholder="Email address for password recovery" id="emailInput" className={this.state.validEmail === true ? 'passwordsMatch' : (this.state.validEmail === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
+                <input type="text" onChange={this.checkEmailValidity} placeholder="Email for account recovery" id="emailInput" className={this.state.validEmail === true ? 'passwordsMatch' : (this.state.validEmail === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
               </form>
               {(this.state.passwordsMatch === true && this.state.usernameUniq === true) &&
                 <button id="submitSignUpForm" onClick={() => this.props.handleAccountSignUp(document.getElementById('usernameInput').value, document.getElementById('passwordInput').value, document.getElementById('emailInput').value)} >Submit</button> 

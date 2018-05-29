@@ -131,6 +131,7 @@ input:focus {
 
 #userFormSubTitle {
   font-size: 1.8rem;
+  margin-bottom: 0.2rem;
 }
 
 #signUpForm {
@@ -149,4 +150,12 @@ input:focus {
     font-size: 1.8rem;
     margin-left: 1rem;
   }
+}
+
+#forgotPasswordLink {
+  margin: 0;
+  color: gray;
+  font-size: 1.2rem;
+  text-decoration: underline;
+  text-decoration-color: gray;
 }
