@@ -31,7 +31,7 @@ class StatBox extends React.Component {
         <div className="temporaryGameTypeSelector">
           <span className={this.props.currentGameType === 'solo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('solo')}>Solo</span><span className={this.props.currentGameType === 'duo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('duo')} >Duo</span><span className={this.props.currentGameType === 'squad' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('squad')} >Squad</span><span className={this.props.currentGameType === 'all' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('all')} >All</span>
         </div>
-        <StatGrid stats={this.props.stats} />
+        <StatGrid stats={this.props.userGameData[this.props.location.name] ? this.props.userGameData[this.props.location.name][this.props.currentGameType] : undefined} />
         <div className="entryContainer">
           <h3 className="inputLabel">What place did you come in?</h3> <input type="number" id="placeInput" />
         </div>

@@ -8,17 +8,17 @@ const StatGrid = props => (
     <div className="gridItem">Place</div>
     <div className="gridItem">Loot</div>
     <div className="gridItem best">Best</div>
-    <div className="gridItem best">{props.stats.bestKills}</div>
-    <div className="gridItem best">{props.stats.bestPlace}</div>
-    <div className="gridItem best">{props.stats.bestLoot}</div>
+    <div className="gridItem best">{(props.stats && props.stats.averagePlace) ? props.stats.bestKills : 'N/A'}</div>
+    <div className="gridItem best">{(props.stats && props.stats.averagePlace) ? props.stats.bestPlace : 'N/A'}</div>
+    <div className="gridItem best">{(props.stats && props.stats.averagePlace) ? props.stats.bestLoot : 'N/A'}</div>
     <div className="gridItem average">Average</div>
-    <div className="gridItem average">{props.stats.averageKills}</div>
-    <div className="gridItem average">{props.stats.averagePlace}</div>
-    <div className="gridItem average">{props.stats.averageLoot}</div>
+    <div className="gridItem average">{(props.stats && props.stats.averagePlace) ? props.stats.averageKills : 'N/A'}</div>
+    <div className="gridItem average">{(props.stats && props.stats.averagePlace) ? props.stats.averagePlace : 'N/A'}</div>
+    <div className="gridItem average">{(props.stats && props.stats.averagePlace) ? props.stats.averageLoot : 'N/A'}</div>
     <div className="gridItem prev">Previous</div>
-    <div className="gridItem prev">{props.stats.mostRecentKills}</div>
-    <div className="gridItem prev">{props.stats.mostRecentPlace}</div>
-    <div className="gridItem prev">{props.stats.mostRecentLoot}</div>
+    <div className="gridItem prev">{(props.stats && props.stats.averagePlace) ? props.stats.recentKills : 'N/A'}</div>
+    <div className="gridItem prev">{(props.stats && props.stats.averagePlace) ? props.stats.recentPlace : 'N/A'}</div>
+    <div className="gridItem prev">{(props.stats && props.stats.averagePlace) ? props.stats.recentLoot : 'N/A'}</div>
   </div>
 );
 

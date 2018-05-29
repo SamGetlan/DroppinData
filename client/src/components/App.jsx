@@ -368,14 +368,18 @@ class App extends React.Component {
       updateStats(results, game, game.gameType);
     });
     for (var location in results) {
-      results[location].solo.averageKills = results[location].solo.totalKills / results[location].solo.totalGames;
-      results[location].duo.averageKills = results[location].duo.totalKills / results[location].duo.totalGames;
-      results[location].squad.averageKills = results[location].squad.totalKills / results[location].squad.totalGames;
-      results[location].all.averageKills = results[location].all.totalKills / results[location].all.totalGames;
-      results[location].solo.averagePlace = results[location].solo.totalPlace / results[location].solo.totalGames;
-      results[location].duo.averagePlace = results[location].duo.totalPlace / results[location].duo.totalGames;
-      results[location].squad.averagePlace = results[location].squad.totalPlace / results[location].squad.totalGames;
-      results[location].all.averagePlace = results[location].all.totalPlace / results[location].all.totalGames;
+      results[location].solo.averageKills = Math.round(results[location].solo.totalKills / results[location].solo.totalGames * 10) / 10;
+      results[location].duo.averageKills = Math.round(results[location].duo.totalKills / results[location].duo.totalGames * 10) / 10;
+      results[location].squad.averageKills = Math.round(results[location].squad.totalKills / results[location].squad.totalGames * 10) / 10;
+      results[location].all.averageKills = Math.round(results[location].all.totalKills / results[location].all.totalGames * 10) / 10;
+      results[location].solo.averagePlace = Math.round(results[location].solo.totalPlace / results[location].solo.totalGames * 10) / 10;
+      results[location].duo.averagePlace = Math.round(results[location].duo.totalPlace / results[location].duo.totalGames * 10) / 10;
+      results[location].squad.averagePlace = Math.round(results[location].squad.totalPlace / results[location].squad.totalGames * 10) / 10;
+      results[location].all.averagePlace = Math.round(results[location].all.totalPlace / results[location].all.totalGames * 10) / 10;
+      results[location].solo.averageLoot = Math.round(results[location].solo.totalLoot / results[location].solo.totalGames * 10) / 10;
+      results[location].duo.averageLoot = Math.round(results[location].duo.totalLoot / results[location].duo.totalGames * 10) / 10;
+      results[location].squad.averageLoot = Math.round(results[location].squad.totalLoot / results[location].squad.totalGames * 10) / 10;
+      results[location].all.averageLoot = Math.round(results[location].all.totalLoot / results[location].all.totalGames * 10) / 10;
     }
     return results;
   }
@@ -564,6 +568,7 @@ class App extends React.Component {
           handleTileClick={this.handleTileClick}
           submitButtonState={this.state.submitButtonState}
           locations={this.state.locations}
+          userGameData={this.state.userGameData}
         />
         {this.state.userFormActive &&
         <UserForm
