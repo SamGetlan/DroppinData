@@ -7,6 +7,8 @@ import UserForm from './UserForm.jsx';
 import FilterLocations from './FilterLocations.jsx';
 import AccountOptionsForm from './AccountOptionsForm.jsx';
 import FullMap from './FullMap.jsx';
+import AccountRecovery from './AccountRecovery.jsx';
+import ResetPassword from './ResetPassword.jsx';
 import locations from '../data.js';
 
 
@@ -53,6 +55,8 @@ class App extends React.Component {
     this.filterAllOut = this.filterAllOut.bind(this);
     this.handleShowMapClick = this.handleShowMapClick.bind(this);
     this.handleMapChoiceClick = this.handleMapChoiceClick.bind(this);
+    this.handleRecoveryAttempt = this.handleRecoveryAttempt.bind(this);
+    this.handlePasswordReset = this.handlePasswordReset.bind(this);
   }
 
   handleUserFormClick() {
@@ -550,6 +554,34 @@ class App extends React.Component {
         });
       }
     }
+    this.props.history.push('/home');
+  }
+
+  handleRecoveryAttempt(email) {
+    const context = this;
+    axios.post('/api/forgot', { email })
+      .then((data) => {
+        console.log(data.data);
+        context.props.history.push('/home');
+      })
+      .catch(err => {
+        console.log('error:', err);
+      })
+  }
+
+  handlePasswordReset(password) {
+    const context = this;
+    axios.post('/api/resetPassword', {
+      token: window.location.pathname.split('/')[2],
+      password: password,
+    })
+      .then((data) => {
+        console.log(data.data);
+        context.props.history.push('/login');
+      })
+      .catch((err) => {
+        console.log('error resetting password:', err);
+      })
   }
 
   render() {
@@ -609,6 +641,12 @@ class App extends React.Component {
           handleShowMapClick={this.handleShowMapClick}
           locations={this.state.locations}
           handleMapChoiceClick={this.handleMapChoiceClick}
+        />} />
+        <Route path="/accountRecovery" render={props => <AccountRecovery {...props}
+          handleRecoveryAttempt={this.handleRecoveryAttempt}
+        />} />
+        <Route path="/reset/:token" render={props => <ResetPassword {...props} 
+          handlePasswordReset={this.handlePasswordReset}
         />} />
       </div>
     );

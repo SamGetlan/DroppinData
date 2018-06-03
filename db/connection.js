@@ -62,6 +62,28 @@ const checkUsername = (username, callback) => {
   });
 };
 
+const checkEmail = (email, callback) => {
+  User.findOne({ email }, (err, result) => {
+    if (err) {
+      console.log('There was an error in checkEmail:', err);
+    } else {
+      callback(err, result);
+    }
+  });
+};
+
+const checkToken = (token, callback) => {
+  User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }, (err, result) => {
+    if (err) {
+      console.log('There was an error inside checkToken:', err);
+    } else {
+      callback(err, result);
+    }
+  });
+};
+
 module.exports.saveGame = saveGame;
 module.exports.loadGames = loadGames;
 module.exports.checkUsername = checkUsername;
+module.exports.checkEmail = checkEmail;
+module.exports.checkToken = checkToken;

@@ -12,6 +12,8 @@ const userSchema = mongoose.Schema({
   },
   email: String,
   createdAt: Date,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 });
 
 userSchema.methods.generateHash = function generateHash(password) {
