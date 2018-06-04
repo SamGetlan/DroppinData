@@ -82,8 +82,19 @@ const checkToken = (token, callback) => {
   });
 };
 
+const updateSettings = (username, update, callback) => {
+  User.findOneAndUpdate({ username }, update, { new: true }, (err, user) => {
+    if (err) {
+      console.log('There was an error inside updateSettings:', err);
+    } else {
+      callback(err, user);
+    }
+  });
+}
+
 module.exports.saveGame = saveGame;
 module.exports.loadGames = loadGames;
 module.exports.checkUsername = checkUsername;
 module.exports.checkEmail = checkEmail;
 module.exports.checkToken = checkToken;
+module.exports.updateSettings = updateSettings;

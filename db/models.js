@@ -11,6 +11,9 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   email: String,
+  settings: {
+    colorBlind: Boolean,
+  },
   createdAt: Date,
   resetPasswordToken: String,
   resetPasswordExpires: Date,

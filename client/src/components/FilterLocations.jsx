@@ -13,7 +13,7 @@ const FilterLocations = props => (
         <button id="popularGroupButton" className="filterGroupButton"onClick={props.popularGroupClick}>The faves</button>
       </div>
       <div id="filterLocationsBox">
-        {props.locations.map(location => <FilterSelection location={location} filteredLocations={props.filteredLocations} filterOut={props.filterOut} filterIn={props.filterIn} />)}
+        {props.locations.map(location => <FilterSelection location={location} filteredLocations={props.filteredLocations} filterOut={props.filterOut} filterIn={props.filterIn} userSettings={props.userSettings}/>)}
       </div>
       <div id="closeButtonContainer">
         <button id="filterAllInButton" className="closeButton" onClick={props.filterAllIn}>Filter All In</button>

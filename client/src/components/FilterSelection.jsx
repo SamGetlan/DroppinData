@@ -15,7 +15,7 @@ class FilterSelection extends React.Component {
 
   render() {
     return (
-      <div className={this.props.filteredLocations.includes(this.props.location) ? 'filterSelection' : 'filterSelection filteredOut'} onClick={this.handleFilterSelectionClick.bind(this)}>
+      <div className={this.props.filteredLocations.includes(this.props.location) && this.props.userSettings.colorBlind ? 'filterSelection colorBlind' : (this.props.filteredLocations.includes(this.props.location) ? 'filterSelection' : 'filterSelection filteredOut')} onClick={this.handleFilterSelectionClick.bind(this)}>
         <p>{this.props.location.name}</p>
       </div>
     );

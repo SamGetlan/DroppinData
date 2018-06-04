@@ -9,6 +9,7 @@ import AccountOptionsForm from './AccountOptionsForm.jsx';
 import FullMap from './FullMap.jsx';
 import AccountRecovery from './AccountRecovery.jsx';
 import ResetPassword from './ResetPassword.jsx';
+import AccountSettings from './AccountSettings.jsx';
 import locations from '../data.js';
 
 
@@ -31,6 +32,7 @@ class App extends React.Component {
       logInFailed: null,
       userGameData: {},
       showFullMap: false,
+      userSettings: {},
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -57,6 +59,7 @@ class App extends React.Component {
     this.handleMapChoiceClick = this.handleMapChoiceClick.bind(this);
     this.handleRecoveryAttempt = this.handleRecoveryAttempt.bind(this);
     this.handlePasswordReset = this.handlePasswordReset.bind(this);
+    this.applySettings = this.applySettings.bind(this);
   }
 
   handleUserFormClick() {
@@ -128,6 +131,7 @@ class App extends React.Component {
             loggedIn: user,
             userFormActive: false,
             logInFailed: false,
+            userSettings: data.data.settings,
           });
           axios.get('/api/games')
             .then((data) => {
@@ -257,7 +261,6 @@ class App extends React.Component {
   }
 
   handleAccountOptionsClick() {
-    console.log('inside handleAccountOptionsClick');
     this.setState({
       accountOptionsForm: !this.state.accountOptionsForm,
     });
@@ -584,6 +587,20 @@ class App extends React.Component {
       })
   }
 
+  applySettings(settings) {
+    const context = this;
+    axios.post('/api/applySettings', settings)
+      .then((data) => {
+        console.log(data);
+        context.setState({
+          userSettings: data.data.settings,
+        })
+      })
+      .catch((err) => {
+        console.log('Error submitting settings', err);
+      });
+  }
+
   render() {
     return (
       <div id="app">
@@ -631,6 +648,7 @@ class App extends React.Component {
           popularGroupClick={this.popularGroupClick}
           filterAllIn={this.filterAllIn}
           filterAllOut={this.filterAllOut}
+          userSettings={this.state.userSettings}
         />} />
         <Route path="/accountOptions" render={props => <AccountOptionsForm {...props}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
@@ -647,6 +665,9 @@ class App extends React.Component {
         />} />
         <Route path="/reset/:token" render={props => <ResetPassword {...props} 
           handlePasswordReset={this.handlePasswordReset}
+        />} />
+        <Route path="/accountSettings" render={props => <AccountSettings {...props}
+          applySettings={this.applySettings}
         />} />
       </div>
     );

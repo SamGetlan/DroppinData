@@ -210,6 +210,10 @@ input:focus {
   margin: 0;
 }
 
+.colorBlind {
+  color: blue;
+}
+
 .filterSelection:hover {
   cursor: pointer;
   filter: brightness(120%);
