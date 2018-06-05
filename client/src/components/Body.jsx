@@ -9,8 +9,10 @@ class Body extends React.Component {
     super(props);
     this.state = {
       gameType: 'all',
+      coordinateChoice: '',
     };
     this.changeGameType = this.changeGameType.bind(this);
+    this.handleCoordinateChoiceClick = this.handleCoordinateChoiceClick.bind(this);
   }
 
   changeGameType(gameType) {
@@ -28,13 +30,28 @@ class Body extends React.Component {
     }, false);
   }
 
+  handleCoordinateChoiceClick(e) {
+    const location = this.props.filteredLocations[this.props.activeIndex];
+    const gridSpot = Number(e.target.id.split('Spot')[1])
+    console.log('gridSpot:', gridSpot);
+    console.log('location:', location);
+    const getCoordinate = (location, gridSpot) => {
+      const { topLeft } = location;
+      const rows = Math.floor(gridSpot / 26);
+      const cols = (gridSpot % 26);
+      return [(topLeft[0] + rows), (topLeft[1] + cols)];
+    }
+
+    console.log('clickLocation:', getCoordinate(location, gridSpot));
+  }
+
   render() {
     return (
       <div>
         <ActionButton handleActionClick={this.props.handleActionClick} />
         {(this.props.active !== false && this.checkActiveIsOk(this.props.active)) &&
           <div className="activeTileContainer">
-            <ActiveTile location={this.props.filteredLocations[this.props.activeIndex]} />
+            <ActiveTile location={this.props.filteredLocations[this.props.activeIndex]} handleCoordinateChoiceClick={this.handleCoordinateChoiceClick}/>
             <StatBox 
               currentGameType={this.state.gameType} 
               changeGameType={this.changeGameType} 

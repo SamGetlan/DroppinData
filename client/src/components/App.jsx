@@ -185,9 +185,10 @@ class App extends React.Component {
     // console.log('loot -->', loot);
     // console.log('death -->', death);
     // console.log(`Game Type --> ${gameType}`);
-    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn && death !== 'null') {
+    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn && death !== 'null' && this.state.userSettings.locationTracking === ('name' || 'grid' || 'nameCoordinates' || 'gridCoordinates')) {
       axios.post('/api/games', {
         user: this.state.loggedIn,
+        locationTracking: this.state.userSettings.locationTracking,
         date: new Date(),
         location: this.state.filteredLocations[this.state.activeIndex].name,
         place,
@@ -654,11 +655,13 @@ class App extends React.Component {
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           loggedIn={this.state.loggedIn}
           handleLogout={this.handleLogout}
+          userSettings={this.state.userSettings}
         />} />
         <Route path="/map" render={props => <FullMap {...props}
           handleShowMapClick={this.handleShowMapClick}
           locations={this.state.locations}
           handleMapChoiceClick={this.handleMapChoiceClick}
+          userSettings={this.state.userSettings}
         />} />
         <Route path="/accountRecovery" render={props => <AccountRecovery {...props}
           handleRecoveryAttempt={this.handleRecoveryAttempt}
@@ -668,6 +671,7 @@ class App extends React.Component {
         />} />
         <Route path="/accountSettings" render={props => <AccountSettings {...props}
           applySettings={this.applySettings}
+          userSettings={this.state.userSettings}
         />} />
       </div>
     );

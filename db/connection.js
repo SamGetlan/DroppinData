@@ -21,6 +21,7 @@ const saveGame = (gamePlayed, callback) => {
   if (checkGamePlayed(gamePlayed)) {
     const game = new Game({
       user: gamePlayed.user,
+      locationTracking: gamePlayed.locationTracking,
       date: new Date(),
       location: gamePlayed.location,
       place: gamePlayed.place,
@@ -29,7 +30,6 @@ const saveGame = (gamePlayed, callback) => {
       gameType: gamePlayed.gameType,
       deathLocation: gamePlayed.death,
     });
-  
     game.save((err, results) => {
       if (err) {
         console.log('There was an error:', err);

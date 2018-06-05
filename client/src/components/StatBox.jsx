@@ -56,7 +56,7 @@ class StatBox extends React.Component {
           <input type="radio" value="squad" id="squadRadio" name="gameType" /><label htmlFor="squadRadio">Squad</label>
         </div>
         <div id="submitGameButtonContainer">
-          <button id="submitGameButton" class={this.props.submitButtonState ? 'enabledButton' : 'disabledButton'} onClick={this.props.submitButtonState ? () => { this.props.handleSubmit(document.getElementById('placeInput').value, document.getElementById('killsInput').value, document.getElementById('lootInput').value, getSelectedGameType(), this.state.deathLocation); } : console.log('Button is temporary disabled')}>Submit Game</button>
+          <button id="submitGameButton" className={this.props.submitButtonState ? 'enabledButton' : 'disabledButton'} onClick={this.props.submitButtonState ? () => { this.props.handleSubmit(document.getElementById('placeInput').value, document.getElementById('killsInput').value, document.getElementById('lootInput').value, getSelectedGameType(), this.state.deathLocation); } : console.log('Button is temporary disabled')}>Submit Game</button>
         </div>
       </div>
     );

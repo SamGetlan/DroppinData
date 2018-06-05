@@ -3,7 +3,7 @@ import FilterSelection from './FilterSelection.jsx';
 import { Link } from 'react-router-dom';
 
 const FilterLocations = props => (
-  <div id="filterLocationsContainerWrapper">
+  <div id={props.userSettings.stormBackground ? "userFormContainerWrapper" : 'userFormContainerWrapperNoStorm'}>
     <div id="filterLocationsContainer">
       <div id="filterGroupingsButtonContainer">
         <button id="hardGroupButton" className="filterGroupButton"onClick={props.hardGroupClick}>Give me a challenge</button>

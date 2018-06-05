@@ -30,6 +30,11 @@ module.exports = function configurePassport(passport) {
           newUser.password = newUser.generateHash(password);
           newUser.createdAt = req.body.createdAt;
           newUser.email = req.body.emailAddress;
+          newUser.settings = {
+            colorBlind: false,
+            stormBackground: true,
+            locationTracking: 'name',
+          }
 
           newUser.save((error) => {
             if (error) { throw error; }

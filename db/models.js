@@ -13,6 +13,8 @@ const userSchema = mongoose.Schema({
   email: String,
   settings: {
     colorBlind: Boolean,
+    stormBackground: Boolean,
+    locationTracking: String,
   },
   createdAt: Date,
   resetPasswordToken: String,
@@ -32,6 +34,10 @@ const gameSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  locationTracking: {
+    type: String,
+    required: true,
+  },
   date: Date,
   location: {
     type: String,
@@ -41,16 +47,19 @@ const gameSchema = mongoose.Schema({
     type: Number,
     min: 1,
     max: 100,
+    required: true,
   },
   kills: {
     type: Number,
     min: 0,
     max: 99,
+    required: true,
   },
   loot: {
     type: Number,
     min: 0,
     max: 10,
+    required: true,
   },
   gameType: {
     type: String,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const AccountOptionsForm = props => (
-  <div id="userFormContainerWrapper">
+  <div id={props.userSettings.stormBackground ? "userFormContainerWrapper" : 'userFormContainerWrapperNoStorm'}>
     <div id="userFormContainer">
       <div id="userFormBox">
         <div id="accountOptionsButtonsContainer">

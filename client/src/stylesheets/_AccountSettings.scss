@@ -1,0 +1,17 @@
+#saveButtonContainer {
+  display: flex;
+  padding-top: 1.3rem;
+  justify-content: space-evenly;
+  button: {
+    flex: 1;
+  }
+}
+
+#saveSettingsButton {
+  width: 50%;
+  border: 1px solid rgba(180, 180, 180, 0.5);
+  font-size: 2rem;
+  background: indigo;
+  color: white;
+  font-family: 'fortnite';
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FullMap = props => (
-  <div id="userFormContainerWrapper">
+  <div id={props.userSettings.stormBackground ? "userFormContainerWrapper" : 'userFormContainerWrapperNoStorm'}>
     <div id="fullMapContainer">
       <div id="userFormBox">
         <div id="fullMap">
@@ -19,6 +19,6 @@ const FullMap = props => (
       </Link>
     </div>
   </div>
-)
+);
 
 export default FullMap;

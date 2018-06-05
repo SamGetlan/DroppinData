@@ -16,6 +16,18 @@
   justify-content: center;
 }
 
+#userFormContainerWrapperNoStorm {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+
 #userFormContainer {
   width: 40%;
   margin: auto;
@@ -157,20 +169,6 @@ input:focus {
   font-size: 1.2rem;
   text-decoration: underline;
   text-decoration-color: gray;
-}
-
-#filterLocationsContainerWrapper {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(139, 4, 217, 0.8);
-  background-image: url("thinStormLinesAlpha.png");
-  background-size: cover;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
 }
 
 #filterLocationsContainer {
@@ -359,14 +357,31 @@ input:focus {
     width: 100%;
   }
 }
-.activeMapImage {
-  width: 90%;
-  height: 90%;
-}
-
 .activeTileTitle {
   margin: 0;
   font-size: 2.5rem;
+}
+
+#activeMapContainer {
+  position: relative;
+  margin: auto;
+}
+
+.activeMapImage {
+  width: 100%;
+  height: auto;
+}
+
+.activeImageButtonsContainer {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(26, 1fr);
+  grid-template-rows: repeat(26, 1fr);
 }
 
 #gameTypeOptions {
@@ -677,6 +692,22 @@ input:focus {
 
 .chooseLocationButton:hover {
   cursor: pointer;
+}
+
+#saveButtonContainer {
+  display: flex;
+  padding-top: 1.3rem;
+  justify-content: space-evenly;
+  button-flex: 1;
+}
+
+#saveSettingsButton {
+  width: 50%;
+  border: 1px solid rgba(180, 180, 180, 0.5);
+  font-size: 2rem;
+  background: indigo;
+  color: white;
+  font-family: "fortnite";
 }
 
 button:hover {

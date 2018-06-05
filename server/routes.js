@@ -162,11 +162,12 @@ module.exports = (app, passport) => {
   });
 
   app.post('/api/applySettings', isLoggedIn, (req, res) => {
-    const colorBlind = (req.body.colorBlind === 'true' ? true : false);
-    const settings = {
-      colorBlind,
-    }
-    db.updateSettings(req.user.username, { settings }, (err, user) => {
+    // const { colorBlind, stormBackground } = req.body;
+    // const settings = {
+    //   colorBlind,
+    //   stormBackground,
+    // };
+    db.updateSettings(req.user.username, { settings: req.body }, (err, user) => {
       res.json(user);
     })
   });
