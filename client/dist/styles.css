@@ -373,15 +373,26 @@ input:focus {
 }
 
 .activeImageButtonsContainer {
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(26, 1fr);
-  grid-template-rows: repeat(26, 1fr);
+  grid-template-columns: repeat(72, 1fr);
+  grid-template-rows: repeat(72, 1fr);
+}
+
+#mapMarker {
+  z-index: 1;
+  position: absolute;
+  -webkit-transform: translate(-50%, -100%);
+  -moz-transform: translate(-50%, -100%);
+  -o-transform: translate(-50%, -100%);
+  transform: translate(-50%, -100%);
+  height: 13.8%;
+  width: 7%;
 }
 
 #gameTypeOptions {

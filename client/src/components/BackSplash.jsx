@@ -6,6 +6,7 @@ const BackSplash = props => (
     <div id="backSplashContainer">
       {props.filteredLocations.map((location, index) =>
         <Tile 
+          resetMarker={props.resetMarker}
           handleTileClick={props.handleTileClick} 
           key={`Loc${index}`} 
           stats={props.userGameData[location.name] ? props.userGameData[location.name].all : {averagePlace: 'N/A', averageKills: 'N/A'}} 

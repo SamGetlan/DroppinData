@@ -249,10 +249,7 @@ class App extends React.Component {
   }
 
   handleTileClick(location) {
-    console.log('inside handleTileClick:', location);
     const index = this.state.filteredLocations.findIndex(element => (element.camelCase === location.camelCase));
-    console.log('active Location -->', location);
-    console.log('active index -->', index);
     this.setState({
       active: location.camelCase,
       activeIndex: index,
@@ -606,7 +603,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <Navbar
-          navButtons={['Home', 'Map', 'Filter Locations', 'Sign Up or Login']}
+          navButtons={['Home', 'Full Map', 'Filter Locations', 'Sign Up or Login']}
           classes={['home', 'map', 'filter', 'login']}
           handleUserFormClick={this.handleUserFormClick}
           handleFilterClick={this.handleFilterClick}
