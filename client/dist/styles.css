@@ -548,7 +548,6 @@ input:focus {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   position: absolute;
   display: grid;
   grid-template-columns: repeat(84, 1fr);
@@ -684,8 +683,13 @@ input:focus {
   z-index: 5;
 }
 
+#trailerPark {
+  grid-area: 39/67/46/74;
+  z-index: 5;
+}
+
 #lonelyLodge {
-  grid-area: 32/71/42/81;
+  grid-area: 32/72/42/79;
 }
 
 #mansionSouthOfLonelyLodge {
@@ -728,10 +732,12 @@ button:hover {
 html {
   font-size: 10px;
   font-family: "fortNite";
+  height: 100%;
 }
 
 body {
   margin: 0;
+  height: 100%;
 }
 
 button {
