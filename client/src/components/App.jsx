@@ -33,6 +33,13 @@ class App extends React.Component {
       userGameData: {},
       showFullMap: false,
       userSettings: {},
+      rows: null,
+      cols: null,
+      mapMarker: null,
+      mapMarkerStyle: {
+        top: 0,
+        left: 0,
+      },
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -60,6 +67,8 @@ class App extends React.Component {
     this.handleRecoveryAttempt = this.handleRecoveryAttempt.bind(this);
     this.handlePasswordReset = this.handlePasswordReset.bind(this);
     this.applySettings = this.applySettings.bind(this);
+    this.resetMarker = this.resetMarker.bind(this);
+    this.handleCoordinateChoiceClick = this.handleCoordinateChoiceClick.bind(this);
   }
 
   handleUserFormClick() {
@@ -599,6 +608,63 @@ class App extends React.Component {
       });
   }
 
+  resetMarker() {
+    this.setState({
+      mapMarkerStyle: {
+        top: 0,
+        left: 0,
+      },
+    });
+  }
+
+  handleCoordinateChoiceClick(e) {
+    const location = this.state.filteredLocations[this.state.activeIndex];
+    const gridSpot = Number(e.target.id.split('Spot')[1])
+    console.log('gridSpot:', gridSpot);
+    console.log('location:', location);
+    const rows = Math.floor(gridSpot / 72);
+    const cols = (gridSpot % 72);
+    const getCoordinate = (location, rows, cols) => {
+      const { topLeft } = location;
+      return [(topLeft[0] + rows), (topLeft[1] + cols)];
+    }
+    console.log('clickLocation:', getCoordinate(location, rows, cols));
+    const top = (`${(rows + 0.5) * (100 / 72)}%`);
+    const left = (`${(cols + 0.5) * (100 / 72)}%`);
+    console.log('rows:', rows);
+    console.log('cols:', cols);
+    console.log('top', top);
+    console.log('left', left);
+    this.setState({
+      mapMarker: getCoordinate(location, rows, cols),
+      rows,
+      cols,
+      mapMarkerStyle: {
+        top,
+        left,
+      }
+    });
+  }
+
+  componentDidUpdate() {   
+    if (this.state.activeIndex !== false && (this.state.mapMarkerStyle.top !== `${(this.state.filteredLocations[this.state.activeIndex].start[0] + 0.5) * (100 / 72)}%` && this.state.mapMarkerStyle.top !== `${(this.state.rows + 0.5) * (100 / 72)}%`) && (this.state.mapMarkerStyle.left !== `${(this.state.filteredLocations[this.state.activeIndex].start[1] + 0.5) * (100 / 72)}%`) && this.state.mapMarkerStyle.left !== `${(this.state.cols + 0.5) * (100 / 72)}%`) {
+      const location = this.state.filteredLocations[this.state.activeIndex];
+      const rows = this.state.filteredLocations[this.state.activeIndex].start[0];
+      const cols = this.state.filteredLocations[this.state.activeIndex].start[1];
+      const getCoordinate = (location, rows, cols) => {
+        const { topLeft } = location;
+        return [(topLeft[0] + rows), (topLeft[1] + cols)];
+      }
+      this.setState({
+        mapMarker: getCoordinate(location, rows, cols),
+        mapMarkerStyle: {
+          top: `${(this.state.filteredLocations[this.state.activeIndex].start[0] + 0.5) * (100 / 72)}%`,
+          left: `${(this.state.filteredLocations[this.state.activeIndex].start[1] + 0.5) * (100 / 72)}%`,
+        },
+      });
+    }
+  }
+
   render() {
     return (
       <div id="app">
@@ -622,6 +688,10 @@ class App extends React.Component {
           submitButtonState={this.state.submitButtonState}
           locations={this.state.locations}
           userGameData={this.state.userGameData}
+          resetMarker={this.resetMarker}
+          mapMarkerStyle={this.state.mapMarkerStyle}
+          mapMarker={this.state.mapMarker}
+          handleCoordinateChoiceClick={this.handleCoordinateChoiceClick}
         />
         <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route path="/login" render={props => <UserForm {...props}
@@ -659,6 +729,7 @@ class App extends React.Component {
           locations={this.state.locations}
           handleMapChoiceClick={this.handleMapChoiceClick}
           userSettings={this.state.userSettings}
+          resetMarker={this.resetMarker}
         />} />
         <Route path="/accountRecovery" render={props => <AccountRecovery {...props}
           handleRecoveryAttempt={this.handleRecoveryAttempt}
