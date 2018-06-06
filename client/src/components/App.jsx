@@ -609,6 +609,7 @@ class App extends React.Component {
   }
 
   resetMarker() {
+    console.log('inside resetMarker');
     this.setState({
       mapMarkerStyle: {
         top: 0,
@@ -631,10 +632,6 @@ class App extends React.Component {
     console.log('clickLocation:', getCoordinate(location, rows, cols));
     const top = (`${(rows + 0.5) * (100 / 72)}%`);
     const left = (`${(cols + 0.5) * (100 / 72)}%`);
-    console.log('rows:', rows);
-    console.log('cols:', cols);
-    console.log('top', top);
-    console.log('left', left);
     this.setState({
       mapMarker: getCoordinate(location, rows, cols),
       rows,
