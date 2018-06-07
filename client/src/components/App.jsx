@@ -437,7 +437,7 @@ class App extends React.Component {
       const userGameData = this.state.userGameData;
       const notRecentGroup = Object.keys(this.state.userGameData);
       notRecentGroup.sort((a, b) => {
-        return userGameData[a][type].mostRecent - userGameData[b][type].mostRecent;
+        return userGameData[b][type].mostRecent - userGameData[a][type].mostRecent;
       });
       for (var i = 0; i < Math.min(notRecentGroup.length, 8); i++) {
         for (var ii = 0; ii < locations.length; ii++) {
