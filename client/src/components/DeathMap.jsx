@@ -31,7 +31,7 @@ class FullMap extends React.Component {
         <div id="fullMapContainer">
           <div id="userFormBox">
             <div id="fullMap">
-              <img className="fullMapImage" src="/locationPics/fortNite-s4map.jpg" alt="Full Map" height="100%" width="100%"/>
+              <img className="fullMapImage" src="/locationPics/fullMapSmall.jpg" alt="Full Map" height="100%" width="100%"/>
               {this.props.deathMapMarker && 
                 <img id="deathMapMarker" alt={'Map Marker'} src={'/locationPics/MapMarker.png'} style={this.props.deathMapMarkerStyle}/>
               }

@@ -25,7 +25,7 @@ class FullMap extends React.Component {
         <div id="fullMapContainer">
           <div id="userFormBox">
             <div id="fullMap">
-              <img className="fullMapImage" src="./fortNite-s4map.jpg" alt="Full Map" height="100%" width="100%"/>
+              <img className="fullMapImage" src="/locationPics/fullMapSmall.jpg" alt="Full Map" height="100%" width="100%"/>
               <div className="imageButtonsContainer" style={this.state}>
                 {this.props.locations.map((location, index, locations) => {
                   return <div className="chooseLocationButton" id={location.camelCase} onClick={(e) => { this.props.handleMapChoiceClick(e); this.props.resetMarker(); } } />
