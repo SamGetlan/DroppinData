@@ -683,7 +683,6 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {   
-    console.log('pathname:', window.location.pathname);
     if (window.location.pathname !== '/filterLocations')
     if (this.state.activeIndex !== false && (this.state.mapMarkerStyle.top !== `${(this.state.filteredLocations[this.state.activeIndex].start[0] + 0.5) * (100 / 72)}%` && this.state.mapMarkerStyle.top !== `${(this.state.rows + 0.5) * (100 / 72)}%`) && (this.state.mapMarkerStyle.left !== `${(this.state.filteredLocations[this.state.activeIndex].start[1] + 0.5) * (100 / 72)}%`) && this.state.mapMarkerStyle.left !== `${(this.state.cols + 0.5) * (100 / 72)}%`) {
       const location = this.state.filteredLocations[this.state.activeIndex];

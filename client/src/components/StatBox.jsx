@@ -38,14 +38,12 @@ class StatBox extends React.Component {
   }
 
   handleGameTypeOptionChange(e) {
-    console.log('gameType:', e.target.value)
     this.setState({
       gameType: e.target.value,
     });
   }
 
   handleNotReadySubmit() {
-    console.log('inside handleNotReadySubmit');
     if (this.state.placeInput < 1 || this.state.placeInput > 100 || this.state.placeInput === null) {
       console.log('Your place needs to be between 1 and 100');
     } else if (this.state.killsInput < 0 || this.state.killsInput > 99 || this.state.killsInput === null) {

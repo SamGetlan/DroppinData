@@ -12,7 +12,6 @@ class ActiveTile extends React.Component {
   componentDidUpdate() {
     const element = document.getElementsByClassName('activeImageButtonsContainer')[0];
     const width = window.getComputedStyle(element, null).getPropertyValue('width');
-    console.log('height:', width);
     if (this.state.height !== width) {
       this.setState({
         height: width,
