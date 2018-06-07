@@ -14,21 +14,25 @@ const checkGamePlayed = (gamePlayed) => {
   gamePlayed.place = Number(gamePlayed.place);
   gamePlayed.kills = Number(gamePlayed.kills);
   gamePlayed.loot = Number(gamePlayed.loot);
-  return (typeof gamePlayed.user === 'string' && typeof gamePlayed.location === 'string' && typeof gamePlayed.place === 'number' && gamePlayed.place > 0 && gamePlayed.place < 101 && typeof gamePlayed.kills === 'number' && gamePlayed.kills >= 0 && gamePlayed.kills < 100 && typeof gamePlayed.loot === 'number' && gamePlayed.loot > 0 && gamePlayed.loot <= 10 && (gamePlayed.gameType === 'solo' || gamePlayed.gameType === 'duo' || gamePlayed.gameType === 'squad') && typeof gamePlayed.death === 'string' && gamePlayed.death !== 'null')
+  return (typeof gamePlayed.user === 'string' && typeof gamePlayed.location === 'string' && typeof gamePlayed.place === 'number' && gamePlayed.place > 0 && gamePlayed.place < 101 && typeof gamePlayed.kills === 'number' && gamePlayed.kills >= 0 && gamePlayed.kills < 100 && typeof gamePlayed.loot === 'number' && gamePlayed.loot > 0 && gamePlayed.loot <= 10 && (gamePlayed.gameType === 'solo' || gamePlayed.gameType === 'duo' || gamePlayed.gameType === 'squad'));
 }
 
 const saveGame = (gamePlayed, callback) => {
   if (checkGamePlayed(gamePlayed)) {
+    console.log('gamePlayed.startCoordinates:', gamePlayed.startCoordinates);
+    console.log('gamePlayed.deathCoordinates:', gamePlayed.deathCoordinates);
     const game = new Game({
       user: gamePlayed.user,
       locationTracking: gamePlayed.locationTracking,
       date: new Date(),
       location: gamePlayed.location,
+      startCoordinates: gamePlayed.startCoordinates,
       place: gamePlayed.place,
       kills: gamePlayed.kills,
       loot: gamePlayed.loot,
       gameType: gamePlayed.gameType,
       deathLocation: gamePlayed.death,
+      deathCoordinates: gamePlayed.deathCoordinates,
     });
     game.save((err, results) => {
       if (err) {

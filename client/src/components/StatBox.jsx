@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-rangeslider';
 import StatGrid from './StatGrid.jsx';
+import DeathMap from './DeathMap.jsx';
 
 
 const gameTypes = document.getElementsByName('gameType');
@@ -41,7 +42,7 @@ class StatBox extends React.Component {
         <div className="entryContainer">
           <h3 className="inputLabel">Rate your loot 1-10</h3> <input type="number" id="lootInput" />
         </div>
-        <div className="entryContainer">
+        {/* <div className="entryContainer">
           <h3 className="inputLabel">Where did you die?</h3> 
           <select id="deathInput" onChange={this.handleChange}>
             <option value="null"></option>
@@ -49,15 +50,18 @@ class StatBox extends React.Component {
             <option value="betweenLocations">Between Locations</option>
             <option value="winner">I Won!</option>
           </select>
-        </div>
+        </div> */}
         <div id="gameTypeOptions">
           <input type="radio" value="solo" id="soloRadio" name="gameType" /><label htmlFor="soloRadio">Solo</label>
           <input type="radio" value="duo" id="duoRadio" name="gameType" /><label htmlFor="duoRadio">Duo</label>
           <input type="radio" value="squad" id="squadRadio" name="gameType" /><label htmlFor="squadRadio">Squad</label>
         </div>
-        <div id="submitGameButtonContainer">
-          <button id="submitGameButton" className={this.props.submitButtonState ? 'enabledButton' : 'disabledButton'} onClick={this.props.submitButtonState ? () => { this.props.handleSubmit(document.getElementById('placeInput').value, document.getElementById('killsInput').value, document.getElementById('lootInput').value, getSelectedGameType(), this.state.deathLocation); } : console.log('Button is temporary disabled')}>Submit Game</button>
+        <div className="submitGameButtonContainer">
+          <button className={`submitGameButton ${this.props.submitButtonState ? 'enabledButton' : 'disabledButton'}`} onClick={this.props.toggleDeathMap}>Submit Game</button>
         </div>
+        {this.props.showDeathMap &&
+          <DeathMap submitButtonState={this.props.submitButtonState} handleCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick} userSettings={this.props.userSettings} toggleDeathMap={this.props.toggleDeathMap} deathMapMarker={this.props.deathMapMarker} deathMapMarkerStyle={this.props.deathMapMarkerStyle} submitGame={this.props.submitButtonState ? () => { this.props.handleSubmit(document.getElementById('placeInput').value, document.getElementById('killsInput').value, document.getElementById('lootInput').value, getSelectedGameType()); } : console.log('Button is temporary disabled')} />
+        }
       </div>
     );
   }

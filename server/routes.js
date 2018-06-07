@@ -15,6 +15,7 @@ const isLoggedIn = (req, res, next) => {
 
 module.exports = (app, passport) => {
   app.post('/api/games', isLoggedIn, (req, res) => {
+    console.log('req.body:', req.body);
     db.saveGame(req.body, (postedGame) => {
       db.loadGames(postedGame.user, (results) => {
         res.send(JSON.stringify(results));

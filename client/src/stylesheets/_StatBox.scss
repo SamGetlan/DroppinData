@@ -71,12 +71,12 @@
   }
 }
 
-#submitGameButtonContainer {
+.submitGameButtonContainer {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-#submitGameButton {
+.submitGameButton {
   border: none;
   width: 50%;
   background: indigo;
@@ -84,7 +84,7 @@
   font-size: 2rem;
   padding: 0.5rem 0;
 }
-#submitGameButton:hover {
+.submitGameButton:hover {
   filter: brightness(125%);
 }
 

@@ -43,6 +43,10 @@ const gameSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  startCoordinates: {
+    type: [Number],
+    required: true,
+  },
   place: {
     type: Number,
     min: 1,
@@ -67,8 +71,11 @@ const gameSchema = mongoose.Schema({
   },
   deathLocation: {
     type: String,
-    required: true,
   },
+  deathCoordinates: {
+    type: [Number],
+    required: true,
+  }
 });
 
 const User = mongoose.model('User', userSchema);

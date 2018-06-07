@@ -32,13 +32,19 @@ class App extends React.Component {
       logInFailed: null,
       userGameData: {},
       showFullMap: false,
+      showDeathMap: false,
       userSettings: {},
       rows: null,
       cols: null,
       mapMarker: null,
+      deathMapMarker: [41, 42],
       mapMarkerStyle: {
         top: 0,
         left: 0,
+      },
+      deathMapMarkerStyle: {
+        top: '50%',
+        left: '50%',
       },
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
@@ -69,6 +75,8 @@ class App extends React.Component {
     this.applySettings = this.applySettings.bind(this);
     this.resetMarker = this.resetMarker.bind(this);
     this.handleCoordinateChoiceClick = this.handleCoordinateChoiceClick.bind(this);
+    this.toggleDeathMap = this.toggleDeathMap.bind(this);
+    this.handleDeathCoordinateChoiceClick = this.handleDeathCoordinateChoiceClick.bind(this);
   }
 
   handleUserFormClick() {
@@ -183,7 +191,7 @@ class App extends React.Component {
     }
   }
 
-  handleGameSubmit(place, kills, loot, gameType, death) {
+  handleGameSubmit(place, kills, loot, gameType) {
     const context = this;
     this.setState({
       submitButtonState: false,
@@ -194,17 +202,18 @@ class App extends React.Component {
     // console.log('loot -->', loot);
     // console.log('death -->', death);
     // console.log(`Game Type --> ${gameType}`);
-    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn && death !== 'null' && this.state.userSettings.locationTracking === ('name' || 'grid' || 'nameCoordinates' || 'gridCoordinates')) {
+    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn && this.state.userSettings.locationTracking === ('name' || 'grid' || 'nameCoordinates' || 'gridCoordinates')) {
       axios.post('/api/games', {
         user: this.state.loggedIn,
         locationTracking: this.state.userSettings.locationTracking,
         date: new Date(),
         location: this.state.filteredLocations[this.state.activeIndex].name,
+        startCoordinates: this.state.mapMarker,
         place,
         kills,
         loot,
         gameType,
-        death,
+        deathCoordinates: this.state.deathMapMarker,
       })
         .then((data) => {
           console.log('We have received Data -->', data);
@@ -238,8 +247,6 @@ class App extends React.Component {
         suggestion = 'Loot rating must be between 1 and 10.';
       } else if (!gameType) {
         suggestion = 'A game type must be selected.';
-      } else if (death === 'null') {
-        suggestion = 'A death location must be selected.';
       } else if (!this.state.loggedIn) {
         suggestion = 'You must log in to submit a game.';
       }
@@ -422,6 +429,8 @@ class App extends React.Component {
       }
       this.setState({
         filteredLocations: results,
+        activeIndex: false,
+        active: false,
       });
 
     } else {
@@ -448,6 +457,8 @@ class App extends React.Component {
       }
       this.setState({
         filteredLocations: results,
+        activeIndex: false,
+        active: false,
       });
     }
   }
@@ -471,6 +482,8 @@ class App extends React.Component {
       }
       this.setState({
         filteredLocations: results,
+        activeIndex: false,
+        active: false,
       });
     } else {
       console.log('Need to save at least 10 games in order for customSorting to work');
@@ -496,6 +509,8 @@ class App extends React.Component {
       }
       this.setState({
         filteredLocations: results,
+        activeIndex: false,
+        active: false,
       });
 
     } else {
@@ -522,6 +537,8 @@ class App extends React.Component {
       }
       this.setState({
         filteredLocations: results,
+        activeIndex: false,
+        active: false,
       });
 
     } else {
@@ -532,6 +549,8 @@ class App extends React.Component {
   filterAllIn() {
     this.setState({
       filteredLocations: locations.slice(),
+      activeIndex: false,
+      active: false,
     });
   }
 
@@ -539,6 +558,8 @@ class App extends React.Component {
     console.log('inside filterAllOut');
     this.setState({
       filteredLocations: [],
+      activeIndex: false,
+      active: false,
     });
   }
 
@@ -621,8 +642,6 @@ class App extends React.Component {
   handleCoordinateChoiceClick(e) {
     const location = this.state.filteredLocations[this.state.activeIndex];
     const gridSpot = Number(e.target.id.split('Spot')[1])
-    console.log('gridSpot:', gridSpot);
-    console.log('location:', location);
     const rows = Math.floor(gridSpot / 72);
     const cols = (gridSpot % 72);
     const getCoordinate = (location, rows, cols) => {
@@ -643,7 +662,27 @@ class App extends React.Component {
     });
   }
 
+  handleDeathCoordinateChoiceClick(e) {
+    const gridSpot = Number(e.target.id.split('Spot')[1]);
+    console.log('deathGridSpot:', gridSpot);
+    const rows = Math.floor(gridSpot / 84);
+    const cols = (gridSpot % 84);
+    console.log('deathClickLocation:', [rows, cols]);
+    const top = (`${(rows + 0.5) * (100 / 84)}%`);
+    const left = (`${(cols + 0.5) * (100 / 84)}%`);
+    this.setState({
+      deathMapMarker: [rows, cols],
+      deathMapMarkerStyle: {
+        top,
+        left,
+      }
+    });
+
+  }
+
   componentDidUpdate() {   
+    console.log('pathname:', window.location.pathname);
+    if (window.location.pathname !== '/filterLocations')
     if (this.state.activeIndex !== false && (this.state.mapMarkerStyle.top !== `${(this.state.filteredLocations[this.state.activeIndex].start[0] + 0.5) * (100 / 72)}%` && this.state.mapMarkerStyle.top !== `${(this.state.rows + 0.5) * (100 / 72)}%`) && (this.state.mapMarkerStyle.left !== `${(this.state.filteredLocations[this.state.activeIndex].start[1] + 0.5) * (100 / 72)}%`) && this.state.mapMarkerStyle.left !== `${(this.state.cols + 0.5) * (100 / 72)}%`) {
       const location = this.state.filteredLocations[this.state.activeIndex];
       const rows = this.state.filteredLocations[this.state.activeIndex].start[0];
@@ -660,6 +699,12 @@ class App extends React.Component {
         },
       });
     }
+  }
+
+  toggleDeathMap() {
+    this.setState({
+      showDeathMap: !this.state.showDeathMap,
+    })
   }
 
   render() {
@@ -689,6 +734,12 @@ class App extends React.Component {
           mapMarkerStyle={this.state.mapMarkerStyle}
           mapMarker={this.state.mapMarker}
           handleCoordinateChoiceClick={this.handleCoordinateChoiceClick}
+          toggleDeathMap={this.toggleDeathMap}
+          showDeathMap={this.state.showDeathMap}
+          deathMapMarker={this.state.deathMapMarker}
+          deathMapMarkerStyle={this.state.deathMapMarkerStyle}
+          userSettings={this.state.userSettings}
+          handleDeathCoordinateChoiceClick={this.handleDeathCoordinateChoiceClick}
         />
         <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route path="/login" render={props => <UserForm {...props}
