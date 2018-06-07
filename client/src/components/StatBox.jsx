@@ -1,29 +1,60 @@
 import React from 'react';
-import Slider from 'react-rangeslider';
+import { Route, Link } from 'react-router-dom';
 import StatGrid from './StatGrid.jsx';
 import DeathMap from './DeathMap.jsx';
-
-
-const gameTypes = document.getElementsByName('gameType');
-const getSelectedGameType = () => {
-  for (let i = 0; i < gameTypes.length; i++) {
-    if (gameTypes[i].checked) {
-      return gameTypes[i].value;
-    }
-  }
-};
 
 class StatBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deathLocation: "null",
+      placeInput: null,
+      killsInput: null,
+      lootInput: null,
+      gameType: null,
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handlePlaceInputChange = this.handlePlaceInputChange.bind(this);
+    this.handleKillsInputChange = this.handleKillsInputChange.bind(this);
+    this.handleLootInputChange = this.handleLootInputChange.bind(this);
+    this.handleGameTypeOptionChange = this.handleGameTypeOptionChange.bind(this);
+    this.handleNotReadySubmit = this.handleNotReadySubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({deathLocation: event.target.value});
+  handlePlaceInputChange(e) {
+    this.setState({
+      placeInput: e.target.value,
+    });
+  }
+
+  handleKillsInputChange(e) {
+    this.setState({
+      killsInput: e.target.value,
+    });
+  }
+
+  handleLootInputChange(e) {
+    this.setState({
+      lootInput: e.target.value,
+    });
+  }
+
+  handleGameTypeOptionChange(e) {
+    console.log('gameType:', e.target.value)
+    this.setState({
+      gameType: e.target.value,
+    });
+  }
+
+  handleNotReadySubmit() {
+    console.log('inside handleNotReadySubmit');
+    if (this.state.placeInput < 1 || this.state.placeInput > 100 || this.state.placeInput === null) {
+      console.log('Your place needs to be between 1 and 100');
+    } else if (this.state.killsInput < 0 || this.state.killsInput > 99 || this.state.killsInput === null) {
+      console.log('Your kills need to be between 0 and 99');
+    } else if (this.state.lootInput < 0 || this.state.lootInput > 10 || this.state.lootInput === null) {
+      console.log('Your loot rating needs to be between 0 and 10');
+    } else if (this.state.gameType !== 'solo' && this.state.gameType !== 'duo' && this.state.gameType !== 'squad') {
+      console.log('please select a game type');
+    }
   }
 
   render() {
@@ -34,13 +65,13 @@ class StatBox extends React.Component {
         </div>
         <StatGrid stats={this.props.userGameData[this.props.location.name] ? this.props.userGameData[this.props.location.name][this.props.currentGameType] : undefined} />
         <div className="entryContainer">
-          <h3 className="inputLabel">What place did you come in?</h3> <input type="number" id="placeInput" />
+          <h3 className="inputLabel">What place did you come in?</h3> <input type="number" id="placeInput" onChange={(e) => this.handlePlaceInputChange(e)} />
         </div>
         <div className="entryContainer">
-          <h3 className="inputLabel">How many kills did you have?</h3> <input type="number" id="killsInput" />
+          <h3 className="inputLabel">How many kills did you have?</h3> <input type="number" id="killsInput" onChange={(e) => this.handleKillsInputChange(e)} />
         </div>
         <div className="entryContainer">
-          <h3 className="inputLabel">Rate your loot 1-10</h3> <input type="number" id="lootInput" />
+          <h3 className="inputLabel">Rate your loot 1-10</h3> <input type="number" id="lootInput" onChange={(e) => this.handleLootInputChange(e)} />
         </div>
         {/* <div className="entryContainer">
           <h3 className="inputLabel">Where did you die?</h3> 
@@ -52,16 +83,26 @@ class StatBox extends React.Component {
           </select>
         </div> */}
         <div id="gameTypeOptions">
-          <input type="radio" value="solo" id="soloRadio" name="gameType" /><label htmlFor="soloRadio">Solo</label>
-          <input type="radio" value="duo" id="duoRadio" name="gameType" /><label htmlFor="duoRadio">Duo</label>
-          <input type="radio" value="squad" id="squadRadio" name="gameType" /><label htmlFor="squadRadio">Squad</label>
+          <input type="radio" value="solo" id="soloRadio" name="gameType" checked={this.state.gameType === 'solo'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="soloRadio">Solo</label>
+          <input type="radio" value="duo" id="duoRadio" name="gameType" checked={this.state.gameType === 'duo'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="duoRadio">Duo</label>
+          <input type="radio" value="squad" id="squadRadio" name="gameType" checked={this.state.gameType === 'squad'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="squadRadio">Squad</label>
         </div>
-        <div className="submitGameButtonContainer">
+        {this.state.placeInput <= 100 && this.state.placeInput >= 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad') &&
+        <Link className="submitGameButtonContainer" to="/home/deathLocation">
           <button className={`submitGameButton ${this.props.submitButtonState ? 'enabledButton' : 'disabledButton'}`} onClick={this.props.toggleDeathMap}>Submit Game</button>
-        </div>
-        {this.props.showDeathMap &&
-          <DeathMap submitButtonState={this.props.submitButtonState} handleCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick} userSettings={this.props.userSettings} toggleDeathMap={this.props.toggleDeathMap} deathMapMarker={this.props.deathMapMarker} deathMapMarkerStyle={this.props.deathMapMarkerStyle} submitGame={this.props.submitButtonState ? () => { this.props.handleSubmit(document.getElementById('placeInput').value, document.getElementById('killsInput').value, document.getElementById('lootInput').value, getSelectedGameType()); } : console.log('Button is temporary disabled')} />
-        }
+        </Link>}
+        {(this.state.placeInput <= 100 && this.state.placeInput >= 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad')) || 
+        <div className="submitGameButtonContainer">
+          <button className="submitGameButton disabledButton" onClick={this.handleNotReadySubmit} >Submit Game</button>
+        </div>}
+        <Route path="/home/deathLocation" render={props => <DeathMap {...props}
+          submitButtonState={this.props.submitButtonState}
+          handleCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick}
+          userSettings={this.props.userSettings}
+          deathMapMarker={this.props.deathMapMarker}
+          deathMapMarkerStyle={this.props.deathMapMarkerStyle}
+          submitGame={this.props.submitButtonState ? () => { this.props.handleSubmit(this.state.placeInput, this.state.killsInput, this.state.lootInput, this.state.gameType); } : console.log('Button is temporary disabled')}
+        />} />
       </div>
     );
   }

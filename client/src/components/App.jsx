@@ -32,7 +32,6 @@ class App extends React.Component {
       logInFailed: null,
       userGameData: {},
       showFullMap: false,
-      showDeathMap: false,
       userSettings: {},
       rows: null,
       cols: null,
@@ -75,7 +74,6 @@ class App extends React.Component {
     this.applySettings = this.applySettings.bind(this);
     this.resetMarker = this.resetMarker.bind(this);
     this.handleCoordinateChoiceClick = this.handleCoordinateChoiceClick.bind(this);
-    this.toggleDeathMap = this.toggleDeathMap.bind(this);
     this.handleDeathCoordinateChoiceClick = this.handleDeathCoordinateChoiceClick.bind(this);
   }
 
@@ -221,6 +219,10 @@ class App extends React.Component {
           context.setState({
             userGames: data.data,
             userGameData,
+            deathMapMarkerStyle: {
+              top: '50%',
+              left: '50%',
+            }
           });
           const $confirm = document.createElement('p');
           $confirm.innerHTML = 'Game was successfully submitted';
@@ -701,12 +703,6 @@ class App extends React.Component {
     }
   }
 
-  toggleDeathMap() {
-    this.setState({
-      showDeathMap: !this.state.showDeathMap,
-    })
-  }
-
   render() {
     return (
       <div id="app">
@@ -734,8 +730,6 @@ class App extends React.Component {
           mapMarkerStyle={this.state.mapMarkerStyle}
           mapMarker={this.state.mapMarker}
           handleCoordinateChoiceClick={this.handleCoordinateChoiceClick}
-          toggleDeathMap={this.toggleDeathMap}
-          showDeathMap={this.state.showDeathMap}
           deathMapMarker={this.state.deathMapMarker}
           deathMapMarkerStyle={this.state.deathMapMarkerStyle}
           userSettings={this.state.userSettings}

@@ -48,8 +48,6 @@ class Body extends React.Component {
               submitButtonState={this.props.submitButtonState} 
               locations={this.props.locations} 
               userGameData={this.props.userGameData}
-              toggleDeathMap={this.props.toggleDeathMap}
-              showDeathMap={this.props.showDeathMap}
               deathMapMarker={this.props.deathMapMarker}
               deathMapMarkerStyle={this.props.deathMapMarkerStyle}
               userSettings={this.props.userSettings}
