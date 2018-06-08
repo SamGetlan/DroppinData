@@ -36,7 +36,6 @@ const gameSchema = mongoose.Schema({
   },
   locationTracking: {
     type: String,
-    required: true,
   },
   date: Date,
   location: {
@@ -74,7 +73,6 @@ const gameSchema = mongoose.Schema({
   },
   deathCoordinates: {
     type: [Number],
-    required: true,
   }
 });
 

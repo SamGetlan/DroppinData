@@ -61,3 +61,4 @@ const locations = [chair, lootLakeHouse, westLootLake, northLootLake, prison, sh
 
 
 export default locations;
+// module.exports.locations = locations;

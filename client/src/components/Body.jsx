@@ -52,6 +52,7 @@ class Body extends React.Component {
               deathMapMarkerStyle={this.props.deathMapMarkerStyle}
               userSettings={this.props.userSettings}
               handleDeathCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick}
+              checkDeathMarkerLocation={this.props.checkDeathMarkerLocation}
             />
           </div>
         }

@@ -17,6 +17,7 @@ class FullMap extends React.Component {
         height: width,
       })
     }
+    this.props.checkDeathMarkerLocation();
   }
 
   render() {
