@@ -1,0 +1,26 @@
+.statDashboardContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#dashboardMapContainer {
+  width: 45%;
+  padding: 1rem;
+}
+
+#quickDashboardStats {
+  width: 45%;
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .statDashboardContainer {
+    flex-wrap: wrap;
+  }
+  #dashboardMapContainer {
+    width: 100%;
+  }
+  #quickDashboardStats {
+    width: 100%;
+  }
+}

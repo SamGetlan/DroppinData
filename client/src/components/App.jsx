@@ -41,6 +41,7 @@ class App extends React.Component {
       statBoxFlashText: null,
       mapMarker: null,
       deathMapMarker: [41, 42],
+      loading: false,
       mapMarkerStyle: {
         top: 0,
         left: 0,
@@ -149,6 +150,9 @@ class App extends React.Component {
 
   handleAccountSignIn(username, password) {
     const context = this;
+    this.setState({
+      loading: true,
+    })
     axios.post('/api/login', {
       username,
       password,
@@ -171,12 +175,14 @@ class App extends React.Component {
               context.setState({
                 userGames: data.data,
                 userGameData,
+                loading: false,
               });
             });
         } else {
           console.log('Login failed:', data.data);
           context.setState({
             logInFailed: true,
+            loading: false,
           });
           setTimeout(() => {
             context.setState({
@@ -188,6 +194,7 @@ class App extends React.Component {
       .catch((err) => {
         context.setState({
           deadCenterFlashText: `There was an error: ${err}`,
+          loading: false,
         });
         setTimeout(() => {
           context.setState({
@@ -940,9 +947,11 @@ class App extends React.Component {
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">
           <h2>{this.state.deadCenterFlashText}</h2>
-        </div>
-
-        }
+        </div>}
+        {this.state.loading &&
+        <div className="loadingCenterScreen">
+          <img src="/loading.gif" alt-src="loading image" height="100%" width="100%" />
+        </div>}
       </div>
     );
   }

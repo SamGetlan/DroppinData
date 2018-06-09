@@ -18,6 +18,14 @@
 @import 'MyGames';
 @import 'StatDashboard';
 
+.loadingCenterScreen {
+  position: absolute;
+  z-index: 2001;
+  top: 40%;
+  left: 40%;
+  width: 20%;
+  height: 20vh;
+}
 .deadCenterFlashTextContainer {
   position: absolute;
   z-index: 2000;

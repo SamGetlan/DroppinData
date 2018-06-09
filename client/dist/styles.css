@@ -828,6 +828,43 @@ input:focus {
   text-align: center;
 }
 
+.statDashboardContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#dashboardMapContainer {
+  width: 45%;
+  padding: 1rem;
+}
+
+#quickDashboardStats {
+  width: 45%;
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .statDashboardContainer {
+    flex-wrap: wrap;
+  }
+
+  #dashboardMapContainer {
+    width: 100%;
+  }
+
+  #quickDashboardStats {
+    width: 100%;
+  }
+}
+.loadingCenterScreen {
+  position: absolute;
+  z-index: 2001;
+  top: 40%;
+  left: 40%;
+  width: 20%;
+  height: 20vh;
+}
+
 .deadCenterFlashTextContainer {
   position: absolute;
   z-index: 2000;
