@@ -11,7 +11,15 @@ class StatDashboard extends React.Component {
 
   render() {
     return (
-      <div>Stat Dashboard goes here</div>
+      <div className="statDashbaordContainer">
+        {this.props.filteredUserGames !== null &&
+          <h1>Stat Dashboard goes here</h1>
+        }
+        {this.props.filteredUserGames === null &&
+          <div className="myGamesFlashTextContainer" >
+            <h2>This account has no saved games!</h2>
+          </div>}
+      </div>
     );
   }
 }

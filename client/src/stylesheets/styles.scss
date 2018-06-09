@@ -18,6 +18,17 @@
 @import 'MyGames';
 @import 'StatDashboard';
 
+.deadCenterFlashTextContainer {
+  position: absolute;
+  z-index: 2000;
+  background: lightcoral;
+  border: 3px solid red;
+  top: 40%;
+  left: 12.5%;
+  font-size: 3.6rem;
+  width: 75%;
+  text-align: center;
+}
 button:hover {
   cursor: pointer;
 }

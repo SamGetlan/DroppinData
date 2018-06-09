@@ -428,6 +428,30 @@ input:focus {
     width: 100%;
   }
 }
+.flashTextContainer {
+  position: relative;
+  z-index: 2;
+  background: lightcoral;
+  border: 1px solid red;
+  margin: auto;
+  bottom: 60px;
+  height: 58px;
+  font-size: 1.6rem;
+  margin-bottom: -60px;
+}
+
+.flashTextContainerPositive {
+  position: relative;
+  z-index: 2;
+  background: lightgreen;
+  border: 1px solid green;
+  margin: auto;
+  bottom: 60px;
+  height: 58px;
+  font-size: 1.6rem;
+  margin-bottom: -60px;
+}
+
 .statGridContainer {
   display: grid;
   grid-template-columns: 40% 20% 20% 20%;
@@ -794,6 +818,26 @@ input:focus {
 
 .gameCardDeleteButton {
   background: #970c08;
+}
+
+.myGamesFlashTextContainer {
+  background: lightcoral;
+  border: 1px solid red;
+  margin: auto;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.deadCenterFlashTextContainer {
+  position: absolute;
+  z-index: 2000;
+  background: lightcoral;
+  border: 3px solid red;
+  top: 40%;
+  left: 12.5%;
+  font-size: 3.6rem;
+  width: 75%;
+  text-align: center;
 }
 
 button:hover {

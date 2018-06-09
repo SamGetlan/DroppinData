@@ -54,6 +54,7 @@ class Body extends React.Component {
               handleDeathCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick}
               checkDeathMarkerLocation={this.props.checkDeathMarkerLocation}
               loggedIn={this.props.loggedIn}
+              statBoxFlashText={this.props.statBoxFlashText}
             />
           </div>
         }

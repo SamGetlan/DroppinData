@@ -12,6 +12,7 @@ import ResetPassword from './ResetPassword.jsx';
 import AccountSettings from './AccountSettings.jsx';
 import MyGames from './MyGames.jsx';
 import StatDashboard from './StatDashboard.jsx';
+import Stats from './Stats.jsx';
 import locations from '../data.js';
 
 
@@ -37,6 +38,7 @@ class App extends React.Component {
       userSettings: {},
       rows: null,
       cols: null,
+      statBoxFlashText: null,
       mapMarker: null,
       deathMapMarker: [41, 42],
       mapMarkerStyle: {
@@ -47,6 +49,7 @@ class App extends React.Component {
         top: '50%',
         left: '50%',
       },
+      deadCenterFlashText: null,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -129,8 +132,17 @@ class App extends React.Component {
           loggedIn: user,
           userFormActive: false,
         });
+        this.props.history.push('/home')
       })
       .catch((err) => {
+        context.setState({
+          deadCenterFlashText: `There was an error: ${err}`,
+        });
+        setTimeout(() => {
+          context.setState({
+            deadCenterFlashText: null,
+          });
+        }, 3000)
         console.log('There was an error:', err);
       });
   }
@@ -166,9 +178,22 @@ class App extends React.Component {
           context.setState({
             logInFailed: true,
           });
+          setTimeout(() => {
+            context.setState({
+              logInFailed: false,
+            });
+          }, 2500);
         }
       })
       .catch((err) => {
+        context.setState({
+          deadCenterFlashText: `There was an error: ${err}`,
+        });
+        setTimeout(() => {
+          context.setState({
+            deadCenterFlashText: null,
+          });
+        }, 3000)
         console.log('There was an error:', err);
       });
   }
@@ -228,22 +253,29 @@ class App extends React.Component {
             deathMapMarkerStyle: {
               top: '50%',
               left: '50%',
-            }
+            },
+            statBoxFlashText: 'Game was successfully submitted',
           });
-          const $confirm = document.createElement('p');
-          $confirm.innerHTML = 'Game was successfully submitted';
-          document.getElementsByClassName('statBox')[0].appendChild($confirm);
           setTimeout(() => {
             context.setState({
               submitButtonState: true,
             })
           }, 1000);
           setTimeout(() => {
-            $confirm.remove();
-          }, 4000);
+            context.setState({
+              statBoxFlashText: null,
+            })
+          }, 3000);
         })
         .catch((err) => {
-          console.log('There was an Error -->', err);
+          context.setState({
+            statBoxFlashText: `There was an Error: ${err}`,
+          });
+          setTimeout(() => {
+            context.setState({
+              statBoxFlashText: null,
+            });
+          });
         });
     } else {
       let suggestion;
@@ -259,18 +291,20 @@ class App extends React.Component {
         suggestion = 'You must log in to submit a game.';
       } else {
         suggestion = 'There seems to be an error with your settings, please logout and log back in,';
-      }
-      const $denied = document.createElement('p');
-      $denied.innerHTML = `There was an error submitting your game. ${suggestion}`;
-      document.getElementsByClassName('statBox')[0].appendChild($denied);
+      };
+      context.setState({
+        statBoxFlashText: suggesstion,
+      });
       setTimeout(() => {
         context.setState({
           submitButtonState: true,
-        })
+        });
       }, 1000);
       setTimeout(() => {
-        $denied.remove();
-      }, 4000);
+        context.setState({
+          statBoxFlashText: null,
+        });
+      }, 3000);
     }
   }
 
@@ -302,6 +336,14 @@ class App extends React.Component {
         })
       })
       .catch((err) => {
+        context.setState({
+          deadCenterFlashText: `There was an error: ${err}`,
+        });
+        setTimeout(() => {
+          context.setState({
+            deadCenterFlashText: null,
+          });
+        }, 3000)
         console.log('err:', err);
       })
   }
@@ -422,6 +464,7 @@ class App extends React.Component {
   }
 
   hardGroupClick() {
+    const context = this;
     const type = 'all';
     if (this.state.userGames.length > 9) {
       const results = [];
@@ -444,11 +487,20 @@ class App extends React.Component {
       });
 
     } else {
-      console.log('Need to save at least 10 games in order for customSorting to work');
+      this.setState({
+        deadCenterFlashText: `Need to save at least 10 games in order for pre-set filters to work`,
+      });
+      setTimeout(() => {
+        context.setState({
+          deadCenterFlashText: null,
+        });
+      }, 3000)
+      console.log('Need to save at least 10 games in order for pre-set filters to work');
     }
   }
 
   notRecentGroupClick(gameType = 'all') {
+    const context = this;
     console.log('inside notRecentGroupClick');
     const type = 'all';
     if (this.state.userGames.length > 9) {
@@ -470,11 +522,21 @@ class App extends React.Component {
         activeIndex: false,
         active: false,
       });
+    } else {
+      this.setState({
+        deadCenterFlashText: `Need to save at least 10 games in order for pre-set filters to work`,
+      });
+      setTimeout(() => {
+        context.setState({
+          deadCenterFlashText: null,
+        });
+      }, 3000)
     }
   }
 
   killsGroupClick() {
     console.log('inside killsGroupClick');
+    const context = this;
     const type = 'all';
     if (this.state.userGames.length > 9) {
       const results = [];
@@ -496,12 +558,21 @@ class App extends React.Component {
         active: false,
       });
     } else {
+      this.setState({
+        deadCenterFlashText: `Need to save at least 10 games in order for pre-set filters to work`,
+      });
+      setTimeout(() => {
+        context.setState({
+          deadCenterFlashText: null,
+        });
+      }, 3000)
       console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
 
   placeGroupClick() {
     console.log('inside placeGroupClick');
+    const context = this;
     const type = 'all';
     if (this.state.userGames.length > 9) {
       const results = [];
@@ -524,6 +595,14 @@ class App extends React.Component {
       });
 
     } else {
+      this.setState({
+        deadCenterFlashText: `Need to save at least 10 games in order for pre-set filters to work`,
+      });
+      setTimeout(() => {
+        context.setState({
+          deadCenterFlashText: null,
+        });
+      }, 3000)
       console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
@@ -531,6 +610,7 @@ class App extends React.Component {
   popularGroupClick() {
     console.log('inside popularGroupClick');
     const type = 'all';
+    const context = this;
     if (this.state.userGames.length > 9) {
       const results = [];
       const userGameData = this.state.userGameData;
@@ -552,6 +632,14 @@ class App extends React.Component {
       });
 
     } else {
+      this.setState({
+        deadCenterFlashText: `Need to save at least 10 games in order for pre-set filters to work`,
+      });
+      setTimeout(() => {
+        context.setState({
+          deadCenterFlashText: null,
+        });
+      }, 3000);
       console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
@@ -606,6 +694,14 @@ class App extends React.Component {
         context.props.history.push('/home');
       })
       .catch(err => {
+        this.setState({
+          deadCenterFlashText: `There was an error: ${err}`,
+        });
+        setTimeout(() => {
+          context.setState({
+            deadCenterFlashText: null,
+          });
+        }, 3000)
         console.log('error:', err);
       })
   }
@@ -621,6 +717,14 @@ class App extends React.Component {
         context.props.history.push('/login');
       })
       .catch((err) => {
+        this.setState({
+          deadCenterFlashText: `Error resetting password: ${err}`,
+        });
+        setTimeout(() => {
+          context.setState({
+            deadCenterFlashText: null,
+          });
+        }, 3000)
         console.log('error resetting password:', err);
       })
   }
@@ -635,6 +739,14 @@ class App extends React.Component {
         })
       })
       .catch((err) => {
+        this.setState({
+          deadCenterFlashText: `Error submitting settings: ${err}`,
+        });
+        setTimeout(() => {
+          context.setState({
+            deadCenterFlashText: null,
+          });
+        }, 3000)
         console.log('Error submitting settings', err);
       });
   }
@@ -747,13 +859,6 @@ class App extends React.Component {
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           handleShowMapClick={this.handleShowMapClick}
         />} />
-        <Route path="/stats" render={props => <Navbar {...props}
-          navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
-          classes={['home', 'dashboard', 'myGames', 'login']}
-          handleUserFormClick={this.handleUserFormClick}
-          loggedIn={this.state.loggedIn}
-          handleAccountOptionsClick={this.handleAccountOptionsClick}
-        />} />
         <Route path="/home" render={props => <Body {...props}
           filteredLocations={this.state.filteredLocations}
           activeIndex={this.state.activeIndex}
@@ -775,6 +880,7 @@ class App extends React.Component {
           handleDeathCoordinateChoiceClick={this.handleDeathCoordinateChoiceClick}
           checkDeathMarkerLocation={this.checkDeathMarkerLocation}
           loggedIn={this.state.loggedIn}
+          statBoxFlashText={this.state.statBoxFlashText}
         />} />
         <Route path="/home/login" render={props => <UserForm {...props}
           handleUserFormClick={this.handleUserFormClick}
@@ -823,12 +929,20 @@ class App extends React.Component {
           applySettings={this.applySettings}
           userSettings={this.state.userSettings}
         />} />
-        <Route path="/stats/myGames" render={props => <MyGames {...props}
+        <Route path="/stats" render={props => <Stats {...props}
           userGames={this.state.userGames}
+          navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
+          classes={['home', 'dashboard', 'myGames', 'login']}
+          handleUserFormClick={this.handleUserFormClick}
+          loggedIn={this.state.loggedIn}
+          handleAccountOptionsClick={this.handleAccountOptionsClick}
         />} />
-        <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
-          userGames={this.state.userGames}
-        />} />
+        {this.state.deadCenterFlashText &&
+        <div className="deadCenterFlashTextContainer">
+          <h2>{this.state.deadCenterFlashText}</h2>
+        </div>
+
+        }
       </div>
     );
   }

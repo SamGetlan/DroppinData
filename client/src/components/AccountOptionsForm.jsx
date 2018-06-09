@@ -9,7 +9,7 @@ const AccountOptionsForm = props => (
           <Link id="accountSettingsButtonLink" className="accountOptionsButtonLink" to="/home/accountSettings">
             <button id="accountSettingsButton" className="accountOptionsButton">Account Settings</button>
           </Link>
-          <Link to="/myGames">
+          <Link to="/stats/myGames">
             <button id="myGamesButton" className="accountOptionsButton">My Games</button>
           </Link>
           <Link to="/home">

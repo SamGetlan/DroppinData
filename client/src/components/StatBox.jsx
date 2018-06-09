@@ -96,7 +96,7 @@ class StatBox extends React.Component {
       context.setState({
         flashText: null,
       })
-    }, 4000);
+    }, 3000);
   }
 
   render() {
@@ -149,10 +149,13 @@ class StatBox extends React.Component {
           <button className="submitGameButton disabledButton" onClick={this.handleNotReadySubmit} >Submit Game</button>
         </div>}
         {this.state.flashText &&
-          <div className="flashTextContainer">
-            <h2>{this.state.flashText}</h2>
-          </div>
-        }
+        <div className="flashTextContainer">
+          <h2>{this.state.flashText}</h2>
+        </div>}
+        {this.props.statBoxFlashText &&
+        <div className={this.props.statBoxFlashText === 'Game was successfully submitted' ? 'flashTextContainerPositive' : 'flashTextContainer'}>
+          <h2>{this.props.statBoxFlashText}</h2>
+        </div>}
         <Route path="/home/deathLocation" render={props => <DeathMap {...props}
           submitButtonState={this.props.submitButtonState}
           handleCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick}
