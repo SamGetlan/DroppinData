@@ -96,7 +96,7 @@ class UserForm extends React.Component {
             <div id="userFormMain">
               <h2 id="userFormTitle">Log In</h2>
               <h4 id="userFormSubTitle">Please fill in your username and password to login</h4>
-              <Link to="/accountRecovery">
+              <Link to="/home/accountRecovery">
                 <p id="forgotPasswordLink">Forgot username/password?</p>
               </Link>
               <form id="signUpForm">

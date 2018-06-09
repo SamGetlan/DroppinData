@@ -6,10 +6,12 @@ const AccountOptionsForm = props => (
     <div id="userFormContainer">
       <div id="userFormBox">
         <div id="accountOptionsButtonsContainer">
-          <Link id="accountSettingsButtonLink" className="accountOptionsButtonLink" to="/accountSettings">
+          <Link id="accountSettingsButtonLink" className="accountOptionsButtonLink" to="/home/accountSettings">
             <button id="accountSettingsButton" className="accountOptionsButton">Account Settings</button>
           </Link>
-          <button id="myGamesButton" className="accountOptionsButton">My Games</button>
+          <Link to="/myGames">
+            <button id="myGamesButton" className="accountOptionsButton">My Games</button>
+          </Link>
           <Link to="/home">
             <button id="logoutButton" className="accountOptionsButton" onClick={props.handleLogout} >Logout</button>
           </Link>

@@ -43,7 +43,7 @@ class AccountRecovery extends React.Component {
 
   render() {
     return (
-      <div id={this.props.userSettings.stormBackground ? "userFormContainerWrapper" : 'userFormContainerWrapperNoStorm'}>
+      <div id="userFormContainerWrapperNoStorm">
         <div id="userFormContainer" className="mobile-85">
           <div id="userFormBox">
             <div id="userFormMain">

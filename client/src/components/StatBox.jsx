@@ -11,12 +11,31 @@ class StatBox extends React.Component {
       killsInput: null,
       lootInput: null,
       gameType: null,
+      flashText: null,
+      stormDeath: false,
     }
     this.handlePlaceInputChange = this.handlePlaceInputChange.bind(this);
     this.handleKillsInputChange = this.handleKillsInputChange.bind(this);
     this.handleLootInputChange = this.handleLootInputChange.bind(this);
     this.handleGameTypeOptionChange = this.handleGameTypeOptionChange.bind(this);
     this.handleNotReadySubmit = this.handleNotReadySubmit.bind(this);
+    this.handleStormDeathOptionChange = this.handleStormDeathOptionChange.bind(this);
+    this.resetInputs = this.resetInputs.bind(this);
+  }
+
+  resetInputs() {
+    document.getElementById('placeInput').value = '';
+    document.getElementById('killsInput').value = '';
+    document.getElementById('lootInput').value = '',
+    document.getElementById('falseStormDeath').selected = true;
+    this.setState({
+      placeInput: null,
+      killsInput: null,
+      lootInput: null,
+      gameType: null,
+      flashText: null,
+      stormDeath: false,
+    });
   }
 
   handlePlaceInputChange(e) {
@@ -43,16 +62,41 @@ class StatBox extends React.Component {
     });
   }
 
+  handleStormDeathOptionChange(e) {
+    const stormDeath = (e.target.value === 'true' ? true : false);
+    this.setState({
+      stormDeath, 
+    });
+  }
+
   handleNotReadySubmit() {
-    if (this.state.placeInput < 1 || this.state.placeInput > 100 || this.state.placeInput === null) {
-      console.log('Your place needs to be between 1 and 100');
+    const context = this;
+    if (!this.props.loggedIn) {
+      this.setState({
+        flashText: 'You must log in to submit a game.',
+      });
+    } else if (this.state.placeInput < 1 || this.state.placeInput > 100 || this.state.placeInput === null) {
+      this.setState({
+        flashText: 'Your place needs to be between 1 and 100',
+      });
     } else if (this.state.killsInput < 0 || this.state.killsInput > 99 || this.state.killsInput === null) {
-      console.log('Your kills need to be between 0 and 99');
+      this.setState({
+        flashText: 'Your kills need to be between 0 and 99',
+      });
     } else if (this.state.lootInput < 0 || this.state.lootInput > 10 || this.state.lootInput === null) {
-      console.log('Your loot rating needs to be between 0 and 10');
+      this.setState({
+        flashText: 'Your loot rating needs to be between 0 and 10',
+      });
     } else if (this.state.gameType !== 'solo' && this.state.gameType !== 'duo' && this.state.gameType !== 'squad') {
-      console.log('please select a game type');
+      this.setState({
+        flashText: 'Please select a game type',
+      });
     }
+    setTimeout(() => {
+      context.setState({
+        flashText: null,
+      })
+    }, 4000);
   }
 
   render() {
@@ -80,23 +124,35 @@ class StatBox extends React.Component {
             <option value="winner">I Won!</option>
           </select>
         </div> */}
+        <div className="entryContainer">
+          <h3 className="inputLabel">Did you die from the storm?</h3>
+          <select id="stormDeath" onChange={this.handleStormDeathOptionChange}>
+            <option value="false" id="falseStormDeath">No</option>
+            <option value="true" id="trueStormDeath">Yes</option>
+          </select>
+        </div>
         <div id="gameTypeOptions">
           <input type="radio" value="solo" id="soloRadio" name="gameType" checked={this.state.gameType === 'solo'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="soloRadio">Solo</label>
           <input type="radio" value="duo" id="duoRadio" name="gameType" checked={this.state.gameType === 'duo'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="duoRadio">Duo</label>
           <input type="radio" value="squad" id="squadRadio" name="gameType" checked={this.state.gameType === 'squad'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="squadRadio">Squad</label>
         </div>
-        {this.state.placeInput <= 100 && this.state.placeInput > 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad') &&
+        {this.state.placeInput <= 100 && this.state.placeInput > 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad') && this.props.loggedIn &&
         <Link className="submitGameButtonContainer" to="/home/deathLocation">
-          <button className={`submitGameButton ${this.props.submitButtonState ? 'enabledButton' : 'disabledButton'}`} >Submit Game</button>
+          <button className={`submitGameButton ${this.props.submitButtonState ? 'enabledButton' : 'disabledButton'}`} >Where did you die?</button>
         </Link>}
-        {this.state.placeInput === 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad') &&
-        <div className="submitGameButtonContainer">
-          <button className={`submitGameButton ${this.props.submitButtonState ? 'enabledButton' : 'disabledButton'}`} onClick={this.props.submitButtonState ? () => { this.props.handleSubmit(this.state.placeInput, this.state.killsInput, this.state.lootInput, this.state.gameType); } : console.log('Button is temporary disabled')} >Submit Game</button>
-        </div>}
-        {(this.state.placeInput <= 100 && this.state.placeInput >= 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad')) || 
+        {this.state.placeInput === 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad') && this.props.loggedIn &&
+        <Link className="submitGameButtonContainer" to="/home/deathLocation">
+          <button className={`submitGameButton ${this.props.submitButtonState ? 'enabledButton' : 'disabledButton'}`} >Where did you win?</button>
+        </Link>}
+        {(this.props.loggedIn && this.state.placeInput <= 100 && this.state.placeInput >= 1 && this.state.killsInput >= 0 && this.state.killsInput <= 99 && this.state.lootInput >= 0 && this.state.lootInput <= 10 && (this.state.gameType === 'solo' || this.state.gameType === 'duo' || this.state.gameType === 'squad')) || 
         <div className="submitGameButtonContainer">
           <button className="submitGameButton disabledButton" onClick={this.handleNotReadySubmit} >Submit Game</button>
         </div>}
+        {this.state.flashText &&
+          <div className="flashTextContainer">
+            <h2>{this.state.flashText}</h2>
+          </div>
+        }
         <Route path="/home/deathLocation" render={props => <DeathMap {...props}
           submitButtonState={this.props.submitButtonState}
           handleCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick}
@@ -104,7 +160,7 @@ class StatBox extends React.Component {
           deathMapMarker={this.props.deathMapMarker}
           deathMapMarkerStyle={this.props.deathMapMarkerStyle}
           checkDeathMarkerLocation={this.props.checkDeathMarkerLocation}
-          submitGame={this.props.submitButtonState ? () => { this.props.handleSubmit(this.state.placeInput, this.state.killsInput, this.state.lootInput, this.state.gameType); } : console.log('Button is temporary disabled')}
+          submitGame={this.props.submitButtonState ? () => { this.props.handleSubmit(this.state.placeInput, this.state.killsInput, this.state.lootInput, this.state.gameType, this.state.stormDeath); this.resetInputs(); } : console.log('Button is temporary disabled')}
         />} />
       </div>
     );

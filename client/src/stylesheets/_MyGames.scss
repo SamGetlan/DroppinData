@@ -1,0 +1,61 @@
+.gameCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gameCardContainer {
+  flex: 1;
+}
+
+.gameCard {
+  display: flex;
+  border: 1px solid black;
+  background: lightgray;
+  margin: 4px;
+  justify-content: space-evenly;
+}
+
+.gameCardStat {
+  flex: 3;
+  width: 100px;
+  justify-content: center;
+  text-align: center;
+}
+
+.gameCardOptionsContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.gameCardOptionButton {
+  width: 100%;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  
+}
+
+.gameCardOptionButton:hover {
+  cursor: pointer;
+  filter: brightness(125%);
+}
+.trashIcon {
+  margin: auto;
+}
+
+.editIcon {
+  margin: auto;
+}
+
+.gameCardEditButton {
+  background: rgb(1, 93, 142);
+}
+
+.gameCardDeleteButton {
+  background: rgb(151, 12, 8);
+
+}

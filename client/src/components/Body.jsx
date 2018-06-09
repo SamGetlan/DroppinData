@@ -53,6 +53,7 @@ class Body extends React.Component {
               userSettings={this.props.userSettings}
               handleDeathCoordinateChoiceClick={this.props.handleDeathCoordinateChoiceClick}
               checkDeathMarkerLocation={this.props.checkDeathMarkerLocation}
+              loggedIn={this.props.loggedIn}
             />
           </div>
         }

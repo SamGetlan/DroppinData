@@ -19,8 +19,7 @@ const checkGamePlayed = (gamePlayed) => {
 
 const saveGame = (gamePlayed, callback) => {
   if (checkGamePlayed(gamePlayed)) {
-    console.log('gamePlayed.startCoordinates:', gamePlayed.startCoordinates);
-    console.log('gamePlayed.deathCoordinates:', gamePlayed.deathCoordinates);
+    console.log('gamePlayed.stormDeath:', gamePlayed.stormDeath);
     const game = new Game({
       user: gamePlayed.user,
       locationTracking: gamePlayed.locationTracking,
@@ -32,6 +31,7 @@ const saveGame = (gamePlayed, callback) => {
       loot: gamePlayed.loot,
       gameType: gamePlayed.gameType,
       deathLocation: gamePlayed.death,
+      stormDeath: gamePlayed.stormDeath,
       deathCoordinates: gamePlayed.deathCoordinates,
     });
     game.save((err, results) => {

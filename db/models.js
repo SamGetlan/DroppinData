@@ -73,7 +73,10 @@ const gameSchema = mongoose.Schema({
   },
   deathCoordinates: {
     type: [Number],
-  }
+  },
+  stormDeath: {
+    type: Boolean,
+  },
 });
 
 const User = mongoose.model('User', userSchema);

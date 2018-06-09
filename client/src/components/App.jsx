@@ -10,6 +10,8 @@ import FullMap from './FullMap.jsx';
 import AccountRecovery from './AccountRecovery.jsx';
 import ResetPassword from './ResetPassword.jsx';
 import AccountSettings from './AccountSettings.jsx';
+import MyGames from './MyGames.jsx';
+import StatDashboard from './StatDashboard.jsx';
 import locations from '../data.js';
 
 
@@ -190,7 +192,8 @@ class App extends React.Component {
     }
   }
 
-  handleGameSubmit(place, kills, loot, gameType) {
+  handleGameSubmit(place, kills, loot, gameType, stormDeath) {
+    console.log('stormDeath:', typeof stormDeath);
     const context = this;
     this.setState({
       submitButtonState: false,
@@ -201,7 +204,7 @@ class App extends React.Component {
     // console.log('loot -->', loot);
     // console.log('death -->', death);
     // console.log(`Game Type --> ${gameType}`);
-    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && this.state.loggedIn && this.state.userSettings.locationTracking === ('name' || 'grid' || 'nameCoordinates' || 'gridCoordinates')) {
+    if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && (stormDeath === false || stormDeath === true) && this.state.loggedIn && this.state.userSettings.locationTracking === ('name' || 'grid' || 'nameCoordinates' || 'gridCoordinates')) {
       const deathCoordinates = (place !== 1 ? this.state.deathMapMarker : undefined);
       axios.post('/api/games', {
         user: this.state.loggedIn,
@@ -213,6 +216,7 @@ class App extends React.Component {
         kills,
         loot,
         gameType,
+        stormDeath,
         deathCoordinates,
       })
         .then((data) => {
@@ -253,6 +257,8 @@ class App extends React.Component {
         suggestion = 'A game type must be selected.';
       } else if (!this.state.loggedIn) {
         suggestion = 'You must log in to submit a game.';
+      } else {
+        suggestion = 'There seems to be an error with your settings, please logout and log back in,';
       }
       const $denied = document.createElement('p');
       $denied.innerHTML = `There was an error submitting your game. ${suggestion}`;
@@ -731,16 +737,24 @@ class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <Navbar
-          navButtons={['Home', 'Full Map', 'Filter Locations', 'Sign Up or Login']}
-          classes={['home', 'map', 'filter', 'login']}
+        <Route exact path="/" render={() => <Redirect to="/home/login" />} />
+        <Route path="/home" render={props => <Navbar {...props}
+          navButtons={['Stats', 'Full Map', 'Filter Locations', 'Sign Up or Login']}
+          classes={['stats', 'map', 'filter', 'login']}
           handleUserFormClick={this.handleUserFormClick}
           handleFilterClick={this.handleFilterClick}
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           handleShowMapClick={this.handleShowMapClick}
-        />
-        <Body
+        />} />
+        <Route path="/stats" render={props => <Navbar {...props}
+          navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
+          classes={['home', 'dashboard', 'myGames', 'login']}
+          handleUserFormClick={this.handleUserFormClick}
+          loggedIn={this.state.loggedIn}
+          handleAccountOptionsClick={this.handleAccountOptionsClick}
+        />} />
+        <Route path="/home" render={props => <Body {...props}
           filteredLocations={this.state.filteredLocations}
           activeIndex={this.state.activeIndex}
           handleSubmit={this.handleGameSubmit}
@@ -760,9 +774,9 @@ class App extends React.Component {
           userSettings={this.state.userSettings}
           handleDeathCoordinateChoiceClick={this.handleDeathCoordinateChoiceClick}
           checkDeathMarkerLocation={this.checkDeathMarkerLocation}
-        />
-        <Route exact path="/" render={() => <Redirect to="/login" />} />
-        <Route path="/login" render={props => <UserForm {...props}
+          loggedIn={this.state.loggedIn}
+        />} />
+        <Route path="/home/login" render={props => <UserForm {...props}
           handleUserFormClick={this.handleUserFormClick}
           signUpForm={this.state.signUpForm}
           loginUserFormOption={this.loginUserFormOption}
@@ -771,7 +785,7 @@ class App extends React.Component {
           handleAccountSignUp={this.handleAccountSignUp}
           logInFailed={this.state.logInFailed}
         />} />
-        <Route path="/filterLocations" render={props => <FilterLocations {...props}
+        <Route path="/home/filterLocations" render={props => <FilterLocations {...props}
           locations={this.state.locations}
           filteredLocations={this.state.filteredLocations}
           filterOut={this.filterOut}
@@ -786,28 +800,34 @@ class App extends React.Component {
           filterAllOut={this.filterAllOut}
           userSettings={this.state.userSettings}
         />} />
-        <Route path="/accountOptions" render={props => <AccountOptionsForm {...props}
+        <Route path="/home/accountOptions" render={props => <AccountOptionsForm {...props}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           loggedIn={this.state.loggedIn}
           handleLogout={this.handleLogout}
           userSettings={this.state.userSettings}
         />} />
-        <Route path="/map" render={props => <FullMap {...props}
+        <Route path="/home/map" render={props => <FullMap {...props}
           handleShowMapClick={this.handleShowMapClick}
           locations={this.state.locations}
           handleMapChoiceClick={this.handleMapChoiceClick}
           userSettings={this.state.userSettings}
           resetMarker={this.resetMarker}
         />} />
-        <Route path="/accountRecovery" render={props => <AccountRecovery {...props}
+        <Route path="/home/accountRecovery" render={props => <AccountRecovery {...props}
           handleRecoveryAttempt={this.handleRecoveryAttempt}
         />} />
         <Route path="/reset/:token" render={props => <ResetPassword {...props} 
           handlePasswordReset={this.handlePasswordReset}
         />} />
-        <Route path="/accountSettings" render={props => <AccountSettings {...props}
+        <Route path="/home/accountSettings" render={props => <AccountSettings {...props}
           applySettings={this.applySettings}
           userSettings={this.state.userSettings}
+        />} />
+        <Route path="/stats/myGames" render={props => <MyGames {...props}
+          userGames={this.state.userGames}
+        />} />
+        <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
+          userGames={this.state.userGames}
         />} />
       </div>
     );
