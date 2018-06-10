@@ -10,7 +10,7 @@ const AccountOptionsForm = props => (
             <button id="accountSettingsButton" className="accountOptionsButton">Account Settings</button>
           </Link>
           <Link to="/stats/myGames">
-            <button id="myGamesButton" className="accountOptionsButton" onClick={this.props.updateFilteredUserGames}>My Games</button>
+            <button id="myGamesButton" className="accountOptionsButton" onClick={props.updateFilteredUserGames}>My Games</button>
           </Link>
           <Link to="/home">
             <button id="logoutButton" className="accountOptionsButton" onClick={props.handleLogout} >Logout</button>

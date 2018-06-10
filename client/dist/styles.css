@@ -789,10 +789,10 @@ input:focus {
 
 .confirmDeleteGameCardOverlay {
   position: relative;
-  bottom: 92.75px;
-  margin-bottom: -92.75px;
+  bottom: 88.75px;
+  margin-bottom: -88.75px;
   width: 90%;
-  height: 92.75px;
+  height: 84.75px;
   background: lightcoral;
   border: 1px solid red;
   box-sizing: border-box;
