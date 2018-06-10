@@ -977,6 +977,7 @@ class App extends React.Component {
           confirmDeleteGameCard={this.confirmDeleteGameCard}
           filteredUserGames={this.state.filteredUserGames}
           updateFilteredUserGames={this.updateFilteredUserGames}
+          locations={this.state.locations}
         />} />
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">

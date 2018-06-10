@@ -7,6 +7,13 @@
   flex: 1;
 }
 
+.gameCardStats {
+  position: relative;
+  flex: 9;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
 .gameCard {
   display: flex;
   border: 1px solid black;
@@ -16,14 +23,49 @@
 }
 
 .confirmDeleteGameCardOverlay {
-  position: relative;
-  bottom: 88.75px;
-  margin-bottom: -88.75px;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 90%;
-  height: 84.75px;
+  height: 100%;
+  z-index: 5;
   background: lightcoral;
   border: 1px solid red;
   box-sizing: border-box;
+  text-align: center;
+  h2 {
+    font-size: 1.7rem;
+  }
+}
+
+.editableGameCardStat {
+  flex: 1;
+}
+
+.editableGameCardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  z-index: 3;
+  background: lightgray;
+  border: 1px solid black;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+}
+
+.confirmDeleteGameCardButtonsContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.confirmDeleteButton {
+  width: 33%;
+  height: 2.5rem;
+  font-size: 1.8rem;
+
 }
 
 .gameCardStat {
@@ -77,4 +119,75 @@
   margin: auto;
   font-size: 2.4rem;
   text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/*
+stretchLeft provided by http://www.justinaguilar.com/animations/css/animations.css
+*/
+
+.stretchLeft{
+	animation-name: stretchLeft;
+	-webkit-animation-name: stretchLeft;	
+
+	animation-duration: 1s;	
+	-webkit-animation-duration: 1s;
+
+	animation-timing-function: ease-out;	
+	-webkit-animation-timing-function: ease-out;	
+
+	transform-origin: 100% 0%;
+	-ms-transform-origin: 100% 0%;
+	-webkit-transform-origin: 100% 0%; 
+}
+
+@keyframes stretchLeft {
+	0% {
+		transform: scaleX(0.3);
+	}
+	40% {
+		transform: scaleX(1.02);
+	}
+	60% {
+		transform: scaleX(0.98);
+	}
+	80% {
+		transform: scaleX(1.01);
+	}
+	100% {
+		transform: scaleX(0.98);
+	}				
+	80% {
+		transform: scaleX(1.01);
+	}
+	100% {
+		transform: scaleX(1);
+	}							
+}
+
+@-webkit-keyframes stretchLeft {
+	0% {
+		-webkit-transform: scaleX(0.3);
+	}
+	40% {
+		-webkit-transform: scaleX(1.02);
+	}
+	60% {
+		-webkit-transform: scaleX(0.98);
+	}
+	80% {
+		-webkit-transform: scaleX(1.01);
+	}
+	100% {
+		-webkit-transform: scaleX(0.98);
+	}				
+	80% {
+		-webkit-transform: scaleX(1.01);
+	}
+	100% {
+		-webkit-transform: scaleX(1);
+	}		
 }
