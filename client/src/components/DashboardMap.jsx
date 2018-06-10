@@ -48,7 +48,7 @@ class DashboardMap extends React.Component {
       })
     } else {
       this.setState({
-        canvasSize: canvasSize,
+        canvasSize: screenWidth,
       })
     }
   }
