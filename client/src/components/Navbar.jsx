@@ -16,6 +16,7 @@ class Navbar extends React.Component {
         handleFilterClick={this.props.handleFilterClick}
         handleAccountOptionsClick={this.props.handleAccountOptionsClick}
         handleShowMapClick={this.props.handleShowMapClick}
+        updateFilteredUserGames={this.props.updateFilteredUserGames}
       />
     );
   }

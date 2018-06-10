@@ -45,7 +45,7 @@ class GameCard extends React.Component {
         <div className="confirmDeleteGameCardOverlay">
           <h2>Are you sure you wish to delete this game?</h2>
           <div className="confirmDeleteGameCardButtonsContainer">
-            <button className="confirmDeleteGameCardButton confirmDeleteButton" onClick={() => this.props.confirmDeleteGameCard(this.props.game._id)}>Yes</button>
+            <button className="confirmDeleteGameCardButton confirmDeleteButton" onClick={() => { this.props.confirmDeleteGameCard(this.props.game._id); this.deleteGameCard(); }}>Yes</button>
             <button className="cancelDeleteGameCardButton confirmDeleteButton" onClick={this.deleteGameCard}>No</button>
           </div>
         </div>}

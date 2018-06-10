@@ -38,7 +38,7 @@ const NavButton = (props) => {
   } else if (props.class === 'stats' || props.class ==='dashboard') {
     return (
       <Link className="navButtonContainer" to="/stats/dashboard">
-        <button className={`navButton col-2 col-s-6 ${props.class}`} >
+        <button className={`navButton col-2 col-s-6 ${props.class}`} onClick={props.updateFilteredUserGames} >
           {props.value}
         </button>
       </Link>

@@ -30,6 +30,7 @@ class App extends React.Component {
       active: false,
       activeIndex: false,
       userGames: null,
+      filteredUserGames: null,
       submitButtonState: true,
       accountOptionsForm: false,
       logInFailed: null,
@@ -83,6 +84,7 @@ class App extends React.Component {
     this.handleDeathCoordinateChoiceClick = this.handleDeathCoordinateChoiceClick.bind(this);
     this.checkDeathMarkerLocation = this.checkDeathMarkerLocation.bind(this);
     this.confirmDeleteGameCard = this.confirmDeleteGameCard.bind(this);
+    this.updateFilteredUserGames = this.updateFilteredUserGames.bind(this);
   }
 
   handleUserFormClick() {
@@ -838,13 +840,27 @@ class App extends React.Component {
     console.log('inside confirmDeleteGameCard with id:', gameId);
     axios.delete('/api/games', { data: { gameId, } })
       .then((data) => {
-          console.log('Game deleted successfully:', data.data);
+          console.log('Game deleted from db successfully:', data.data);
+          for (var i = 0; i < this.state.userGames.length; i++) {
+            if (this.state.userGames[i]._id === data.data._id) {
+              this.state.userGames.splice(i, 1);
+              this.updateFilteredUserGames();
+              console.log('Game deleted from userGames');
+
+            }
+          }
       })
       .catch(() => {
         console.log('There was an error on the server when deleting your game');
       });
   }
 
+  updateFilteredUserGames() {
+    console.log('inside updateFilteredUserGames')
+    this.setState({
+      filteredUserGames: (this.state.userGames !== null ? this.state.userGames.slice() : null),
+    })
+  }
 
   componentDidUpdate() {   
     if (window.location.pathname !== '/filterLocations')
@@ -878,6 +894,7 @@ class App extends React.Component {
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           handleShowMapClick={this.handleShowMapClick}
+          updateFilteredUserGames={this.updateFilteredUserGames}
         />} />
         <Route path="/home" render={props => <Body {...props}
           filteredLocations={this.state.filteredLocations}
@@ -931,6 +948,7 @@ class App extends React.Component {
           loggedIn={this.state.loggedIn}
           handleLogout={this.handleLogout}
           userSettings={this.state.userSettings}
+          updateFilteredUserGames={this.updateFilteredUserGames}
         />} />
         <Route path="/home/map" render={props => <FullMap {...props}
           handleShowMapClick={this.handleShowMapClick}
@@ -957,6 +975,8 @@ class App extends React.Component {
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           confirmDeleteGameCard={this.confirmDeleteGameCard}
+          filteredUserGames={this.state.filteredUserGames}
+          updateFilteredUserGames={this.updateFilteredUserGames}
         />} />
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">

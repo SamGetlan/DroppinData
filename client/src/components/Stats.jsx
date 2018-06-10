@@ -10,7 +10,7 @@ class Stats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredUserGames: (this.props.userGames !== null ? this.props.userGames.slice() : null),
+      // filteredUserGames: (this.props.userGames !== null ? this.props.userGames.slice() : null),
       filterOptions: {
         startLocation: 'all',
         deathLocation: 'all',
@@ -27,7 +27,14 @@ class Stats extends React.Component {
         timeEnd: '23:59',
       }
     };
+    this.confirmDeleteGameCardFilteredList = this.confirmDeleteGameCardFilteredList.bind(this);
+  }
 
+  confirmDeleteGameCardFilteredList(gameId) {
+    console.log('inside confirm Delete from filtered list');
+    this.setState({
+      filteredUserGames: this.props.userGames,
+    });
   }
 
   render() {
@@ -43,12 +50,13 @@ class Stats extends React.Component {
         <FilterMyGames filterOptions={this.state.filterOptions}/>
         <Route path="/stats/myGames" render={props => <MyGames {...props}
           userGames={this.props.userGames}
-          filteredUserGames={this.state.filteredUserGames}
+          filteredUserGames={this.props.filteredUserGames}
           confirmDeleteGameCard={this.props.confirmDeleteGameCard}
+          confirmDeleteGameCardFilteredList={this.confirmDeleteGameCardFilteredList}
         />} />
         <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
           userGames={this.props.userGames}
-          filteredUserGames={this.state.filteredUserGames}
+          filteredUserGames={this.props.filteredUserGames}
         />} />
       </div>
     );
