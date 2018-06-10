@@ -22,5 +22,22 @@
     </noscript>
     <div id="root"></div>
     <script src="/bundle.js"></script>
+    <div class="hidden">
+        <script type="text/javascript">
+          //--><![CDATA[//><!--
+            var images = new Array()
+            function preload() {
+              for (i = 0; i < preload.arguments.length; i++) {
+                images[i] = new Image()
+                images[i].src = preload.arguments[i]
+              }
+            }
+            preload(
+              "/locationPics/fortNite-s4map.jpg",
+              "/locationPics/fullMapSmall.jpg",
+            )
+          //--><!]]>
+        </script>
+      </div>
   </body>
 </html>

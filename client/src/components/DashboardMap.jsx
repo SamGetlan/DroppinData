@@ -12,7 +12,7 @@ class DashboardMap extends React.Component {
 
   updateCanvas() {
     const ctx = document.getElementById('dashboardMapCanvas').getContext('2d');
-    ctx.clearRect(0, 0, 330, 330);
+    ctx.clearRect(0, 0, this.state.canvasSize, this.state.canvasSize);
     // draw lines for each game
     const games = this.props.filteredUserGames;
     function canvasArrow(context, fromx, fromy, tox, toy){
@@ -55,15 +55,15 @@ class DashboardMap extends React.Component {
   }
 
   componentDidUpdate() {
-    if (!(this.state.canvasSize === window.innerWidth * 0.45 || this.state.canvasSize === window.innerWidth)) {
-      this.updateCanvasSize(window.innerWidth);
+    if (!(this.state.canvasSize === window.visualViewport.width * 0.45 || this.state.canvasSize === window.visualViewport.width)) {
+      this.updateCanvasSize(window.visualViewport.width);
     }
     this.updateCanvas();
   }
 
   componentDidMount() {
-    if (!(this.state.canvasSize === window.innerWidth * 0.45 || this.state.canvasSize === window.innerWidth)) {
-      this.updateCanvasSize(window.innerWidth);  
+    if (!(this.state.canvasSize === window.visualViewport.width * 0.45 || this.state.canvasSize === window.visualViewport.width)) {
+      this.updateCanvasSize(window.visualViewport.width);  
     }
     this.updateCanvas();
   }
