@@ -96,9 +96,16 @@ const updateSettings = (username, update, callback) => {
   });
 }
 
+const deleteGame = (gameId, callback) => {
+  Game.findByIdAndRemove(gameId, (err, game) => {
+    callback(err, game);
+  });
+}
+
 module.exports.saveGame = saveGame;
 module.exports.loadGames = loadGames;
 module.exports.checkUsername = checkUsername;
 module.exports.checkEmail = checkEmail;
 module.exports.checkToken = checkToken;
 module.exports.updateSettings = updateSettings;
+module.exports.deleteGame = deleteGame;

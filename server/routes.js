@@ -30,6 +30,17 @@ module.exports = (app, passport) => {
     });
   });
 
+  app.delete('/api/games', isLoggedIn, (req, res) => {
+    //delete selectedGame
+    db.deleteGame(req.body.gameId, (err, game) => {
+      if (err) {
+        console.log('There was an error inside deleteGame:', err);
+      } else {
+        res.send(JSON.stringify(game));
+      }
+    })
+  })
+
   app.post('/api/signup',
     passport.authenticate('local-signup', {
       successRedirect: '/',

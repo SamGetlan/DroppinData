@@ -82,6 +82,7 @@ class App extends React.Component {
     this.handleCoordinateChoiceClick = this.handleCoordinateChoiceClick.bind(this);
     this.handleDeathCoordinateChoiceClick = this.handleDeathCoordinateChoiceClick.bind(this);
     this.checkDeathMarkerLocation = this.checkDeathMarkerLocation.bind(this);
+    this.confirmDeleteGameCard = this.confirmDeleteGameCard.bind(this);
   }
 
   handleUserFormClick() {
@@ -833,6 +834,18 @@ class App extends React.Component {
     }
   }
 
+  confirmDeleteGameCard(gameId) {
+    console.log('inside confirmDeleteGameCard with id:', gameId);
+    axios.delete('/api/games', { data: { gameId, } })
+      .then((data) => {
+          console.log('Game deleted successfully:', data.data);
+      })
+      .catch(() => {
+        console.log('There was an error on the server when deleting your game');
+      });
+  }
+
+
   componentDidUpdate() {   
     if (window.location.pathname !== '/filterLocations')
     if (this.state.activeIndex !== false && (this.state.mapMarkerStyle.top !== `${(this.state.filteredLocations[this.state.activeIndex].start[0] + 0.5) * (100 / 72)}%` && this.state.mapMarkerStyle.top !== `${(this.state.rows + 0.5) * (100 / 72)}%`) && (this.state.mapMarkerStyle.left !== `${(this.state.filteredLocations[this.state.activeIndex].start[1] + 0.5) * (100 / 72)}%`) && this.state.mapMarkerStyle.left !== `${(this.state.cols + 0.5) * (100 / 72)}%`) {
@@ -943,6 +956,7 @@ class App extends React.Component {
           handleUserFormClick={this.handleUserFormClick}
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
+          confirmDeleteGameCard={this.confirmDeleteGameCard}
         />} />
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">

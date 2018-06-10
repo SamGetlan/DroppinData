@@ -44,6 +44,7 @@ class Stats extends React.Component {
         <Route path="/stats/myGames" render={props => <MyGames {...props}
           userGames={this.props.userGames}
           filteredUserGames={this.state.filteredUserGames}
+          confirmDeleteGameCard={this.props.confirmDeleteGameCard}
         />} />
         <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
           userGames={this.props.userGames}
