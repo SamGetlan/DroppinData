@@ -241,9 +241,14 @@ input:focus {
 }
 
 .tile {
-  width: 30%;
+  width: 22.5%;
 }
 
+@media only screen and (max-width: 1100px) {
+  .tile {
+    width: 30%;
+  }
+}
 @media only screen and (max-width: 700px) {
   .tile {
     width: 49%;
@@ -343,12 +348,17 @@ input:focus {
   justify-content: space-evenly;
 }
 .activeTileContainer .tile {
-  width: 45%;
+  width: 35%;
   text-align: center;
   font-size: 1.8rem;
   padding: 1rem;
 }
 
+@media only screen and (max-width: 1250px) {
+  .activeTileContainer .tile {
+    width: 45%;
+  }
+}
 @media only screen and (max-width: 700px) {
   .activeTileContainer {
     flex-wrap: wrap;
@@ -760,7 +770,7 @@ input:focus {
   font-family: "fortnite";
 }
 
-.gameCardsContainer {
+.myGamesContainer {
   display: flex;
   flex-wrap: wrap;
 }
@@ -836,10 +846,20 @@ input:focus {
 #dashboardMapContainer {
   width: 45%;
   padding: 1rem;
+  display: inline-block;
+  position: relative;
 }
 
 #quickDashboardStats {
   width: 45%;
+  padding: 1rem;
+}
+
+#dashboardMapCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
   padding: 1rem;
 }
 
@@ -865,6 +885,12 @@ input:focus {
   height: 20vh;
 }
 
+@media only screen and (min-width: 1300px) {
+  .loadingCenterScreen {
+    left: 42.5%;
+    width: 15%;
+  }
+}
 .deadCenterFlashTextContainer {
   position: absolute;
   z-index: 2000;

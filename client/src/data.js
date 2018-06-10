@@ -55,7 +55,7 @@ const mansionSouthOfLonelyLodge = new Location(names[32], 'mansionSouthOfLonelyL
 const dustyDivot = new Location(names[33], 'dustyDivot', '/locationPics/f5.jpg', [78, 102], [46, 48]);
 const buildingsEastOfJunkJunction = new Location(names[34], 'buildingsEastOfJunkJunction', '/locationPics/c2.jpg', [6, 30], [18, 31]);
 const siloNortheastOfSnobbyShores = new Location(names[35], 'siloNortheastOfSnobbyShores', '/locationPics/b4.jpg', [54, 6], [46, 32]);
-const trailerPark = new Location(names[36], 'trailerPark', '/locationPics/i5.jpg', [78, 150], [46, 35]);
+const trailerPark = new Location(names[36], 'trailerPark', '/locationPics/i5.jpg', [78, 174], [46, 35]);
 const locations = [chair, lootLakeHouse, westLootLake, northLootLake, prison, shippingContainers, luckyLanding, flushFactory, tiltedTowers, shiftyShafts, hauntedHills, anarchyAcres, lonelyLodge, wailingWoods, moistyMire, fatalFields, greasyGrove, snobbyShores, junkJunction, pleasantPark, dustyDepot, saltySprings, retailRow, tomatoTown, houseOnHill, townWestOfMotel, townNorthEastOfFlushFactory, buildingsWestOfTiltedTowers, buildingsNorthOfPrison, motel, riskyReels, mansionSouthOfLonelyLodge, dustyDivot, buildingsEastOfJunkJunction, siloNortheastOfSnobbyShores, trailerPark];
 
 

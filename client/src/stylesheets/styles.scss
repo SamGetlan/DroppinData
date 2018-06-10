@@ -26,6 +26,13 @@
   width: 20%;
   height: 20vh;
 }
+
+@media only screen and (min-width: 1300px) {
+  .loadingCenterScreen {
+    left: 42.5%;
+    width: 15%;
+  }
+}
 .deadCenterFlashTextContainer {
   position: absolute;
   z-index: 2000;

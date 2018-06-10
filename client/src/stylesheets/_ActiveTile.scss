@@ -2,10 +2,18 @@
   display: flex;
   justify-content: space-evenly;
   .tile {
-    width: 45%;
+    width: 35%;
     text-align: center;
     font-size: 1.8rem;
     padding: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .activeTileContainer {
+    .tile {
+      width: 45%;
+    }
   }
 }
 
