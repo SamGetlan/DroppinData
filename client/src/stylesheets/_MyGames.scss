@@ -38,10 +38,6 @@
   }
 }
 
-.editableGameCardStat {
-  flex: 1;
-}
-
 .editableGameCardOverlay {
   position: absolute;
   top: 0;
@@ -54,6 +50,38 @@
   box-sizing: border-box;
   text-align: center;
   display: flex;
+  justify-content: space-evenly
+}
+
+.editableGameCardStat {
+  width: 33%;
+  select {
+    width: 100%;
+  }
+}
+
+.editableGameCardTime {
+  margin: auto;
+}
+
+.editableEntryContainer {
+  height: 30%;
+  display: flex;
+  margin:  2% 0;
+  justify-content: space-evenly;
+  .inputLabel {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+  }
+  input {
+    width: 30%;
+    margin: 0;
+  }
+  select {
+    width: 30%;
+    margin: 0;
+  }
 }
 
 .confirmDeleteGameCardButtonsContainer {

@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import Datetime from 'react-datetime';
 
 class GameCard extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class GameCard extends React.Component {
     this.state = {
       confirmDelete: false,
       editCard: false,
+      editDateTime: false,
       location: this.props.game.location,
       place: this.props.game.place,
       kills: this.props.game.kills,
@@ -15,6 +17,7 @@ class GameCard extends React.Component {
     };
     this.deleteGameCard = this.deleteGameCard.bind(this);
     this.editGameCard = this.editGameCard.bind(this);
+    this.editDateTime = this.editDateTime.bind(this);
   }
 
   deleteGameCard() {
@@ -31,12 +34,19 @@ class GameCard extends React.Component {
     });
   }
 
+  editDateTime() {
+    console.log('inside editDateTime');
+    this.setState({
+      editDateTime: !this.state.editDateTime,
+    });
+  }
+
   render() {
     return (
       <div className="gameCardContainer">
         <div className="gameCard">
           <div className="gameCardStats">
-            {/* {this.state.editCard &&
+            {this.state.editCard &&
             <div className="editableGameCardOverlay">
               <div className="editableGameCardStat editableGameCardLocation" >
                 <select>
@@ -46,13 +56,21 @@ class GameCard extends React.Component {
                 </select>
               </div>
               <div className="editableGameCardStat editableGameCardQuickStats" >
-                  <h4>Place?</h4><input id="placeInput" type="number" value={this.state.place} />
-                  <h4>Kills?</h4><input id="killsInput" type="number" value={this.state.kills} />
-                  <h4>Loot?</h4><input id="lootInput" type="number" value={this.state.loot} />
+                  <div className="editableEntryContainer">
+                    <h3 className="inputLabel">Place?</h3><input id="placeInput" type="number" value={this.state.place} />
+                  </div>
+                  <div className="editableEntryContainer">
+                    <h3 className="inputLabel">Kills?</h3><input id="killsInput" type="number" value={this.state.kills} />
+                  </div>
+                  <div className="editableEntryContainer">
+                  <h3 className="inputLabel">Loot?</h3><input id="lootInput" type="number" value={this.state.loot} />
+                  </div>
               </div>
               <div className="editableGameCardStat editableGameCardTime">
+                <img src="/calendarIcon.svg" alt-src="Date and Time" height="60%" width="50%" />
+                <Datetime defaultValue={moment(this.props.game.date).calendar()}/>
               </div>
-            </div>} */}
+            </div>}
             <div className={(this.state.confirmDelete ? 'confirmDeleteGameCardOverlay stretchLeft' : 'confirmDeleteGameCardOverlay hidden')} >
               <h2>Are you sure you wish to delete this game?</h2>
               <div className="confirmDeleteGameCardButtonsContainer">
