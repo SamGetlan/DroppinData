@@ -220,3 +220,8 @@ td.rdtYear:hover {
 .rdtDay, .rdtTimeToggle, .dow, .rdtSwitch, .rdtMonth, .rdtCount, .rdtYear {
   font-size: 2rem;
 }
+
+.form-control {
+  width: 100%;
+  box-sizing: border-box;
+}
