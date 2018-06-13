@@ -1,0 +1,44 @@
+.gameCardFullContainer {
+  display: flex;
+  margin: 2px;
+}
+
+.editableGameCardStat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  img {
+    margin: auto;
+  }
+}
+
+#saveEdits {
+  border: none;
+  height: 25%;
+  width: 100%;
+  background: indigo;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 0;
+}
+
+.editableStartLocationName {
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  select {
+    height: 40%;
+  }
+  h3 {
+    height: 30%;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
+
+.editableEntryContainer {
+  h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}

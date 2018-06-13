@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import Datetime from 'react-datetime';
+import GameCardFull from './GameCardFull.jsx';
 
 class GameCard extends React.Component {
   constructor(props) {
@@ -9,15 +9,16 @@ class GameCard extends React.Component {
       confirmDelete: false,
       editCard: false,
       editDateTime: false,
-      location: this.props.game.location,
-      place: this.props.game.place,
-      kills: this.props.game.kills,
-      loot: this.props.game.loot,
-      date: this.props.game.date,
+      // location: this.props.game.location,
+      // place: this.props.game.place,
+      // kills: this.props.game.kills,
+      // loot: this.props.game.loot,
+      // date: this.props.game.date,
     };
     this.deleteGameCard = this.deleteGameCard.bind(this);
     this.editGameCard = this.editGameCard.bind(this);
     this.editDateTime = this.editDateTime.bind(this);
+    this.editGameCardData = this.editGameCardData.bind(this);
   }
 
   deleteGameCard() {
@@ -41,36 +42,29 @@ class GameCard extends React.Component {
     });
   }
 
+  editGameCardData() {
+    console.log('inside editGameCardData');
+    console.log('location:', this.state.location);
+    console.log('place:', this.state.place);
+    console.log('kills:', this.state.kills);
+    console.log('loot:', this.state.loot);
+    console.log('date:', this.state.date);
+    // axios.put('/api/games', {
+    //   location: this.state.location,
+    //   place: this.state.place,
+    //   kills: this.state.kills,
+    //   loot: this.state.loot,
+    //   date: this.state.date,  
+    // })
+  }
+
   render() {
     return (
       <div className="gameCardContainer">
         <div className="gameCard">
           <div className="gameCardStats">
             {this.state.editCard &&
-            <div className="editableGameCardOverlay">
-              <div className="editableGameCardStat editableGameCardLocation" >
-                <select>
-                  {this.props.locations.map(location => 
-                    <option value={location.name} selected={location.name === this.state.location} >{location.name}</option>
-                  )}
-                </select>
-              </div>
-              <div className="editableGameCardStat editableGameCardQuickStats" >
-                  <div className="editableEntryContainer">
-                    <h3 className="inputLabel">Place?</h3><input id="placeInput" type="number" value={this.state.place} />
-                  </div>
-                  <div className="editableEntryContainer">
-                    <h3 className="inputLabel">Kills?</h3><input id="killsInput" type="number" value={this.state.kills} />
-                  </div>
-                  <div className="editableEntryContainer">
-                  <h3 className="inputLabel">Loot?</h3><input id="lootInput" type="number" value={this.state.loot} />
-                  </div>
-              </div>
-              <div className="editableGameCardStat editableGameCardTime">
-                <img src="/calendarIcon.svg" alt-src="Date and Time" height="60%" width="50%" />
-                <Datetime defaultValue={moment(this.props.game.date).calendar()}/>
-              </div>
-            </div>}
+            <GameCardFull game={this.props.game} locations={this.props.locations} />}
             <div className={(this.state.confirmDelete ? 'confirmDeleteGameCardOverlay stretchLeft' : 'confirmDeleteGameCardOverlay hidden')} >
               <h2>Are you sure you wish to delete this game?</h2>
               <div className="confirmDeleteGameCardButtonsContainer">

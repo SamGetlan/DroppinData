@@ -10,8 +10,6 @@ import FullMap from './FullMap.jsx';
 import AccountRecovery from './AccountRecovery.jsx';
 import ResetPassword from './ResetPassword.jsx';
 import AccountSettings from './AccountSettings.jsx';
-import MyGames from './MyGames.jsx';
-import StatDashboard from './StatDashboard.jsx';
 import Stats from './Stats.jsx';
 import locations from '../data.js';
 
