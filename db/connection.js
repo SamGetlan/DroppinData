@@ -96,9 +96,24 @@ const updateSettings = (username, update, callback) => {
   });
 }
 
+const updateGame = (gameId, update, callback) => {
+  console.log('inside updateGame with gameId:', gameId);
+  Game.findByIdAndUpdate(gameId, update, { new: true }, (err, result) => {
+    if (err) {
+      console.log('There was an error inside updateGame:', err);
+    } else {
+      callback(err, result);
+    }
+  });
+}
+
 const deleteGame = (gameId, callback) => {
   Game.findByIdAndRemove(gameId, (err, game) => {
-    callback(err, game);
+    if (err) {
+      console.log('There was an error inside deleteGame:', err);
+    } else {
+      callback(err, game);
+    }
   });
 }
 
@@ -109,3 +124,4 @@ module.exports.checkEmail = checkEmail;
 module.exports.checkToken = checkToken;
 module.exports.updateSettings = updateSettings;
 module.exports.deleteGame = deleteGame;
+module.exports.updateGame = updateGame;

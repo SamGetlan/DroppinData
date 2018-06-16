@@ -83,6 +83,7 @@ class App extends React.Component {
     this.checkDeathMarkerLocation = this.checkDeathMarkerLocation.bind(this);
     this.confirmDeleteGameCard = this.confirmDeleteGameCard.bind(this);
     this.updateFilteredUserGames = this.updateFilteredUserGames.bind(this);
+    this.handleNotCompliantEditGameSubmission = this.handleNotCompliantEditGameSubmission.bind(this);
   }
 
   handleUserFormClick() {
@@ -474,7 +475,7 @@ class App extends React.Component {
   hardGroupClick() {
     const context = this;
     const type = 'all';
-    if (this.state.userGames.length > 9) {
+    if (this.state.userGames !== null && this.state.userGames.length > 9) {
       const results = [];
       const userGameData = this.state.userGameData;
       const hardGroup = Object.keys(this.state.userGameData);
@@ -496,14 +497,46 @@ class App extends React.Component {
 
     } else {
       this.setState({
-        deadCenterFlashText: `Need to save at least 10 games in order for pre-set filters to work`,
+        deadCenterFlashText: `You need to save at least 10 games in order for pre-set filters to work`,
       });
       setTimeout(() => {
         context.setState({
           deadCenterFlashText: null,
         });
       }, 3000)
-      console.log('Need to save at least 10 games in order for pre-set filters to work');
+      console.log('You need to save at least 10 games in order for pre-set filters to work');
+    }
+  }
+
+  handleNotCompliantEditGameSubmission(place, kills, loot) {
+    console.log('inside handleNotCompliantEditGameSubmission');
+    console.log('place:', place);
+    console.log('kills:', kills);
+    console.log('loot:', loot);
+    console.log('this:', this);
+    const context = this;
+    if (place < 1 || place > 100) {
+      console.log('inside place mistake:', this);
+      this.setState({
+        deadCenterFlashText: 'Your place needs to be between 1 and 100',
+      });
+      setTimeout(() => context.setState({
+        deadCenterFlashText: null,
+      }), 2500);
+    } else if (kills < 0 || kills > 99) {
+      this.setState({
+        deadCenterFlashText: 'Your kills need to be between 0 and 99',
+      });
+      setTimeout(() => context.setState({
+        deadCenterFlashText: null,
+      }), 2500);
+    } else if (loot < 0 || loot > 10) {
+      this.setState({
+        deadCenterFlashText: 'Your loot rating needs to be between 0 and 10',
+      });
+      setTimeout(() => context.setState({
+        deadCenterFlashText: null,
+      }), 2500);
     }
   }
 
@@ -511,7 +544,7 @@ class App extends React.Component {
     const context = this;
     console.log('inside notRecentGroupClick');
     const type = 'all';
-    if (this.state.userGames.length > 9) {
+    if (this.state.userGames !== null && this.state.userGames.length > 9) {
       const results = [];
       const userGameData = this.state.userGameData;
       const notRecentGroup = Object.keys(this.state.userGameData);
@@ -546,7 +579,7 @@ class App extends React.Component {
     console.log('inside killsGroupClick');
     const context = this;
     const type = 'all';
-    if (this.state.userGames.length > 9) {
+    if (this.state.userGames !== null && this.state.userGames.length > 9) {
       const results = [];
       const userGameData = this.state.userGameData;
       const killsGroup = Object.keys(this.state.userGameData);
@@ -582,7 +615,7 @@ class App extends React.Component {
     console.log('inside placeGroupClick');
     const context = this;
     const type = 'all';
-    if (this.state.userGames.length > 9) {
+    if (this.state.userGames !== null && this.state.userGames.length > 9) {
       const results = [];
       const userGameData = this.state.userGameData;
       const easyGroup = Object.keys(this.state.userGameData);
@@ -619,7 +652,7 @@ class App extends React.Component {
     console.log('inside popularGroupClick');
     const type = 'all';
     const context = this;
-    if (this.state.userGames.length > 9) {
+    if (this.state.userGames !== null && this.state.userGames.length > 9) {
       const results = [];
       const userGameData = this.state.userGameData;
       const popularGroup = Object.keys(this.state.userGameData);
@@ -976,6 +1009,7 @@ class App extends React.Component {
           filteredUserGames={this.state.filteredUserGames}
           updateFilteredUserGames={this.updateFilteredUserGames}
           locations={this.state.locations}
+          handleNotCompliantEditGameSubmission={this.handleNotCompliantEditGameSubmission}
         />} />
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">

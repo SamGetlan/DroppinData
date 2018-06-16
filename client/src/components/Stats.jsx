@@ -54,6 +54,7 @@ class Stats extends React.Component {
           confirmDeleteGameCard={this.props.confirmDeleteGameCard}
           confirmDeleteGameCardFilteredList={this.confirmDeleteGameCardFilteredList}
           locations={this.props.locations}
+          handleNotCompliantEditGameSubmission={this.props.handleNotCompliantEditGameSubmission}
         />} />
         <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
           userGames={this.props.userGames}

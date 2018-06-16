@@ -64,7 +64,7 @@ class GameCard extends React.Component {
         <div className="gameCard">
           <div className="gameCardStats">
             {this.state.editCard &&
-            <GameCardFull game={this.props.game} locations={this.props.locations} />}
+            <GameCardFull game={this.props.game} editGameCard={this.editGameCard} locations={this.props.locations} handleNotCompliantEditGameSubmission={this.props.handleNotCompliantEditGameSubmission} />}
             <div className={(this.state.confirmDelete ? 'confirmDeleteGameCardOverlay stretchLeft' : 'confirmDeleteGameCardOverlay hidden')} >
               <h2>Are you sure you wish to delete this game?</h2>
               <div className="confirmDeleteGameCardButtonsContainer">

@@ -30,6 +30,19 @@ module.exports = (app, passport) => {
     });
   });
 
+  app.put('/api/games/:id', isLoggedIn, (req, res) => {
+    console.log('game Id:', req.params.id);
+    console.log('req.body:', req.body);
+    db.updateGame(req.params.id, req.body, (err, result) => {
+      if (err) {
+        console.log('There was an error updating game:', err);
+      } else {
+        console.log('Game successfully updated:', result);
+        res.json(result);
+      }
+    })
+  });
+
   app.delete('/api/games', isLoggedIn, (req, res) => {
     //delete selectedGame
     db.deleteGame(req.body.gameId, (err, game) => {
