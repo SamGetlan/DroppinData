@@ -16,7 +16,7 @@ class MyGames extends React.Component {
     return (
       <div className="myGamesContainer">
         {this.props.filteredUserGames !== null &&
-          this.props.filteredUserGames.slice().reverse().map(game => <GameCard game={game} locations={this.props.locations} confirmDeleteGameCard={this.props.confirmDeleteGameCard} confirmDeleteGameCardFilteredList={this.props.confirmDeleteGameCardFilteredList} handleNotCompliantEditGameSubmission={this.props.handleNotCompliantEditGameSubmission} />)}
+          this.props.filteredUserGames.slice().reverse().map(game => <GameCard updateLocalGame={this.props.updateLocalGame}game={game} locations={this.props.locations} confirmDeleteGameCard={this.props.confirmDeleteGameCard} confirmDeleteGameCardFilteredList={this.props.confirmDeleteGameCardFilteredList} handleNotCompliantEditGameSubmission={this.props.handleNotCompliantEditGameSubmission} />)}
         {this.props.filteredUserGames === null &&
         <div className="myGamesFlashTextContainer" >
           <h2>This account has no saved games!</h2>

@@ -50,6 +50,23 @@ class App extends React.Component {
         left: '50%',
       },
       deadCenterFlashText: null,
+      filterOptions: {
+        startLocation: 'All',
+        deathLocation: 'All',
+        worstPlace: 100,
+        bestPlace: 1,
+        worstKills: 0,
+        bestKills: 99,
+        worstLoot: 0,
+        bestLoot: 10,
+        minDistanceTraveled: 0,
+        maxDistanceTraveled: 3640,
+        days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        timeStart: '00:00',
+        timeEnd: '23:59',
+      },
+      statLoading: false,
+      dashboardData: null,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -84,6 +101,9 @@ class App extends React.Component {
     this.confirmDeleteGameCard = this.confirmDeleteGameCard.bind(this);
     this.updateFilteredUserGames = this.updateFilteredUserGames.bind(this);
     this.handleNotCompliantEditGameSubmission = this.handleNotCompliantEditGameSubmission.bind(this);
+    this.updateLocalGame = this.updateLocalGame.bind(this);
+    this.handleFilterOnStartLocation = this.handleFilterOnStartLocation.bind(this);
+    this.getDashboardData = this.getDashboardData.bind(this);
   }
 
   handleUserFormClick() {
@@ -101,7 +121,6 @@ class App extends React.Component {
   handleActionClick() {
     const { filteredLocations } = this.state;
     const index = Math.floor(Math.random() * filteredLocations.length);
-    console.log(filteredLocations[index].camelCase);
     this.setState({
       active: filteredLocations[index].camelCase,
       activeIndex: index,
@@ -129,7 +148,6 @@ class App extends React.Component {
       emailAddress,
     })
       .then((data) => {
-        console.log('signUp successful:', data.config.data);
         const user = JSON.parse(data.config.data).username;
         context.setState({
           loggedIn: user,
@@ -146,7 +164,6 @@ class App extends React.Component {
             deadCenterFlashText: null,
           });
         }, 3000)
-        console.log('There was an error:', err);
       });
   }
 
@@ -161,7 +178,6 @@ class App extends React.Component {
     })
       .then((data) => {
         if (data.data.username) {
-          console.log('Login successful:', data);
           const user = (data.data.username);
           context.setState({
             loggedIn: user,
@@ -171,7 +187,6 @@ class App extends React.Component {
           });
           axios.get('/api/games')
             .then((data) => {
-              console.log('data received -->', data);
               const userGameData = context.getUserGameData(data.data);
               context.props.history.push('/home');
               context.setState({
@@ -181,7 +196,6 @@ class App extends React.Component {
               });
             });
         } else {
-          console.log('Login failed:', data.data);
           context.setState({
             logInFailed: true,
             loading: false,
@@ -203,12 +217,10 @@ class App extends React.Component {
             deadCenterFlashText: null,
           });
         }, 3000)
-        console.log('There was an error:', err);
       });
   }
 
   filterIn(location) {
-    console.log(this.state.filteredLocations);
     if (this.state.filteredLocations.indexOf(location) === -1) {
       this.state.filteredLocations.push(location);
       const filteredLocations = this.state.filteredLocations;
@@ -217,7 +229,6 @@ class App extends React.Component {
   }
 
   filterOut(location) {
-    console.log(this.state.filteredLocations);
     const index = this.state.filteredLocations.indexOf(location);
     if (index !== -1) {
       this.state.filteredLocations.splice(index, 1);
@@ -227,17 +238,10 @@ class App extends React.Component {
   }
 
   handleGameSubmit(place, kills, loot, gameType, stormDeath) {
-    console.log('stormDeath:', typeof stormDeath);
     const context = this;
     this.setState({
       submitButtonState: false,
     })
-    // console.log('Inside the handleSubmit function');
-    // console.log(`place --> ${place}`);
-    // console.log(`kills --> ${kills}`);
-    // console.log('loot -->', loot);
-    // console.log('death -->', death);
-    // console.log(`Game Type --> ${gameType}`);
     if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && (stormDeath === false || stormDeath === true) && this.state.loggedIn && this.state.userSettings.locationTracking === ('name' || 'grid' || 'nameCoordinates' || 'gridCoordinates')) {
       const deathCoordinates = (place !== 1 ? this.state.deathMapMarker : undefined);
       axios.post('/api/games', {
@@ -254,7 +258,6 @@ class App extends React.Component {
         deathCoordinates,
       })
         .then((data) => {
-          console.log('We have received Data -->', data);
           const userGameData = context.getUserGameData(data.data);
           context.setState({
             userGames: data.data,
@@ -353,7 +356,6 @@ class App extends React.Component {
             deadCenterFlashText: null,
           });
         }, 3000)
-        console.log('err:', err);
       })
   }
 
@@ -504,19 +506,12 @@ class App extends React.Component {
           deadCenterFlashText: null,
         });
       }, 3000)
-      console.log('You need to save at least 10 games in order for pre-set filters to work');
     }
   }
 
   handleNotCompliantEditGameSubmission(place, kills, loot) {
-    console.log('inside handleNotCompliantEditGameSubmission');
-    console.log('place:', place);
-    console.log('kills:', kills);
-    console.log('loot:', loot);
-    console.log('this:', this);
     const context = this;
     if (place < 1 || place > 100) {
-      console.log('inside place mistake:', this);
       this.setState({
         deadCenterFlashText: 'Your place needs to be between 1 and 100',
       });
@@ -542,7 +537,6 @@ class App extends React.Component {
 
   notRecentGroupClick(gameType = 'all') {
     const context = this;
-    console.log('inside notRecentGroupClick');
     const type = 'all';
     if (this.state.userGames !== null && this.state.userGames.length > 9) {
       const results = [];
@@ -576,7 +570,6 @@ class App extends React.Component {
   }
 
   killsGroupClick() {
-    console.log('inside killsGroupClick');
     const context = this;
     const type = 'all';
     if (this.state.userGames !== null && this.state.userGames.length > 9) {
@@ -607,12 +600,10 @@ class App extends React.Component {
           deadCenterFlashText: null,
         });
       }, 3000)
-      console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
 
   placeGroupClick() {
-    console.log('inside placeGroupClick');
     const context = this;
     const type = 'all';
     if (this.state.userGames !== null && this.state.userGames.length > 9) {
@@ -644,12 +635,10 @@ class App extends React.Component {
           deadCenterFlashText: null,
         });
       }, 3000)
-      console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
 
   popularGroupClick() {
-    console.log('inside popularGroupClick');
     const type = 'all';
     const context = this;
     if (this.state.userGames !== null && this.state.userGames.length > 9) {
@@ -681,7 +670,6 @@ class App extends React.Component {
           deadCenterFlashText: null,
         });
       }, 3000);
-      console.log('Need to save at least 10 games in order for customSorting to work');
     }
   }
 
@@ -694,7 +682,6 @@ class App extends React.Component {
   }
 
   filterAllOut() {
-    console.log('inside filterAllOut');
     this.setState({
       filteredLocations: [],
       activeIndex: false,
@@ -709,7 +696,6 @@ class App extends React.Component {
   }
 
   handleMapChoiceClick(e) {
-    console.log('inside handleMapChoiceClick from div -->', e.target.id);
     for (var i = 0; i < locations.length; i++) {
       if (locations[i].camelCase === e.target.id) {
         this.filterIn(locations[i]);
@@ -731,7 +717,6 @@ class App extends React.Component {
     const context = this;
     axios.post('/api/forgot', { email })
       .then((data) => {
-        console.log(data.data);
         context.props.history.push('/home');
       })
       .catch(err => {
@@ -743,7 +728,6 @@ class App extends React.Component {
             deadCenterFlashText: null,
           });
         }, 3000)
-        console.log('error:', err);
       })
   }
 
@@ -754,7 +738,6 @@ class App extends React.Component {
       password: password,
     })
       .then((data) => {
-        console.log(data.data);
         context.props.history.push('/login');
       })
       .catch((err) => {
@@ -766,7 +749,6 @@ class App extends React.Component {
             deadCenterFlashText: null,
           });
         }, 3000)
-        console.log('error resetting password:', err);
       })
   }
 
@@ -774,7 +756,6 @@ class App extends React.Component {
     const context = this;
     axios.post('/api/applySettings', settings)
       .then((data) => {
-        console.log(data);
         context.setState({
           userSettings: data.data.settings,
         })
@@ -788,12 +769,10 @@ class App extends React.Component {
             deadCenterFlashText: null,
           });
         }, 3000)
-        console.log('Error submitting settings', err);
       });
   }
 
   resetMarker() {
-    console.log('inside resetMarker');
     this.setState({
       mapMarkerStyle: {
         top: 0,
@@ -811,7 +790,6 @@ class App extends React.Component {
       const { topLeft } = location;
       return [(topLeft[0] + rows), (topLeft[1] + cols)];
     }
-    console.log('clickLocation:', getCoordinate(location, rows, cols));
     const top = (`${(rows + 0.5) * (100 / 72)}%`);
     const left = (`${(cols + 0.5) * (100 / 72)}%`);
     this.setState({
@@ -827,10 +805,8 @@ class App extends React.Component {
 
   handleDeathCoordinateChoiceClick(e) {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
-    console.log('deathGridSpot:', gridSpot);
     const rows = Math.floor(gridSpot / 84);
     const cols = (gridSpot % 84);
-    console.log('deathClickLocation:', [rows, cols]);
     const top = (`${(rows + 0.5) * (100 / 84)}%`);
     const left = (`${(cols + 0.5) * (100 / 84)}%`);
     this.setState({
@@ -844,7 +820,6 @@ class App extends React.Component {
   }
 
   checkDeathMarkerLocation() {
-    console.log('inside checkDeathMarkerLocation');
     if (window.location.pathname !== '/filterLocations') {
       if (this.state.activeIndex !== false && (this.state.deathMapMarkerStyle.top !== `${(this.state.filteredLocations[this.state.activeIndex].start[0] + 0.5) * (100 / 72)}%` && this.state.deathMapMarkerStyle.top !== `${(this.state.rows + 0.5) * (100 / 72)}%`) && (this.state.deathMapMarkerStyle.left !== `${(this.state.filteredLocations[this.state.activeIndex].start[1] + 0.5) * (100 / 72)}%`) && this.state.deathMapMarkerStyle.left !== `${(this.state.cols + 0.5) * (100 / 72)}%`) {
         const location = this.state.filteredLocations[this.state.activeIndex];
@@ -855,7 +830,6 @@ class App extends React.Component {
           return [Math.floor((topLeft[0] / 3) + rows), Math.floor((topLeft[1] / 3) + cols)];
         }
         const deathMapMarker = getCoordinate(location, rows, cols);
-        console.log('deathMapMarker:', deathMapMarker);
         this.setState({
           deathMapMarker,
           deathMapMarkerStyle: {
@@ -868,29 +842,87 @@ class App extends React.Component {
   }
 
   confirmDeleteGameCard(gameId) {
-    console.log('inside confirmDeleteGameCard with id:', gameId);
     axios.delete('/api/games', { data: { gameId, } })
       .then((data) => {
-          console.log('Game deleted from db successfully:', data.data);
           for (var i = 0; i < this.state.userGames.length; i++) {
             if (this.state.userGames[i]._id === data.data._id) {
               this.state.userGames.splice(i, 1);
               this.updateFilteredUserGames();
-              console.log('Game deleted from userGames');
-
             }
           }
       })
       .catch(() => {
-        console.log('There was an error on the server when deleting your game');
       });
   }
 
   updateFilteredUserGames() {
-    console.log('inside updateFilteredUserGames')
     this.setState({
       filteredUserGames: (this.state.userGames !== null ? this.state.userGames.slice() : null),
     })
+  }
+
+  updateLocalGame(id, newStats) {
+    for (var i = 0; i < this.state.userGames.length; i++) {
+      if (this.state.userGames[i]._id === id) {
+        let game = this.state.userGames[i];
+        game.startCoordinates = newStats.startCoordinates;
+        game.deathCoordinates = newStats.deathCoordinates;
+        game.date = newStats.date;
+        game.location = newStats.location;
+        game.place = newStats.place;
+        game.kills = newStats.kills;
+        game.loot = newStats.loot;
+        game.gameType = newStats.gameType;
+        game.stormDeath = newStats.stormDeath;
+      }
+    }
+    this.updateFilteredUserGames();
+  }
+
+  getDashboardData(games) {
+    this.setState({
+      statLoading: true,
+    });
+    let dashboardData = {
+      totalGames: 0,
+      totalKills: 0,
+      totalPlace: 0,
+      totalLoot: 0,
+    };
+    const getPlace = (game) => {
+      if (game.gameType === 'solo') {
+        return game.place;
+      } else if (game.gameType === 'duo') {
+        return game.place * 2;
+      } else if (game.gameType === 'squad') {
+        return game.place * 4;
+      }
+    }
+    for (var i = 0; i < games.length; i++) {
+      dashboardData.totalGames++;
+      dashboardData.totalKills += games[i].kills;
+      dashboardData.totalPlace += getPlace(games[i]);
+      dashboardData.totalLoot += games[i].loot;
+    }
+    console.log('dashboardData:', dashboardData);
+    this.setState({
+      statLoading: false,
+      dashboardData,
+    })
+  }
+
+  handleFilterOnStartLocation(location) {
+    console.log('inside handleFilterOnStartLocation:', location);
+    let filteredUserGames;
+    if (location === 'All') {
+      filteredUserGames = this.state.userGames.slice();
+    } else {
+      filteredUserGames = this.state.userGames.filter(game => game.location === location);
+    }
+    this.setState({
+      filteredUserGames,
+    });
+    this.getDashboardData(filteredUserGames);
   }
 
   componentDidUpdate() {   
@@ -1007,9 +1039,15 @@ class App extends React.Component {
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           confirmDeleteGameCard={this.confirmDeleteGameCard}
           filteredUserGames={this.state.filteredUserGames}
+          filterOptions={this.state.filterOptions}
           updateFilteredUserGames={this.updateFilteredUserGames}
           locations={this.state.locations}
+          updateLocalGame={this.updateLocalGame}
+          handleFilterOnStartLocation={this.handleFilterOnStartLocation}
           handleNotCompliantEditGameSubmission={this.handleNotCompliantEditGameSubmission}
+          dashboardData={this.state.dashboardData}
+          statLoading={this.state.statLoading}
+          getDashboardData={this.getDashboardData}
         />} />
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">

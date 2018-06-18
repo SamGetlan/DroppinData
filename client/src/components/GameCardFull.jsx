@@ -32,6 +32,8 @@ class GameCardFull extends React.Component {
       originalLoot: this.props.game.loot,
       loot: this.props.game.loot,
       originalDate: this.props.game.date,
+      gameType: this.props.game.gameType,
+      originalGameType: this.props.game.gameType,
       date: this.props.game.date,
       style: {
         height: '0px',
@@ -47,15 +49,14 @@ class GameCardFull extends React.Component {
     this.handleEditKills = this.handleEditKills.bind(this);
     this.handleEditLoot = this.handleEditLoot.bind(this);
     this.handleEditDate = this.handleEditDate.bind(this);
+    this.handleGameTypeOptionChange = this.handleGameTypeOptionChange.bind(this);
     this.submitChanges = this.submitChanges.bind(this);
   }
 
   handleEditStartLocationCoordinate(e) {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
-    console.log('startGridSpot:', gridSpot);
     const rows = Math.floor(gridSpot / 84);
     const cols = (gridSpot % 84);
-    console.log('startClickLocation:', [rows, cols]);
     const top = (`${(rows + 0.5) * (100 / 84)}%`);
     const left = (`${(cols + 0.5) * (100 / 84)}%`);
     this.setState({
@@ -69,10 +70,8 @@ class GameCardFull extends React.Component {
 
   handleEditEndLocationCoordinate(e) {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
-    console.log('deathGridSpot:', gridSpot);
     const rows = Math.floor(gridSpot / 84);
     const cols = (gridSpot % 84);
-    console.log('deathClickLocation:', [rows, cols]);
     const top = (`${(rows + 0.5) * (100 / 84)}%`);
     const left = (`${(cols + 0.5) * (100 / 84)}%`);
     this.setState({
@@ -85,42 +84,42 @@ class GameCardFull extends React.Component {
   }
 
   handleEditLocation(e) {
-    console.log('inside handleEditLocation with value:', e.target.value);
     this.setState({
       location: e.target.value,
     });
   }
 
   handleEditPlace(e) {
-    console.log('inside handleEditPlace with value:', e.target.value);
     this.setState({
       place: Number(e.target.value),
     });
   }
 
   handleEditKills(e) {
-    console.log('inside handleEditKills with value:', e.target.value);
     this.setState({
       kills: Number(e.target.value),
     });
   }
 
   handleEditLoot(e) {
-    console.log('inside handleEditLoot with value:', e.target.value);
     this.setState({
       loot: Number(e.target.value),
     });
   }
 
   handleEditDate(date) {
-    console.log('inside handleEditDate with value:', date._d);
     this.setState({
       date: date._d,
     });
   }
 
+  handleGameTypeOptionChange(e) {
+    this.setState({
+      gameType: e.target.value,
+    });
+  }
+
   alterStartLocation() {
-    console.log('inside alterStartLocation');
     this.setState({
       editStartLocation: true,
       editEndLocation: false,
@@ -128,7 +127,6 @@ class GameCardFull extends React.Component {
   }
 
   alterEndLocation() {
-    console.log('inside alterEndLocation');
     this.setState({
       editStartLocation: false,
       editEndLocation: true,
@@ -136,7 +134,6 @@ class GameCardFull extends React.Component {
   }
 
   submitChanges() {
-    console.log('inside submitChanges');
     const context = this;
     if (this.state.place >= 1 && this.state.place <= 100 && this.state.kills >= 0 && this.state.kills <= 99 && this.state.loot <= 10 && this.state.loot >= 0) {
       axios.put(`/api/games/${this.props.game._id}`, {
@@ -151,14 +148,23 @@ class GameCardFull extends React.Component {
         stormDeath: context.state.stormDeath,
       })
         .then((data) => {
-          console.log(data);
-          // invoke function that changes current userGames and filteredUserGames list in app state
+          context.props.updateLocalGame(this.props.game._id, {
+            startCoordinates: [(context.state.startLocationMarker[0]), (context.state.startLocationMarker[1])],
+            deathCoordinates: context.state.endLocationMarker,
+            date: context.state.date,
+            location: context.state.location,
+            place: context.state.place,
+            kills: context.state.kills,
+            loot: context.state.loot,
+            gameType: context.state.gameType,
+            stormDeath: context.state.stormDeath,
+          })
+          context.props.editGameCard();
         })
         .catch((err) => {
           console.log('there was an error updating game:', err);
         });
     } else {
-      console.log('attempting to call handleNotCompliantEditGameSubmission');
       this.props.handleNotCompliantEditGameSubmission(this.state.place, this.state.kills, this.state.loot);
     }
   }
@@ -228,6 +234,11 @@ class GameCardFull extends React.Component {
                 <Datetime defaultValue={moment(this.props.game.date).calendar()} onChange={this.handleEditDate}/>
               </div>
               <div className="editableButtonsContainer">
+                <div id="gameTypeOptions">
+                  <input type="radio" value="solo" id="soloRadio" name="gameType" checked={this.state.gameType === 'solo'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="soloRadio">Solo</label>
+                  <input type="radio" value="duo" id="duoRadio" name="gameType" checked={this.state.gameType === 'duo'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="duoRadio">Duo</label>
+                  <input type="radio" value="squad" id="squadRadio" name="gameType" checked={this.state.gameType === 'squad'} onChange={this.handleGameTypeOptionChange} /><label htmlFor="squadRadio">Squad</label>
+                </div>
                 <button id="saveEdits" onClick={this.submitChanges}>Save Changes</button>         
                 <button className="closeButton" onClick={this.props.editGameCard}>Close</button>
               </div>

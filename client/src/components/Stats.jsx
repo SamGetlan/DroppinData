@@ -9,32 +9,6 @@ import StatDashboard from './StatDashboard.jsx';
 class Stats extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // filteredUserGames: (this.props.userGames !== null ? this.props.userGames.slice() : null),
-      filterOptions: {
-        startLocation: 'all',
-        deathLocation: 'all',
-        worstPlace: 100,
-        bestPlace: 1,
-        worstKills: 0,
-        bestKills: 99,
-        worstLoot: 0,
-        bestLoot: 10,
-        minDistanceTraveled: 0,
-        maxDistanceTraveled: 3640,
-        days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        timeStart: '00:00',
-        timeEnd: '23:59',
-      }
-    };
-    this.confirmDeleteGameCardFilteredList = this.confirmDeleteGameCardFilteredList.bind(this);
-  }
-
-  confirmDeleteGameCardFilteredList(gameId) {
-    console.log('inside confirm Delete from filtered list');
-    this.setState({
-      filteredUserGames: this.props.userGames,
-    });
   }
 
   render() {
@@ -47,18 +21,26 @@ class Stats extends React.Component {
           loggedIn={this.props.loggedIn}
           handleAccountOptionsClick={this.props.handleAccountOptionsClick}
         />
-        <FilterMyGames filterOptions={this.state.filterOptions}/>
+        <FilterMyGames 
+          handleFilterOnStartLocation={this.props.handleFilterOnStartLocation} 
+          filterOptions={this.props.filterOptions}
+          locations={this.props.locations}
+        />
         <Route path="/stats/myGames" render={props => <MyGames {...props}
           userGames={this.props.userGames}
           filteredUserGames={this.props.filteredUserGames}
           confirmDeleteGameCard={this.props.confirmDeleteGameCard}
-          confirmDeleteGameCardFilteredList={this.confirmDeleteGameCardFilteredList}
           locations={this.props.locations}
+          updateLocalGame={this.props.updateLocalGame}
           handleNotCompliantEditGameSubmission={this.props.handleNotCompliantEditGameSubmission}
+          statLoading={this.props.statLoading}
         />} />
         <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
           userGames={this.props.userGames}
           filteredUserGames={this.props.filteredUserGames}
+          data={this.props.dashboardData}
+          statLoading={this.props.statLoading}
+          getDashboardData={this.props.getDashboardData}
         />} />
       </div>
     );
