@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'fortNite';
+  src: local('fortNite'), url(./fonts/fortNite.otf) format('opentype');
+}
+
 .filterMyGamesContainer {
   margin: 20px;
 }
@@ -56,4 +61,9 @@
   input {
     width: 25%;
   }
+}
+
+.jss6 {
+  max-width: 75%;
+  margin: 5px;
 }

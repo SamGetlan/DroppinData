@@ -36,6 +36,7 @@ class FilterMyGames extends React.Component {
     this.renderStartLocation = this.renderStartLocation.bind(this);
     this.renderGameType = this.renderGameType.bind(this);
     this.toggleShowFilterStatsOptions = this.toggleShowFilterStatsOptions.bind(this);
+    this.stopPropagation = this.stopPropagation.bind(this);
   }
 
   toggleShowFilterStatsOptions() {
@@ -161,6 +162,11 @@ class FilterMyGames extends React.Component {
       return this.state.gameType.join(', ');
     }
   }
+
+  stopPropagation(e) {
+    e.stopPropagation();
+    console.log('stopped Propagation', e);
+  }
   render() {
     return (
       <div className="filterMyGamesContainer">
@@ -221,8 +227,8 @@ class FilterMyGames extends React.Component {
             <div className="filterStatsOptionDropdown" onClick={this.toggleShowFilterStatsOptions}>Filter By Stats</div>
             {this.state.showFilterStatsOptions &&
             <div className="filterStatsOptionsDropdownContainerWrapper" onClick={this.toggleShowFilterStatsOptions} >
-              <div className="filterStatsOptionsDropdownContainer">
-                <div className="killsFilterOptions">
+              <div className="filterStatsOptionsDropdownContainer" onClick={this.stopPropagation}>
+                <div className="killsFilterOptions" >
                   <h3>Kills</h3>
                   <div className="minMaxOptions">
                     <label>Min: </label><input type="number" id="minKillsInput" defaultValue={this.state.minKills} onChange={(e) => this.handleKillsChange(e.target.value, this.state.maxKills)} />
@@ -237,7 +243,7 @@ class FilterMyGames extends React.Component {
                   </div>
                 </div>
                 <div className="lootFilterOptions">
-                  <h3>Place</h3>
+                  <h3>Loot</h3>
                   <div className="minMaxOptions">
                     <label>Min: </label><input type="number" id="minLootInput" defaultValue={this.state.minLoot} onChange={(e) => this.handleLootChange(e.target.value, this.state.maxLoot)} />
                     <label>Max: </label><input type="number" id="maxLootInput" defaultValue={this.state.maxLoot} onChange={(e) => this.handleLootChange(this.state.minLoot, e.target.value)} />
