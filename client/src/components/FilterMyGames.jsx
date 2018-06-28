@@ -1,15 +1,15 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
-// import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import CheckBox from '@material-ui/core/CheckBox';
 import ListItemText from '@material-ui/core/ListItemText';
+import PurpleCheckBox from './PurpleCheckBox.jsx';
 
 class FilterMyGames extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showFilterStatsOptions: false,
       gameType: ['solo', 'duo', 'squad'],
       startLocation: this.props.locations.map(location => location.name),
       deathLocation: 'All',
@@ -35,8 +35,15 @@ class FilterMyGames extends React.Component {
     this.handleTimeRangeChange = this.handleTimeRangeChange.bind(this);
     this.renderStartLocation = this.renderStartLocation.bind(this);
     this.renderGameType = this.renderGameType.bind(this);
+    this.toggleShowFilterStatsOptions = this.toggleShowFilterStatsOptions.bind(this);
   }
 
+  toggleShowFilterStatsOptions() {
+    this.setState({
+      showFilterStatsOptions: !this.state.showFilterStatsOptions,
+    })
+  }
+  
   handleStartLocationChange(startLocation) {
     console.log('inside handleStartLocationChange:', startLocation);
     if (startLocation.indexOf('All') > -1) {
@@ -156,78 +163,108 @@ class FilterMyGames extends React.Component {
   }
   render() {
     return (
-      <div>
-        {/* <select onChange={(e) => this.handleStartLocationChange(e.target.value)}>
-          <option value="All" selected={this.props.filterOptions.startLocation === 'All'}>All Locations</option>
-          {this.props.locations.map(location => 
-          <option value={location.name} selected={location.name === this.props.filterOptions.startLocation} >{location.name}</option>
-          )}
-        </select> */}
-        <InputLabel htmlFor="select-multiple-checkbox">Location</InputLabel>
-        <Select 
-          multiple
-          value={this.state.startLocation}
-          onChange={(e) => this.handleStartLocationChange(e.target.value)}
-          renderValue={this.renderStartLocation}
-        >
-          <MenuItem key={'All'} value={'All'}>
-            <CheckBox checked={this.state.startLocation.length === this.props.locations.length} />
-            <ListItemText primary={'All'} />
-          </MenuItem>
-          {this.props.locations.map(location => 
-          <MenuItem key={location.name} value={location.name}>
-            <CheckBox checked={(this.state.startLocation.indexOf('All') > -1 ? true : this.state.startLocation.indexOf(location.name) > -1)} />
-            <ListItemText primary={location.name} />
-          </MenuItem>
-          )}
-        </Select>
-        <label>GameType</label>
-        {/* <select onChange={(e) => this.handleGameTypeChange(e.target.value)}>
-          <option value="All" selected={this.state.gameType === 'All'}>All</option>
-          <option value="solo" selected={this.state.gameType === 'solo'}>Solo</option>
-          <option value="duo" selected={this.state.gameType === 'duo'}>Duo</option>
-          <option value="squad" selected={this.state.gameType === 'squad'}>Squad</option>
-        </select> */}
-        <Select
-          multiple
-          value={this.state.gameType}
-          onChange={(e) => this.handleGameTypeChange(e.target.value)}
-          renderValue={this.renderGameType}
-        >
-          <MenuItem key="All" value="All">
-            <CheckBox checked={this.state.gameType.length === 3} />
-            <ListItemText primary="All" />
-          </MenuItem>
-          <MenuItem key="solo" value="solo">
-            <CheckBox checked={this.state.gameType.indexOf('solo') > -1} />
-            <ListItemText primary="Solo" />
-          </MenuItem>
-          <MenuItem key="duo" value="duo">
-            <CheckBox checked={this.state.gameType.indexOf('duo') > -1} />
-            <ListItemText primary="Duo" />
-          </MenuItem>
-          <MenuItem key="squad" value="squad">
-            <CheckBox checked={this.state.gameType.indexOf('squad') > -1} />
-            <ListItemText primary="Squad" />
-          </MenuItem>
-        </Select>
-        <label>Worst Place</label>
-        <input type="number" id="worstPlaceInput" defaultValue={this.state.worstPlace} onChange={(e) => this.handlePlaceChange(e.target.value, this.state.bestPlace)} />
-        <label>Best Place</label>
-        <input type="number" id="bestPlaceInput" defaultValue={this.state.bestPlace} onChange={(e) => this.handlePlaceChange(this.state.worstPlace, e.target.value)} />
-        <label>Min Kills</label>
-        <input type="number" id="minKillsInput" defaultValue={this.state.minKills} onChange={(e) => this.handleKillsChange(e.target.value, this.state.maxKills)} />
-        <label>Max Kills</label>
-        <input type="number" id="maxKillsInput" defaultValue={this.state.maxKills} onChange={(e) => this.handleKillsChange(this.state.minKills, e.target.value)} />
-        <label>Min Loot</label>
-        <input type="number" id="minLootInput" defaultValue={this.state.minLoot} onChange={(e) => this.handleLootChange(e.target.value, this.state.maxLoot)} />
-        <label>Max Loot</label>
-        <input type="number" id="maxLootInput" defaultValue={this.state.maxLoot} onChange={(e) => this.handleLootChange(this.state.minLoot, e.target.value)} />
-        <label>Min Distance</label>
-        <input type="number" id="minDistanceInput" defaultValue={this.state.minDistanceTraveled} onChange={(e) => this.handleDistanceTraveledChange(e.target.value, this.state.maxDistanceTraveled)} />
-        <label>Max Distance</label>
-        <input type="number" id="maxDistanceInput" defaultValue={this.state.maxDistanceTraveled} onChange={(e) => this.handleDistanceTraveledChange(this.state.minDistanceTraveled, e.target.value)} />
-        <button onClick={() => this.props.handleFiltering(false, this.state.gameType, this.state.startLocation, this.state.worstPlace, this.state.bestPlace, this.state.minKills, this.state.maxKills, this.state.minLoot, this.state.maxLoot, undefined, 0, 84, 0, 84)}>Filter!</button>
+      <div className="filterMyGamesContainer">
+        <div className="filterOptionsBar">
+          {/* <select onChange={(e) => this.handleStartLocationChange(e.target.value)}>
+            <option value="All" selected={this.props.filterOptions.startLocation === 'All'}>All Locations</option>
+            {this.props.locations.map(location => 
+            <option value={location.name} selected={location.name === this.props.filterOptions.startLocation} >{location.name}</option>
+            )}
+          </select> */}
+          <div className="filterOption">
+            <label>Start Location</label>
+            <Select 
+              multiple
+              value={this.state.startLocation}
+              onChange={(e) => this.handleStartLocationChange(e.target.value)}
+              renderValue={this.renderStartLocation}
+            >
+              <MenuItem key={'All'} value={'All'}>
+                <PurpleCheckBox checked={this.state.startLocation.length === this.props.locations.length} />
+                <ListItemText primary={'All'} />
+              </MenuItem>
+              {this.props.locations.map(location => 
+              <MenuItem key={location.name} value={location.name}>
+                <PurpleCheckBox checked={(this.state.startLocation.indexOf('All') > -1 ? true : this.state.startLocation.indexOf(location.name) > -1)} />
+                <ListItemText primary={location.name} />
+              </MenuItem>
+              )}
+            </Select>
+          </div>
+          <div className="filterOption">
+            <label>GameType</label>
+            <Select
+              multiple
+              value={this.state.gameType}
+              onChange={(e) => this.handleGameTypeChange(e.target.value)}
+              renderValue={this.renderGameType}
+            >
+              <MenuItem key="All" value="All">
+                <PurpleCheckBox checked={this.state.gameType.length === 3} />
+                <ListItemText primary="All" />
+              </MenuItem>
+              <MenuItem key="solo" value="solo">
+                <PurpleCheckBox checked={this.state.gameType.indexOf('solo') > -1} />
+                <ListItemText primary="Solo" />
+              </MenuItem>
+              <MenuItem key="duo" value="duo">
+                <PurpleCheckBox checked={this.state.gameType.indexOf('duo') > -1} />
+                <ListItemText primary="Duo" />
+              </MenuItem>
+              <MenuItem key="squad" value="squad">
+                <PurpleCheckBox checked={this.state.gameType.indexOf('squad') > -1} />
+                <ListItemText primary="Squad" />
+              </MenuItem>
+            </Select>
+          </div>
+          <div className="filterOption">
+            <div className="filterStatsOptionDropdown" onClick={this.toggleShowFilterStatsOptions}>Filter By Stats</div>
+            {this.state.showFilterStatsOptions &&
+            <div className="filterStatsOptionsDropdownContainerWrapper" onClick={this.toggleShowFilterStatsOptions} >
+              <div className="filterStatsOptionsDropdownContainer">
+                <div className="killsFilterOptions">
+                  <h3>Kills</h3>
+                  <div className="minMaxOptions">
+                    <label>Min: </label><input type="number" id="minKillsInput" defaultValue={this.state.minKills} onChange={(e) => this.handleKillsChange(e.target.value, this.state.maxKills)} />
+                    <label>Max: </label><input type="number" id="maxKillsInput" defaultValue={this.state.maxKills} onChange={(e) => this.handleKillsChange(this.state.minKills, e.target.value)} />
+                  </div>
+                </div>
+                <div className="placeFilterOptions">
+                  <h3>Place</h3>
+                  <div className="minMaxOptions">
+                    <label>Min: </label><input type="number" id="bestPlaceInput" defaultValue={this.state.bestPlace} onChange={(e) => this.handlePlaceChange(this.state.worstPlace, e.target.value)} />
+                    <label>Max: </label><input type="number" id="worstPlaceInput" defaultValue={this.state.worstPlace} onChange={(e) => this.handlePlaceChange(e.target.value, this.state.bestPlace)} />
+                  </div>
+                </div>
+                <div className="lootFilterOptions">
+                  <h3>Place</h3>
+                  <div className="minMaxOptions">
+                    <label>Min: </label><input type="number" id="minLootInput" defaultValue={this.state.minLoot} onChange={(e) => this.handleLootChange(e.target.value, this.state.maxLoot)} />
+                    <label>Max: </label><input type="number" id="maxLootInput" defaultValue={this.state.maxLoot} onChange={(e) => this.handleLootChange(this.state.minLoot, e.target.value)} />
+                  </div>
+                </div>
+              </div>
+            </div>}
+          </div>
+          {/* <input type="number" id="worstPlaceInput" defaultValue={this.state.worstPlace} onChange={(e) => this.handlePlaceChange(e.target.value, this.state.bestPlace)} />
+          <label>Best Place</label>
+          <input type="number" id="bestPlaceInput" defaultValue={this.state.bestPlace} onChange={(e) => this.handlePlaceChange(this.state.worstPlace, e.target.value)} />
+          <label>Min Kills</label>
+          <input type="number" id="minKillsInput" defaultValue={this.state.minKills} onChange={(e) => this.handleKillsChange(e.target.value, this.state.maxKills)} />
+          <label>Max Kills</label>
+          <input type="number" id="maxKillsInput" defaultValue={this.state.maxKills} onChange={(e) => this.handleKillsChange(this.state.minKills, e.target.value)} />
+          <label>Min Loot</label>
+          <input type="number" id="minLootInput" defaultValue={this.state.minLoot} onChange={(e) => this.handleLootChange(e.target.value, this.state.maxLoot)} />
+          <label>Max Loot</label>
+          <input type="number" id="maxLootInput" defaultValue={this.state.maxLoot} onChange={(e) => this.handleLootChange(this.state.minLoot, e.target.value)} />
+          <label>Min Distance</label>
+          <input type="number" id="minDistanceInput" defaultValue={this.state.minDistanceTraveled} onChange={(e) => this.handleDistanceTraveledChange(e.target.value, this.state.maxDistanceTraveled)} />
+          <label>Max Distance</label>
+          <input type="number" id="maxDistanceInput" defaultValue={this.state.maxDistanceTraveled} onChange={(e) => this.handleDistanceTraveledChange(this.state.minDistanceTraveled, e.target.value)} /> */}
+        </div>
+        <div className="submitGameButtonContainer">
+          <button className="submitGameButton" onClick={() => this.props.handleFiltering(false, this.state.gameType, this.state.startLocation, this.state.worstPlace, this.state.bestPlace, this.state.minKills, this.state.maxKills, this.state.minLoot, this.state.maxLoot, undefined, 0, 84, 0, 84)}>Filter!</button>
+        </div>
       </div>
     );
   }
