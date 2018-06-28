@@ -104,6 +104,13 @@ class App extends React.Component {
     this.updateLocalGame = this.updateLocalGame.bind(this);
     this.handleFilterOnStartLocation = this.handleFilterOnStartLocation.bind(this);
     this.getDashboardData = this.getDashboardData.bind(this);
+    this.handleFilterOnPlace = this.handleFilterOnPlace.bind(this);
+    this.handleFilterOnKills = this.handleFilterOnKills.bind(this);
+    this.handleFilterOnLoot = this.handleFilterOnLoot.bind(this);
+    this.handleFilterOnStormDeath = this.handleFilterOnStormDeath.bind(this);
+    this.handleFilterOnDeathCoordinates = this.handleFilterOnDeathCoordinates.bind(this);
+    this.handleFilterOnGameType = this.handleFilterOnGameType.bind(this);
+    this.handleFiltering = this.handleFiltering.bind(this);
   }
 
   handleUserFormClick() {
@@ -911,19 +918,79 @@ class App extends React.Component {
     })
   }
 
-  handleFilterOnStartLocation(location) {
-    console.log('inside handleFilterOnStartLocation:', location);
-    let filteredUserGames;
-    if (location === 'All') {
-      filteredUserGames = this.state.userGames.slice();
-    } else {
-      filteredUserGames = this.state.userGames.filter(game => game.location === location);
-    }
-    this.setState({
-      filteredUserGames,
-    });
-    this.getDashboardData(filteredUserGames);
+  handleFilterOnStartLocation(games, locations) {
+    console.log('inside handleFilterOnStartLocation:', locations);
+    return games.filter(game => locations.indexOf(game.location) > -1);
   }
+
+  handleFilterOnPlace(games, worstPlace, bestPlace) {
+    console.log('worstPlace:', worstPlace);
+    console.log('bestPlace:', bestPlace);
+    return games.filter(game => (game.place >= bestPlace && game.place <= worstPlace));
+  }
+
+  handleFilterOnKills(games, minKills, maxKills) {
+    console.log(`inside handleFilterOnKills with minKills ${minKills} and maxKills ${maxKills}`);
+    return games.filter(game => (game.kills >= minKills && game.kills <= maxKills));
+  }
+
+  handleFilterOnLoot(games, minLoot, maxLoot) {
+    console.log(`inside handleFilterOnLoot with minLoot ${minLoot} and maxLoot ${maxLoot}`);
+    return games.filter(game => (game.loot >= minLoot && game.loot <= maxLoot));
+  }
+
+  handleFilterOnStormDeath(games, stormDeath) {
+    console.log(`inside handleFilterOnStormDeath ${stormDeath}`);
+    return games.filter(game => (game.stormDeath === stormDeath));
+  }
+
+  handleFilterOnDeathCoordinates(games, minRow, maxRow, minCol, maxCol) {
+    console.log(`inside handleFilterOnDeathCoordinates with row range ${minRow} ${maxRow} and col range ${minCol} ${maxCol}`);
+    return games.filter(game => (game.deathCoordinates[0] >= minRow && game.deathCoordinates[0] <= maxRow && game.deathCoordinates[1] >= minCol && game.deathCoordinates[1] <= maxCol));
+  }
+
+  handleFilterOnGameType(games, gameTypes) {
+    console.log(`inside handleFilterOnGameType with gameType:`, gameTypes);
+    return games.filter(game => gameTypes.indexOf(game.gameType) > -1);
+  }
+
+  handleFiltering(reset, gameTypes, locations, worstPlace, bestPlace, minKills, maxKills, minLoot, maxLoot, stormDeath, minRow, maxRow, minCol, maxCol) {
+    console.log('inside handleFiltering');
+    let games = this.state.userGames.slice();
+    if (reset) {
+      this.setState({
+        filteredUserGames: games,
+      })
+    } else {
+      if (locations.length !== this.state.locations.length) {
+        games = this.handleFilterOnStartLocation(games, locations);
+      }
+      if (gameTypes.length !== 3) {
+        games = this.handleFilterOnGameType(games, gameTypes);
+      }
+      if (worstPlace !== 100 || bestPlace !== 1) {
+        games = this.handleFilterOnPlace(games, worstPlace, bestPlace);
+      }
+      if (minKills !== 0 || maxKills !== 99) {
+        games = this.handleFilterOnKills(games, minKills, maxKills);
+      }
+      if (minLoot !== 0 || maxLoot !== 10) {
+        games = this.handleFilterOnLoot(games, minLoot, maxLoot);
+      }
+      if (stormDeath !== undefined) {
+        games = this.handleFilterOnStormDeath(games, stormDeath);
+      }
+      if (minRow !== undefined && (minRow !== 0 || maxRow !== 84 || minCol !== 0 || maxCol !== 84)) {
+        games = this.handleFilterOnDeathCoordinates(games, minRow, maxRow, minCol, maxCol);
+      }
+      this.setState({
+        filteredUserGames: games,
+      })
+    }
+    this.getDashboardData(games);
+  }
+
+
 
   componentDidUpdate() {   
     if (window.location.pathname !== '/filterLocations')
@@ -1043,7 +1110,7 @@ class App extends React.Component {
           updateFilteredUserGames={this.updateFilteredUserGames}
           locations={this.state.locations}
           updateLocalGame={this.updateLocalGame}
-          handleFilterOnStartLocation={this.handleFilterOnStartLocation}
+          handleFiltering={this.handleFiltering}
           handleNotCompliantEditGameSubmission={this.handleNotCompliantEditGameSubmission}
           dashboardData={this.state.dashboardData}
           statLoading={this.state.statLoading}

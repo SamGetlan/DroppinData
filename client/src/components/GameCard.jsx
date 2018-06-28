@@ -28,7 +28,7 @@ class GameCard extends React.Component {
 
   render() {
     return (
-      <div className="gameCardContainer">
+      <div className="gameCardContainer flex-item">
         <div className="gameCard">
           <div className="gameCardStats">
             {this.state.editCard &&

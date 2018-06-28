@@ -22,7 +22,7 @@ class Stats extends React.Component {
           handleAccountOptionsClick={this.props.handleAccountOptionsClick}
         />
         <FilterMyGames 
-          handleFilterOnStartLocation={this.props.handleFilterOnStartLocation} 
+          handleFiltering={this.props.handleFiltering}
           filterOptions={this.props.filterOptions}
           locations={this.props.locations}
         />

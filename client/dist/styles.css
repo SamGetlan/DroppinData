@@ -777,6 +777,42 @@ input:focus {
   font-family: "fortnite";
 }
 
+.flex-item {
+  flex-grow: 1;
+  flex-basis: 350px;
+  max-width: 100%;
+}
+@media (min-width: 700px) {
+  .flex-item {
+    max-width: 50%;
+  }
+}
+@media (min-width: 1050px) {
+  .flex-item {
+    max-width: 33.3333333333%;
+  }
+}
+@media (min-width: 1400px) {
+  .flex-item {
+    max-width: 25%;
+  }
+}
+@media (min-width: 1750px) {
+  .flex-item {
+    max-width: 20%;
+  }
+}
+@media (min-width: 2100px) {
+  .flex-item {
+    max-width: 16.6666666667%;
+  }
+}
+@media (min-width: 2450px) {
+  .flex-item {
+    max-width: 14.2857142857%;
+  }
+}
+
 .myGamesContainer {
   display: flex;
   flex-wrap: wrap;
