@@ -1027,6 +1027,7 @@ input:focus {
 .statDashboardContainer {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 #dashboardMapContainer {
@@ -1062,6 +1063,14 @@ input:focus {
     width: 100%;
   }
 }
+.chartContainer {
+  width: 100%;
+  display: flex;
+}
+.chartContainer .lineChart {
+  flex: 1;
+}
+
 /*!
  * https://github.com/YouCanBookMe/react-datetime
  */
@@ -1439,7 +1448,6 @@ td.rdtYear:hover {
 .jss6 {
   max-width: 75%;
   margin: 5px;
-  font-family: "fortNite";
 }
 
 .loadingCenterScreen {

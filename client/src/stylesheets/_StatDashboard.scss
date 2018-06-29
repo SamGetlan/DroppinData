@@ -1,6 +1,7 @@
 .statDashboardContainer {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 #dashboardMapContainer {
@@ -32,5 +33,13 @@
   }
   #quickDashboardStats {
     width: 100%;
+  }
+}
+
+.chartContainer {
+  width: 100%;
+  display: flex;
+  .lineChart {
+    flex: 1;
   }
 }

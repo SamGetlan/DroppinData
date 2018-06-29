@@ -1,5 +1,6 @@
 import React from 'react';
 import DashboardMap from './DashboardMap.jsx';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts';
 
 
 class StatDashboard extends React.Component {
@@ -7,40 +8,9 @@ class StatDashboard extends React.Component {
     super(props);
   }
 
-  // getDashboardData(games) {
-  //   this.setState({
-  //     loading: true,
-  //   });
-  //   let data = {
-  //     totalGames: 0,
-  //     totalKills: 0,
-  //     totalPlace: 0,
-  //     totalLoot: 0,
-  //   };
-  //   const getPlace = (game) => {
-  //     if (game.gameType === 'solo') {
-  //       return game.place;
-  //     } else if (game.gameType === 'duo') {
-  //       return game.place * 2;
-  //     } else if (game.gameType === 'squad') {
-  //       return game.place * 4;
-  //     }
-  //   }
-  //   for (var i = 0; i < games.length; i++) {
-  //     data.totalGames++;
-  //     data.totalKills += games[i].kills;
-  //     data.totalPlace += getPlace(games[i]);
-  //     data.totalLoot += games[i].loot;
-  //   }
-  //   console.log('data:', data);
-  //   this.setState({
-  //     loading: false,
-  //     data,
-  //   })
-  // }
-
   componentDidMount() {
     console.log('statDashboard mounting');
+    console.log('this.props.filteredUserGames:', this.props.filteredUserGames);
     if (this.props.filteredUserGames !== null && this.props.data === null) {
       console.log('inside conditional of statDasboard mounting');
       this.props.getDashboardData(this.props.filteredUserGames);
@@ -68,6 +38,44 @@ class StatDashboard extends React.Component {
         <div className="loadingCenterScreen">
           <img src="/loading.gif" alt-src="loading image" height="100%" width="100%" />
         </div>}
+        <div className="chartContainer">
+          <div className="lineChart">
+          <h2>Kills</h2>
+          <ResponsiveContainer width='100%' height={300} >
+            <LineChart width={500} height={300} data={this.props.filteredUserGames} >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis  dataKey="location"/>
+              <YAxis />
+              <Legend />
+              <Line type="monotone" dataKey="kills" stroke="#8884d8" />
+            </LineChart>
+          </ResponsiveContainer>
+          </div>
+          <div className="lineChart">
+            <h2>Place</h2>
+            <ResponsiveContainer width='100%' height={300} >
+              <LineChart width={500} height={300} data={this.props.filteredUserGames} >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis  dataKey="location"/>
+                <YAxis />
+                <Legend />
+                <Line type="monotone" dataKey="place" stroke="#82ca9d" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="lineChart">
+            <h2>Loot</h2>
+            <ResponsiveContainer width='100%' height={300} >
+              <LineChart width={500} height={300} data={this.props.filteredUserGames} >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis  dataKey="location"/>
+                <YAxis />
+                <Legend />
+                <Line type="monotone" dataKey="loot" stroke="#f44283" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
     );
   }
