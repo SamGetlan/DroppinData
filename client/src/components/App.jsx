@@ -30,6 +30,7 @@ class App extends React.Component {
       userGames: null,
       filteredUserGames: null,
       submitButtonState: true,
+      pieChartData: null,
       accountOptionsForm: false,
       logInFailed: null,
       userGameData: {},
@@ -111,6 +112,7 @@ class App extends React.Component {
     this.handleFilterOnDeathCoordinates = this.handleFilterOnDeathCoordinates.bind(this);
     this.handleFilterOnGameType = this.handleFilterOnGameType.bind(this);
     this.handleFiltering = this.handleFiltering.bind(this);
+    this.getPieChartData = this.getPieChartData.bind(this);
   }
 
   handleUserFormClick() {
@@ -988,9 +990,30 @@ class App extends React.Component {
       })
     }
     this.getDashboardData(games);
+    this.getPieChartData(games);
   }
 
-
+  getPieChartData(games) {
+    console.log('getting pieChartData from:', games);
+    const pieChartDataObject = {};
+    for (var i = 0; i < games.length; i++) {
+      if (pieChartDataObject[games[i].location]) {
+        pieChartDataObject[games[i].location]++;
+      } else {
+        pieChartDataObject[games[i].location] = 1;
+      }
+    }
+    const pieChartData = Object.keys(pieChartDataObject).map(location => {
+      let locationObject = {};
+      locationObject.location = location;
+      locationObject.totalGames = pieChartDataObject[location];
+      return locationObject;
+    });
+    console.log('pieChartData:', pieChartData);
+    this.setState({
+      pieChartData,
+    })
+  }
 
   componentDidUpdate() {   
     if (window.location.pathname !== '/filterLocations')
@@ -1115,6 +1138,7 @@ class App extends React.Component {
           dashboardData={this.state.dashboardData}
           statLoading={this.state.statLoading}
           getDashboardData={this.getDashboardData}
+          pieChartData={this.state.pieChartData}
         />} />
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">

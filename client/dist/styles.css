@@ -1450,6 +1450,11 @@ td.rdtYear:hover {
   margin: 5px;
 }
 
+.pieChartTooltip {
+  background: white;
+  border: 1px solid black;
+}
+
 .loadingCenterScreen {
   position: absolute;
   z-index: 2001;

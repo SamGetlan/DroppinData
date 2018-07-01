@@ -41,6 +41,7 @@ class Stats extends React.Component {
           data={this.props.dashboardData}
           statLoading={this.props.statLoading}
           getDashboardData={this.props.getDashboardData}
+          pieChartData={this.props.pieChartData}
         />} />
       </div>
     );
