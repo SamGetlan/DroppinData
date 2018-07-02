@@ -913,7 +913,6 @@ class App extends React.Component {
       dashboardData.totalPlace += getPlace(games[i]);
       dashboardData.totalLoot += games[i].loot;
     }
-    console.log('dashboardData:', dashboardData);
     this.setState({
       statLoading: false,
       dashboardData,
@@ -921,43 +920,34 @@ class App extends React.Component {
   }
 
   handleFilterOnStartLocation(games, locations) {
-    console.log('inside handleFilterOnStartLocation:', locations);
     return games.filter(game => locations.indexOf(game.location) > -1);
   }
 
   handleFilterOnPlace(games, worstPlace, bestPlace) {
-    console.log('worstPlace:', worstPlace);
-    console.log('bestPlace:', bestPlace);
     return games.filter(game => (game.place >= bestPlace && game.place <= worstPlace));
   }
 
   handleFilterOnKills(games, minKills, maxKills) {
-    console.log(`inside handleFilterOnKills with minKills ${minKills} and maxKills ${maxKills}`);
     return games.filter(game => (game.kills >= minKills && game.kills <= maxKills));
   }
 
   handleFilterOnLoot(games, minLoot, maxLoot) {
-    console.log(`inside handleFilterOnLoot with minLoot ${minLoot} and maxLoot ${maxLoot}`);
     return games.filter(game => (game.loot >= minLoot && game.loot <= maxLoot));
   }
 
   handleFilterOnStormDeath(games, stormDeath) {
-    console.log(`inside handleFilterOnStormDeath ${stormDeath}`);
     return games.filter(game => (game.stormDeath === stormDeath));
   }
 
   handleFilterOnDeathCoordinates(games, minRow, maxRow, minCol, maxCol) {
-    console.log(`inside handleFilterOnDeathCoordinates with row range ${minRow} ${maxRow} and col range ${minCol} ${maxCol}`);
     return games.filter(game => (game.deathCoordinates[0] >= minRow && game.deathCoordinates[0] <= maxRow && game.deathCoordinates[1] >= minCol && game.deathCoordinates[1] <= maxCol));
   }
 
   handleFilterOnGameType(games, gameTypes) {
-    console.log(`inside handleFilterOnGameType with gameType:`, gameTypes);
     return games.filter(game => gameTypes.indexOf(game.gameType) > -1);
   }
 
   handleFiltering(reset, gameTypes, locations, worstPlace, bestPlace, minKills, maxKills, minLoot, maxLoot, stormDeath, minRow, maxRow, minCol, maxCol) {
-    console.log('inside handleFiltering');
     let games = this.state.userGames.slice();
     if (reset) {
       this.setState({
@@ -994,7 +984,6 @@ class App extends React.Component {
   }
 
   getPieChartData(games) {
-    console.log('getting pieChartData from:', games);
     const pieChartDataObject = {};
     for (var i = 0; i < games.length; i++) {
       if (pieChartDataObject[games[i].location]) {
@@ -1009,7 +998,6 @@ class App extends React.Component {
       locationObject.totalGames = pieChartDataObject[location];
       return locationObject;
     });
-    console.log('pieChartData:', pieChartData);
     this.setState({
       pieChartData,
     })
@@ -1138,6 +1126,7 @@ class App extends React.Component {
           dashboardData={this.state.dashboardData}
           statLoading={this.state.statLoading}
           getDashboardData={this.getDashboardData}
+          getPieChartData={this.getPieChartData}
           pieChartData={this.state.pieChartData}
         />} />
         {this.state.deadCenterFlashText &&

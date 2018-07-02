@@ -10,15 +10,12 @@ class StatDashboard extends React.Component {
     // this.colors = ['gray', 'green', 'blue', 'indigo', 'orange'];
     this.formatDate = this.formatDate.bind(this);
     this.renderPieLabel = this.renderPieLabel.bind(this);
-    this.renderTooltip = this.renderTooltip.bind(this);
   }
 
   componentDidMount() {
-    console.log('statDashboard mounting');
-    console.log('this.props.filteredUserGames:', this.props.filteredUserGames);
     if (this.props.filteredUserGames !== null && this.props.data === null) {
-      console.log('inside conditional of statDasboard mounting');
       this.props.getDashboardData(this.props.filteredUserGames);
+      this.props.getPieChartData(this.props.filteredUserGames);
     }
   }
 
@@ -28,10 +25,6 @@ class StatDashboard extends React.Component {
 
   renderPieLabel(obj) {
     return obj.location;
-  }
-
-  renderTooltip(e) {
-    return <div>{e}</div>
   }
 
   render() {
@@ -51,12 +44,11 @@ class StatDashboard extends React.Component {
               data={this.props.pieChartData} 
               dataKey="totalGames" 
               fill="#8884d8" 
-              label={this.renderPieLabel}
-              // onMouseEnter={(e) => console.log(e)}
+              // label={this.renderPieLabel}
             >
             {this.props.pieChartData !== null && this.props.pieChartData.map((entry, index) => <Cell fill={'indigo'} />)}
             </Pie>
-            <Tooltip content={<PieChartTooltip />} />
+            <Tooltip totalGames={(this.props.data !== null ? this.props.data.totalGames : null)} content={<PieChartTooltip />} />
           </PieChart>
         </div>}
         {this.props.filteredUserGames === null &&
