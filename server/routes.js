@@ -31,13 +31,10 @@ module.exports = (app, passport) => {
   });
 
   app.put('/api/games/:id', isLoggedIn, (req, res) => {
-    console.log('game Id:', req.params.id);
-    console.log('req.body:', req.body);
     db.updateGame(req.params.id, req.body, (err, result) => {
       if (err) {
         console.log('There was an error updating game:', err);
       } else {
-        console.log('Game successfully updated:', result);
         res.json(result);
       }
     })
@@ -85,12 +82,10 @@ module.exports = (app, passport) => {
   });
 
   app.post('/api/forgot', (req, res, next) => {
-    console.log('inside forgot with req.body.email', req.body.email);
     async.waterfall([
       function(done) {
         crypto.randomBytes(20, function(err, buf) {
           let token = buf.toString('hex');
-          console.log('generated token:', token);
           done(err, token);
         });
       },
@@ -130,7 +125,6 @@ module.exports = (app, passport) => {
             console.log('error sendingMail:', err)
           } else {
             req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-            console.log('e-mail sent');
             done(err, 'done');
           }
         });
@@ -142,8 +136,6 @@ module.exports = (app, passport) => {
   });
 
   app.post('/api/resetPassword', (req, res, next) => {
-    console.log('inside resetPassword with new password:', req.body.password);
-    console.log('inside resetPassword with token:', req.body.token);
     async.waterfall([
       function(done) {
         db.checkToken(req.body.token, (err, user) => {
@@ -177,7 +169,6 @@ module.exports = (app, passport) => {
         };
         smtpTransport.sendMail(mailOptions, (err) => {
           req.flash('success', 'Success! Your password has been changed.');
-          console.log('Success! Password has been changed');
           done(err);
         });
       }
