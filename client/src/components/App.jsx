@@ -42,6 +42,7 @@ class App extends React.Component {
       mapMarker: null,
       deathMapMarker: [41, 42],
       loading: false,
+      userWin: false,
       mapMarkerStyle: {
         top: 0,
         left: 0,
@@ -219,11 +220,11 @@ class App extends React.Component {
       .catch((err) => {
         context.setState({
           deadCenterFlashText: `There was an error: ${err}`,
-          loading: false,
         });
         setTimeout(() => {
           context.setState({
             deadCenterFlashText: null,
+            loading: false,
           });
         }, 3000)
       });
@@ -268,15 +269,28 @@ class App extends React.Component {
       })
         .then((data) => {
           const userGameData = context.getUserGameData(data.data);
-          context.setState({
-            userGames: data.data,
-            userGameData,
-            deathMapMarkerStyle: {
-              top: '50%',
-              left: '50%',
-            },
-            statBoxFlashText: 'Game was successfully submitted',
-          });
+          if (place === 1) {
+            context.setState({
+              userGames: data.data,
+              userGameData,
+              deathMapMarkerStyle: {
+                top: '50%',
+                left: '50%',
+              },
+              statBoxFlashText: 'Game was successfully submitted',
+              userWin: true,
+            });
+          } else {
+            context.setState({
+              userGames: data.data,
+              userGameData,
+              deathMapMarkerStyle: {
+                top: '50%',
+                left: '50%',
+              },
+              statBoxFlashText: 'Game was successfully submitted',
+            });
+          }
           setTimeout(() => {
             context.setState({
               submitButtonState: true,
@@ -287,6 +301,11 @@ class App extends React.Component {
               statBoxFlashText: null,
             })
           }, 3000);
+          setTimeout(() => {
+            context.setState({
+              userWin: false,
+            })
+          }, 4500);
         })
         .catch((err) => {
           context.setState({
@@ -1136,6 +1155,10 @@ class App extends React.Component {
         {this.state.loading &&
         <div className="loadingCenterScreen">
           <img src="/loading.gif" alt-src="loading image" height="100%" width="100%" />
+        </div>}
+        {this.state.userWin &&
+        <div className="userWinContainer">
+          <img src="/VictoryRoyale.gif" alt-src="Conratulations on the win!" height="100%" width="100%" />
         </div>}
       </div>
     );
