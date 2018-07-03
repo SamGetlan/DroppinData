@@ -56,7 +56,6 @@ class DashboardMap extends React.Component {
 
   componentDidUpdate() {
     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    console.log(width);
     if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === width)) {
       this.updateCanvasSize(width);
     }
@@ -65,7 +64,6 @@ class DashboardMap extends React.Component {
 
   componentDidMount() {
     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    console.log(width);
     if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === width)) {
       this.updateCanvasSize(width);  
     }
