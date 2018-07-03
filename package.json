@@ -9,7 +9,7 @@
     "start": "node server/basic-server.js",
     "devStart": "nodemon server/basic-server.js",
     "style": "sass ./client/src/stylesheets/styles.scss ./client/dist/styles.css",
-    "zip": "zip ../droppinData.zip -r * .[^.]*"
+    "zip": "zip ../droppinData.zip -r * .[^.]* -x \"node_modules/*\" \"client/src/*\" "
   },
   "author": "Sam Getlan",
   "license": "ISC",

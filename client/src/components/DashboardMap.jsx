@@ -55,15 +55,19 @@ class DashboardMap extends React.Component {
   }
 
   componentDidUpdate() {
-    if (!(this.state.canvasSize === window.visualViewport.width * 0.45 || this.state.canvasSize === window.visualViewport.width)) {
-      this.updateCanvasSize(window.visualViewport.width);
+    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    console.log(width);
+    if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === width)) {
+      this.updateCanvasSize(width);
     }
     this.updateCanvas();
   }
 
   componentDidMount() {
-    if (!(this.state.canvasSize === window.visualViewport.width * 0.45 || this.state.canvasSize === window.visualViewport.width)) {
-      this.updateCanvasSize(window.visualViewport.width);  
+    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    console.log(width);
+    if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === width)) {
+      this.updateCanvasSize(width);  
     }
     this.updateCanvas();
   }

@@ -1071,6 +1071,14 @@ input:focus {
   flex: 1;
 }
 
+@media only screen and (max-width: 700px) {
+  .chartContainer {
+    flex-wrap: wrap;
+  }
+  .chartContainer .lineChart {
+    width: 100%;
+  }
+}
 /*!
  * https://github.com/YouCanBookMe/react-datetime
  */
