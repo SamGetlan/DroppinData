@@ -252,7 +252,7 @@ class App extends React.Component {
       submitButtonState: false,
     })
     if (place >= 1 && place <= 100 && kills <= 100 && kills >= 0 && gameType && (stormDeath === false || stormDeath === true) && this.state.loggedIn && this.state.userSettings.locationTracking === ('name' || 'grid' || 'nameCoordinates' || 'gridCoordinates')) {
-      const deathCoordinates = (place !== 1 ? this.state.deathMapMarker : undefined);
+      const deathCoordinates = this.state.deathMapMarker;
       axios.post('/api/games', {
         user: this.state.loggedIn,
         locationTracking: this.state.userSettings.locationTracking,
