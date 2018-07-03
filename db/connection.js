@@ -47,7 +47,7 @@ const saveGame = (gamePlayed, callback) => {
 };
 
 const loadGames = (user, callback) => {
-  Game.find({ user }, null, null, (err, games) => {
+  Game.find({ user }, null, {sort: '-date'}, (err, games) => {
     if (err) {
       console.log('There has been an error:', err);
     } else {
