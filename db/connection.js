@@ -117,11 +117,21 @@ const deleteGame = (gameId, callback) => {
   });
 }
 
-module.exports.saveGame = saveGame;
-module.exports.loadGames = loadGames;
-module.exports.checkUsername = checkUsername;
-module.exports.checkEmail = checkEmail;
-module.exports.checkToken = checkToken;
-module.exports.updateSettings = updateSettings;
-module.exports.deleteGame = deleteGame;
-module.exports.updateGame = updateGame;
+module.exports = {
+  saveGame,
+  loadGames,
+  checkUsername,
+  checkEmail,
+  checkToken,
+  updateSettings,
+  deleteGame,
+  updateGame,
+};
+// module.exports.saveGame = saveGame;
+// module.exports.loadGames = loadGames;
+// module.exports.checkUsername = checkUsername;
+// module.exports.checkEmail = checkEmail;
+// module.exports.checkToken = checkToken;
+// module.exports.updateSettings = updateSettings;
+// module.exports.deleteGame = deleteGame;
+// module.exports.updateGame = updateGame;

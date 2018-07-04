@@ -563,7 +563,8 @@ class App extends React.Component {
     }
   }
 
-  notRecentGroupClick(gameType = 'all') {
+  notRecentGroupClick() {
+    console.log('userGamedata', this.state.userGameData);
     const context = this;
     const type = 'all';
     if (this.state.userGames !== null && this.state.userGames.length > 9) {
@@ -571,7 +572,7 @@ class App extends React.Component {
       const userGameData = this.state.userGameData;
       const notRecentGroup = Object.keys(this.state.userGameData);
       notRecentGroup.sort((a, b) => {
-        return userGameData[b][type].mostRecent - userGameData[a][type].mostRecent;
+        return userGameData[a][type].mostRecent - userGameData[b][type].mostRecent;
       });
       for (var i = 0; i < Math.min(notRecentGroup.length, 8); i++) {
         for (var ii = 0; ii < locations.length; ii++) {
@@ -580,6 +581,7 @@ class App extends React.Component {
           }
         }
       }
+      console.log('results:', results);
       this.setState({
         filteredLocations: results,
         activeIndex: false,
