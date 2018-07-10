@@ -15,9 +15,11 @@ All dependencies are listed in the package.json
 ### Installing
 
 Clone the repo to your local machine. Navigate to the directory and install dependencies with npm or with yarn:
+
 `npm install || yarn install`
 
 To run locally:
+
 `npm start`
 
 ## Running the tests
