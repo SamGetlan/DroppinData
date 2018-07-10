@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tile renders correctly 1`] = `
+<div
+  className="tile"
+  onClick={[Function]}
+>
+  <p
+    className="tileTitle"
+  >
+    Chair
+  </p>
+  <img
+    alt="map view of location"
+    className="mapImage"
+    height="80%"
+    src="/locationPics/d8.jpg"
+    width="100%"
+  />
+  <div
+    className="tileStats"
+  >
+    <span
+      className="tileAvgPlace tileStat"
+    >
+      Avg. Place: 
+      N/A
+    </span>
+    <span
+      className="tileAvgKills tileStat"
+    >
+      Avg. Kills: 
+      N/A
+    </span>
+  </div>
+</div>
+`;
