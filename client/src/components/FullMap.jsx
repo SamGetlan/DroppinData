@@ -11,7 +11,7 @@ class FullMap extends React.Component {
 
   componentDidMount() {
     const element = document.getElementsByClassName('imageButtonsContainer')[0];
-    const width = (element.test === 'inside MullMap-test.js' ? '1000px' : window.getComputedStyle(element, null).getPropertyValue('width'));
+    const width = (element.test === 'inside FullMap-test.js' ? '1000px' : window.getComputedStyle(element, null).getPropertyValue('width'));
     if (this.state.height !== width) {
       this.setState({
         height: width,

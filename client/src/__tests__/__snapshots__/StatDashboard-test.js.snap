@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatDashboard renders correctly 1`] = `
+<div
+  className="statDashboardContainer"
+>
+  <div
+    className="myGamesFlashTextContainer"
+  >
+    <h2>
+      This account has no saved games!
+    </h2>
+  </div>
+</div>
+`;

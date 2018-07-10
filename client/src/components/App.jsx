@@ -197,6 +197,7 @@ class App extends React.Component {
           });
           axios.get('/api/games')
             .then((data) => {
+              console.log(data.data);
               const userGameData = context.getUserGameData(data.data);
               context.props.history.push('/home');
               context.setState({

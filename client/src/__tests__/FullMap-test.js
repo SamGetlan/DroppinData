@@ -7,7 +7,7 @@ import locations from '../data.js';
 
 global.document.getElementsByClassName = () => {
   return [{
-    test: 'inside MullMap-test.js'
+    test: 'inside FullMap-test.js'
   }]
 }
 

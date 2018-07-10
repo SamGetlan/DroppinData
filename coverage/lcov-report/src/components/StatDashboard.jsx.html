@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>5/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">30.77% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/26</span>
+        <span class='fraction'>8/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>3/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>5/10</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -160,22 +160,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,6 +180,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -266,16 +266,16 @@ import PieChartTooltip from './PieChartTooltip.jsx';
 import moment from 'moment';
 import { Tooltip, Cell, PieChart, Pie, LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts';
 class StatDashboard extends React.Component {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
+  constructor(props) {
+    super(props);
     // this.colors = ['#E47866', '#E1768D', '#C681B1', '#9592C5', '#56A0C3', '#1AA8AA', '#35AA84', '#67A75C', '#959E3E', '#BE903A', '#DC8050' ];
     // this.colors = ['gray', 'green', 'blue', 'indigo', 'orange'];
-<span class="cstat-no" title="statement not covered" >    this.formatDate = this.formatDate.bind(this);</span>
-<span class="cstat-no" title="statement not covered" >    this.renderPieLabel = this.renderPieLabel.bind(this);</span>
+    this.formatDate = this.formatDate.bind(this);
+    this.renderPieLabel = this.renderPieLabel.bind(this);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount() {
-<span class="cstat-no" title="statement not covered" >    if (this.props.filteredUserGames !== null &amp;&amp; this.props.data === null) {</span>
+  componentDidMount() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.props.filteredUserGames !== null &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.props.data === null)</span> {
 <span class="cstat-no" title="statement not covered" >      this.props.getDashboardData(this.props.filteredUserGames);</span>
 <span class="cstat-no" title="statement not covered" >      this.props.getPieChartData(this.props.filteredUserGames);</span>
     }
@@ -289,14 +289,14 @@ class StatDashboard extends React.Component {
 <span class="cstat-no" title="statement not covered" >    return obj.location;</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
-<span class="cstat-no" title="statement not covered" >    return (</span>
+  render() {
+    return (
       &lt;div className="statDashboardContainer"&gt;
         {this.props.filteredUserGames !== null &amp;&amp; 
-        &lt;DashboardMap filteredUserGames={this.props.filteredUserGames} /&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;DashboardMap filteredUserGames={this.props.filteredUserGames} /&gt;</span>
         }
         {this.props.filteredUserGames !== null &amp;&amp;
-        &lt;div id="quickDashboardStats"&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;div id="quickDashboardStats"&gt;</span>
           &lt;h1&gt;Total Games: {(this.props.data !== null ? this.props.data.totalGames : 'N/A')}&lt;/h1&gt;
           &lt;h1&gt;Average Place: {this.props.data !== null ? (Math.round((this.props.data.totalPlace / this.props.data.totalGames) * 100) / 100) : 'N/A'}&lt;/h1&gt;
           &lt;h1&gt;Average Kills: {this.props.data !== null ? (Math.round((this.props.data.totalKills / this.props.data.totalGames) * 100) / 100) : 'N/A'}&lt;/h1&gt;
@@ -318,11 +318,11 @@ class StatDashboard extends React.Component {
           &lt;h2&gt;This account has no saved games!&lt;/h2&gt;
         &lt;/div&gt;}
         {this.props.statLoading &amp;&amp;
-        &lt;div className="loadingCenterScreen"&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;div className="loadingCenterScreen"&gt;</span>
           &lt;img src="/loading.gif" alt-src="loading image" height="100%" width="100%" /&gt;
         &lt;/div&gt;}
         {this.props.filteredUserGames === null ||
-          &lt;div className="chartContainer"&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >          &lt;div className="chartContainer"&gt;</span>
             &lt;div className="lineChart"&gt;
             &lt;h2&gt;Kills&lt;/h2&gt;
             &lt;ResponsiveContainer width='100%' height={300} &gt;
@@ -373,7 +373,7 @@ export default StatDashboard;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 10 2018 08:39:21 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 10 2018 11:23:15 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameCard renders correctly 1`] = `
+<div
+  className="gameCardContainer flex-item"
+>
+  <div
+    className="gameCard"
+  >
+    <div
+      className="gameCardStats"
+    >
+      <div
+        className="confirmDeleteGameCardOverlay hidden"
+      >
+        <h2>
+          Are you sure you wish to delete this game?
+        </h2>
+        <div
+          className="confirmDeleteGameCardButtonsContainer"
+        >
+          <button
+            className="confirmDeleteGameCardButton confirmDeleteButton"
+            onClick={[Function]}
+          >
+            Yes
+          </button>
+          <button
+            className="cancelDeleteGameCardButton confirmDeleteButton"
+            onClick={[Function]}
+          >
+            No
+          </button>
+        </div>
+      </div>
+      <div
+        className="gameCardStat gameCardLocationContainer"
+      >
+        <h2>
+          Town northeast of Flush Factory
+        </h2>
+      </div>
+      <div
+        className="gameCardStat gameCardQuickStatsContainer"
+      >
+        <h3>
+          Place: 
+          1
+        </h3>
+        <h3>
+          Kills: 
+          1
+        </h3>
+        <h3>
+          Loot: 
+          4
+        </h3>
+      </div>
+      <div
+        className="gameCardStat gameCardTimeContainer"
+      >
+        <h2>
+          07/03/2018
+        </h2>
+      </div>
+      <div
+        className="gameCardOptionsContainer"
+      >
+        <div
+          className="gameCardDeleteButton gameCardOptionButton"
+        >
+          <img
+            alt="delete"
+            className="trashIcon"
+            height="100%"
+            onClick={[Function]}
+            src="/trashBin.png"
+            width="100%"
+          />
+        </div>
+        <div
+          className="gameCardEditButton gameCardOptionButton"
+        >
+          <img
+            alt="edit"
+            className="editIcon"
+            height="80%"
+            onClick={[Function]}
+            src="/editIcon.png"
+            width="80%"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

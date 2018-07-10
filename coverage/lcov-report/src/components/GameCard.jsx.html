@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">55.56% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/9</span>
+        <span class='fraction'>5/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">40% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/5</span>
+        <span class='fraction'>2/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>5/8</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -120,19 +120,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,8 +136,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,14 +187,14 @@ import moment from 'moment';
 import GameCardFull from './GameCardFull.jsx';
 &nbsp;
 class GameCard extends React.Component {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >    this.state = {</span>
+  constructor(props) {
+    super(props);
+    this.state = {
       confirmDelete: false,
       editCard: false,
     };
-<span class="cstat-no" title="statement not covered" >    this.deleteGameCard = this.deleteGameCard.bind(this);</span>
-<span class="cstat-no" title="statement not covered" >    this.editGameCard = this.editGameCard.bind(this);</span>
+    this.deleteGameCard = this.deleteGameCard.bind(this);
+    this.editGameCard = this.editGameCard.bind(this);
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  de</span>leteGameCard() {
@@ -210,14 +210,14 @@ class GameCard extends React.Component {
   }
 &nbsp;
 &nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
-<span class="cstat-no" title="statement not covered" >    return (</span>
+  render() {
+    return (
       &lt;div className="gameCardContainer flex-item"&gt;
         &lt;div className="gameCard"&gt;
           &lt;div className="gameCardStats"&gt;
             {this.state.editCard &amp;&amp;
-            &lt;GameCardFull updateLocalGame={this.props.updateLocalGame} closeEditGameCard={this.editGameCard} game={this.props.game} editGameCard={this.editGameCard} locations={this.props.locations} handleNotCompliantEditGameSubmission={this.props.handleNotCompliantEditGameSubmission} /&gt;}
-            &lt;div className={(this.state.confirmDelete ? 'confirmDeleteGameCardOverlay stretchLeft' : 'confirmDeleteGameCardOverlay hidden')} &gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >            &lt;GameCardFull updateLocalGame={this.props.updateLocalGame} closeEditGameCard={this.editGameCard} game={this.props.game} editGameCard={this.editGameCard} locations={this.props.locations} handleNotCompliantEditGameSubmission={this.props.handleNotCompliantEditGameSubmission} /&gt;}</span>
+            &lt;div className={(this.state.confirmDelete ? <span class="branch-0 cbranch-no" title="branch not covered" >'confirmDeleteGameCardOverlay stretchLeft' </span>: 'confirmDeleteGameCardOverlay hidden')} &gt;
               &lt;h2&gt;Are you sure you wish to delete this game?&lt;/h2&gt;
               &lt;div className="confirmDeleteGameCardButtonsContainer"&gt;
                 &lt;button className="confirmDeleteGameCardButton confirmDeleteButton" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >this.props.confirmDeleteGameCard(this.props.game._id); <span class="cstat-no" title="statement not covered" ></span>this.deleteGameCard(); </span>}}&gt;Yes&lt;/button&gt;
@@ -256,7 +256,7 @@ export default GameCard;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 10 2018 08:39:21 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 10 2018 11:23:15 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

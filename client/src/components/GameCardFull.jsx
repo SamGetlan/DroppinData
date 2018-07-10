@@ -171,7 +171,7 @@ class GameCardFull extends React.Component {
 
   componentDidMount() {
     const element = document.getElementsByClassName('imageButtonsContainer')[0];
-    const width = window.getComputedStyle(element, null).getPropertyValue('width');
+    const width = (element.test === 'inside GameCardFull-test.js' ? '1000px' : window.getComputedStyle(element, null).getPropertyValue('width'));
     if (this.state.style.height !== width) {
       this.setState({
         style: {
@@ -212,8 +212,8 @@ class GameCardFull extends React.Component {
                 <div className="editableStartLocationName">
                   <h3>Start Location</h3>
                   <select onChange={(e) => this.handleEditLocation(e)}>
-                    {this.props.locations.map(location => 
-                      <option value={location.name} selected={location.name === this.state.location} >{location.name}</option>
+                    {this.props.locations.map((location, index) => 
+                      <option key={`SL${index}`} value={location.name} selected={location.name === this.state.location} >{location.name}</option>
                     )}
                   </select>
                 </div>
