@@ -6,7 +6,9 @@ DroppinData is a companion app to the video game Fortnite. This application can 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. **Database configuration for live deployment is not available on github. In order to work on codebase set up and run your own mongoDB**
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. 
+
+**Database configuration for live deployment is not available on github. In order to work on codebase set up and run your own mongoDB**
 
 ### Prerequisites
 
