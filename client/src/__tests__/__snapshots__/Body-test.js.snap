@@ -1,0 +1,1212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Body renders correctly 1`] = `
+<div>
+  <div
+    id="actionButtonContainer"
+  >
+    <button
+      id="actionButton"
+      onClick={[Function]}
+    >
+      Where We Droppin'
+    </button>
+  </div>
+  <div
+    id="backSplashContainerWrapper"
+  >
+    <div
+      id="backSplashContainer"
+    >
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Chair
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/d8.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Loot Lake House
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/e4.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          West of Loot Lake
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/d4.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          North of Loot Lake
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/e3.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Prison
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/h8.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Shipping Containers
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/h4.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Lucky Landing
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/f9.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Flush Factory
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/d9.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Tilted Towers
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/d5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Shifty Shafts
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/d7.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Haunted Hills
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/b2.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Anarchy Acres
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/f2.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Lonely Lodge
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/i5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Wailing Woods
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/i3.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Moisty Mire
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/i9.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Fatal Fields
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/f8.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Greasy Grove
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/c7.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Snobby Shores
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/b5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Junk Junction
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/b2.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Pleasant Park
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/c3.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Dusty Depot
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/f5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Salty Springs
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/f7.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Retail Row
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/h6.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Tomato Town
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/g4.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          House on the Hill
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/e8.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Town west of Motel
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/c2.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Town northeast of Flush Factory
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/e9.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Buildings West of Tilted Towers
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/c5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Buildings North of the Prison
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/i7.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Motel
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/d2.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Risky Reels
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/h2.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Mansion South of Lonely Lodge
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/i5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Dusty Divot
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/f5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Buildings East of Junk Junction
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/c2.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Silo in Mountain Northeast of Snobby Shores
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/b4.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+      <div
+        className="tile"
+        onClick={[Function]}
+      >
+        <p
+          className="tileTitle"
+        >
+          Trailer Park
+        </p>
+        <img
+          alt="map view of location"
+          className="mapImage"
+          height="80%"
+          src="/locationPics/i5.jpg"
+          width="100%"
+        />
+        <div
+          className="tileStats"
+        >
+          <span
+            className="tileAvgPlace tileStat"
+          >
+            Avg. Place: 
+            N/A
+          </span>
+          <span
+            className="tileAvgKills tileStat"
+          >
+            Avg. Kills: 
+            N/A
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

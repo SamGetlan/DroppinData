@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountSettings renders correctly 1`] = `
+<div
+  id="userFormContainerWrapperNoStorm"
+>
+          
+  <div
+    id="userFormContainer"
+  >
+    <div
+      id="userFormBox"
+    >
+      <div
+        className="entryContainer"
+      >
+        <h3
+          className="inputLabel"
+        >
+          Color Blind?
+        </h3>
+        <select
+          id="colorBlindInput"
+          onChange={[Function]}
+        >
+          <option
+            value="false"
+          >
+            False
+          </option>
+          <option
+            value="true"
+          >
+            True
+          </option>
+        </select>
+      </div>
+      <div
+        className="entryContainer"
+      >
+        <h3
+          className="inputLabel"
+        >
+          Storm Background?
+        </h3>
+        <select
+          id="stormInput"
+          onChange={[Function]}
+        >
+          <option
+            value="true"
+          >
+            True
+          </option>
+          <option
+            value="false"
+          >
+            False
+          </option>
+        </select>
+      </div>
+      <div
+        className="entryContainer"
+      >
+        <h3
+          className="inputLabel"
+        >
+          Location Tracking
+        </h3>
+        <select
+          id="locationTrackingInput"
+          onChange={[Function]}
+        >
+          <option
+            value="name"
+          >
+            Location Name
+          </option>
+          <option
+            value="grid"
+          >
+            Map Grid
+          </option>
+          <option
+            value="nameCoordinates"
+          >
+            Map Coordinates by Location Name
+          </option>
+          <option
+            value="gridCoordinates"
+          >
+            Map Coordinates by Map Grid
+          </option>
+        </select>
+      </div>
+    </div>
+    <a
+      href="/home"
+      id="saveButtonContainer"
+      onClick={[Function]}
+    >
+      <button
+        id="saveSettingsButton"
+        onClick={[Function]}
+      >
+        Apply
+      </button>
+    </a>
+    <a
+      href="/home"
+      id="closeButtonContainer"
+      onClick={[Function]}
+    >
+      <button
+        className="closeButton"
+      >
+        Close
+      </button>
+    </a>
+  </div>
+</div>
+`;

@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserForm renders correctly 1`] = `
+<div
+  id="userFormContainerWrapper"
+>
+  <div
+    className="mobile-85"
+    id="userFormContainer"
+  >
+    <div
+      id="userFormBox"
+    >
+      <div
+        id="userFormOptionsBar"
+      >
+        <button
+          className="userFormOptionsButton"
+          id="loginUserFormOptionButton"
+        >
+          Login
+        </button>
+        <button
+          className="userFormOptionsButton"
+          id="signUpUserFormOptionButton"
+        >
+          Sign Up
+        </button>
+      </div>
+      <div
+        id="userFormMain"
+      >
+        <h2
+          id="userFormTitle"
+        >
+          Log In
+        </h2>
+        <h4
+          id="userFormSubTitle"
+        >
+          Please fill in your username and password to login
+        </h4>
+        <a
+          href="/home/accountRecovery"
+          onClick={[Function]}
+        >
+          <p
+            id="forgotPasswordLink"
+          >
+            Forgot username/password?
+          </p>
+        </a>
+        <form
+          id="signUpForm"
+        >
+          <label
+            htmlFor="usernameInput"
+          >
+            Username 
+          </label>
+          <input
+            id="usernameInput"
+            placeholder="Enter Username"
+            type="text"
+          />
+          <label
+            htmlFor="passwordInput"
+          >
+            Password 
+          </label>
+          <input
+            id="passwordInput"
+            placeholder="Enter Password"
+            type="password"
+          />
+        </form>
+        <button
+          id="submitSignUpForm"
+          onClick={[Function]}
+        >
+          Log In
+        </button>
+      </div>
+    </div>
+    <a
+      href="/home"
+      id="closeButtonContainer"
+      onClick={[Function]}
+    >
+      <button
+        className="closeButton"
+      >
+        Close
+      </button>
+    </a>
+  </div>
+</div>
+`;

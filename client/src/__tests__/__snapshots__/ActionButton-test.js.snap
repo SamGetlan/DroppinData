@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionButton renders correctly 1`] = `
+<div
+  id="actionButtonContainer"
+>
+  <button
+    id="actionButton"
+    onClick={[Function]}
+  >
+    Where We Droppin'
+  </button>
+</div>
+`;

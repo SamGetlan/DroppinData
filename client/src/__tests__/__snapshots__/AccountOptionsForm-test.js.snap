@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountOptionsForm renders correctly 1`] = `
+<div
+  id="userFormContainerWrapperNoStorm"
+>
+  <div
+    id="userFormContainer"
+  >
+    <div
+      id="userFormBox"
+    >
+      <div
+        id="accountOptionsButtonsContainer"
+      >
+        <a
+          className="accountOptionsButtonLink"
+          href="/home/accountSettings"
+          id="accountSettingsButtonLink"
+          onClick={[Function]}
+        >
+          <button
+            className="accountOptionsButton"
+            id="accountSettingsButton"
+          >
+            Account Settings
+          </button>
+        </a>
+        <a
+          href="/stats/myGames"
+          onClick={[Function]}
+        >
+          <button
+            className="accountOptionsButton"
+            id="myGamesButton"
+          >
+            My Games
+          </button>
+        </a>
+        <a
+          href="/home"
+          onClick={[Function]}
+        >
+          <button
+            className="accountOptionsButton"
+            id="logoutButton"
+          >
+            Logout
+          </button>
+        </a>
+      </div>
+    </div>
+    <a
+      href="/home"
+      id="closeButtonContainer"
+      onClick={[Function]}
+    >
+      <button
+        className="closeButton"
+      >
+        Close
+      </button>
+    </a>
+  </div>
+</div>
+`;

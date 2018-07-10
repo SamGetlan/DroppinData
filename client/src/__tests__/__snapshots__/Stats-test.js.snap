@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stats renders correctly 1`] = `
+<div
+  id="StatsPageContainer"
+>
+  <div
+    className="navbar row"
+  >
+    <a
+      className="navButtonContainer"
+      href="/home"
+      onClick={[Function]}
+    >
+      <button
+        className="navButton col-2 col-s-6 home"
+      >
+        Home
+      </button>
+    </a>
+    <a
+      className="navButtonContainer"
+      href="/stats/dashboard"
+      onClick={[Function]}
+    >
+      <button
+        className="navButton col-2 col-s-6 dashboard"
+      >
+        Dashboard
+      </button>
+    </a>
+    <a
+      className="navButtonContainer"
+      href="/stats/myGames"
+      onClick={[Function]}
+    >
+      <button
+        className="navButton col-2 col-s-6 myGames"
+      >
+        My Games
+      </button>
+    </a>
+    <a
+      className="navButtonContainer"
+      href="/home/login"
+      onClick={[Function]}
+    >
+      <button
+        className="navButton col-3 col-s-6 login"
+      >
+        Sign Up or Login
+      </button>
+    </a>
+  </div>
+  <div
+    className="filterMyGamesContainer"
+  >
+    <div
+      className="filterOptionsBar"
+    >
+      <div
+        className="filterOption"
+      >
+        <label>
+          Start Location
+        </label>
+        <div
+          className="MuiInput-root-6 MuiInput-underline-10"
+        >
+          <div
+            className="MuiSelect-root-1"
+          >
+            <div
+              aria-haspopup="true"
+              aria-owns={null}
+              aria-pressed="false"
+              className="MuiSelect-select-2 MuiSelect-selectMenu-3 MuiInput-input-14"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              All
+            </div>
+            <input
+              type="hidden"
+              value="Chair,Loot Lake House,West of Loot Lake,North of Loot Lake,Prison,Shipping Containers,Lucky Landing,Flush Factory,Tilted Towers,Shifty Shafts,Haunted Hills,Anarchy Acres,Lonely Lodge,Wailing Woods,Moisty Mire,Fatal Fields,Greasy Grove,Snobby Shores,Junk Junction,Pleasant Park,Dusty Depot,Salty Springs,Retail Row,Tomato Town,House on the Hill,Town west of Motel,Town northeast of Flush Factory,Buildings West of Tilted Towers,Buildings North of the Prison,Motel,Risky Reels,Mansion South of Lonely Lodge,Dusty Divot,Buildings East of Junk Junction,Silo in Mountain Northeast of Snobby Shores,Trailer Park"
+            />
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-19 MuiSelect-icon-5"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        className="filterOption"
+      >
+        <label>
+          GameType
+        </label>
+        <div
+          className="MuiInput-root-6 MuiInput-underline-10"
+        >
+          <div
+            className="MuiSelect-root-1"
+          >
+            <div
+              aria-haspopup="true"
+              aria-owns={null}
+              aria-pressed="false"
+              className="MuiSelect-select-2 MuiSelect-selectMenu-3 MuiInput-input-14"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              All
+            </div>
+            <input
+              type="hidden"
+              value="solo,duo,squad"
+            />
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-19 MuiSelect-icon-5"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        className="filterOption"
+      >
+        <div
+          className="filterStatsOptionDropdown"
+          onClick={[Function]}
+        >
+          Filter By Stats
+        </div>
+      </div>
+    </div>
+    <div
+      className="submitGameButtonContainer"
+    >
+      <button
+        className="submitGameButton"
+        onClick={[Function]}
+      >
+        Filter!
+      </button>
+    </div>
+  </div>
+</div>
+`;

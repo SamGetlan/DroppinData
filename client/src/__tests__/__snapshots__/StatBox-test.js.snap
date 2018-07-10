@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatBox renders correctly 1`] = `
+<div
+  className="statBox"
+>
+  <div
+    className="temporaryGameTypeSelector"
+  >
+    <span
+      className="gameTypeSelector"
+      onClick={[Function]}
+    >
+      Solo
+    </span>
+    <span
+      className="gameTypeSelector"
+      onClick={[Function]}
+    >
+      Duo
+    </span>
+    <span
+      className="gameTypeSelector"
+      onClick={[Function]}
+    >
+      Squad
+    </span>
+    <span
+      className="selected gameTypeSelector"
+      onClick={[Function]}
+    >
+      All
+    </span>
+  </div>
+  <div
+    className="statGridContainer"
+  >
+    <div
+      className="gridItem"
+    />
+    <div
+      className="gridItem"
+    >
+      Kills
+    </div>
+    <div
+      className="gridItem"
+    >
+      Place
+    </div>
+    <div
+      className="gridItem"
+    >
+      Loot
+    </div>
+    <div
+      className="gridItem best"
+    >
+      Best
+    </div>
+    <div
+      className="gridItem best"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem best"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem best"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem average"
+    >
+      Average
+    </div>
+    <div
+      className="gridItem average"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem average"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem average"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem prev"
+    >
+      Previous
+    </div>
+    <div
+      className="gridItem prev"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem prev"
+    >
+      N/A
+    </div>
+    <div
+      className="gridItem prev"
+    >
+      N/A
+    </div>
+  </div>
+  <div
+    className="entryContainer"
+  >
+    <h3
+      className="inputLabel"
+    >
+      What place did you come in?
+    </h3>
+     
+    <input
+      id="placeInput"
+      onChange={[Function]}
+      type="number"
+    />
+  </div>
+  <div
+    className="entryContainer"
+  >
+    <h3
+      className="inputLabel"
+    >
+      How many kills did you have?
+    </h3>
+     
+    <input
+      id="killsInput"
+      onChange={[Function]}
+      type="number"
+    />
+  </div>
+  <div
+    className="entryContainer"
+  >
+    <h3
+      className="inputLabel"
+    >
+      Rate your loot 1-10
+    </h3>
+     
+    <input
+      id="lootInput"
+      onChange={[Function]}
+      type="number"
+    />
+  </div>
+  <div
+    className="entryContainer"
+  >
+    <h3
+      className="inputLabel"
+    >
+      Did you die from the storm?
+    </h3>
+    <select
+      id="stormDeath"
+      onChange={[Function]}
+    >
+      <option
+        id="falseStormDeath"
+        value="false"
+      >
+        No
+      </option>
+      <option
+        id="trueStormDeath"
+        value="true"
+      >
+        Yes
+      </option>
+    </select>
+  </div>
+  <div
+    id="gameTypeOptions"
+  >
+    <input
+      checked={false}
+      id="soloRadio"
+      name="gameType"
+      onChange={[Function]}
+      type="radio"
+      value="solo"
+    />
+    <label
+      htmlFor="soloRadio"
+    >
+      Solo
+    </label>
+    <input
+      checked={false}
+      id="duoRadio"
+      name="gameType"
+      onChange={[Function]}
+      type="radio"
+      value="duo"
+    />
+    <label
+      htmlFor="duoRadio"
+    >
+      Duo
+    </label>
+    <input
+      checked={false}
+      id="squadRadio"
+      name="gameType"
+      onChange={[Function]}
+      type="radio"
+      value="squad"
+    />
+    <label
+      htmlFor="squadRadio"
+    >
+      Squad
+    </label>
+  </div>
+  <div
+    className="submitGameButtonContainer"
+  >
+    <button
+      className="submitGameButton disabledButton"
+      onClick={[Function]}
+    >
+      Submit Game
+    </button>
+  </div>
+</div>
+`;

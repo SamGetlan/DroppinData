@@ -1,0 +1,364 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterLocations renders correctly 1`] = `
+<div
+  id="userFormContainerWrapperNoStorm"
+>
+  <div
+    id="filterLocationsContainer"
+  >
+    <div
+      id="filterGroupingsButtonContainer"
+    >
+      <button
+        className="filterGroupButton"
+        id="hardGroupButton"
+      >
+        Give me a challenge
+      </button>
+      <button
+        className="filterGroupButton"
+        id="notRecentGroupButton"
+      >
+        It has been in a while
+      </button>
+      <button
+        className="filterGroupButton"
+        id="killsGroupButton"
+      >
+        I want kills
+      </button>
+      <button
+        className="filterGroupButton"
+        id="placeGroupButton"
+      >
+        Let's get the win
+      </button>
+      <button
+        className="filterGroupButton"
+        id="popularGroupButton"
+      >
+        The faves
+      </button>
+    </div>
+    <div
+      id="filterLocationsBox"
+    >
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Chair
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Loot Lake House
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          West of Loot Lake
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          North of Loot Lake
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Prison
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Shipping Containers
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Lucky Landing
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Flush Factory
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Tilted Towers
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Shifty Shafts
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Haunted Hills
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Anarchy Acres
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Lonely Lodge
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Wailing Woods
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Moisty Mire
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Fatal Fields
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Greasy Grove
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Snobby Shores
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Junk Junction
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Pleasant Park
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Dusty Depot
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Salty Springs
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Retail Row
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Tomato Town
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          House on the Hill
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Town west of Motel
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Town northeast of Flush Factory
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Buildings West of Tilted Towers
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Buildings North of the Prison
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Motel
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Risky Reels
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Mansion South of Lonely Lodge
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Dusty Divot
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Buildings East of Junk Junction
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Silo in Mountain Northeast of Snobby Shores
+        </p>
+      </div>
+      <div
+        className="filterSelection"
+        onClick={[Function]}
+      >
+        <p>
+          Trailer Park
+        </p>
+      </div>
+    </div>
+    <div
+      id="closeButtonContainer"
+    >
+      <button
+        className="closeButton"
+        id="filterAllInButton"
+      >
+        Filter All In
+      </button>
+      <a
+        href="/home"
+        onClick={[Function]}
+      >
+        <button
+          className="closeButton"
+        >
+          Close
+        </button>
+      </a>
+      <button
+        className="closeButton"
+        id="filterAllOutButton"
+      >
+        Filter All Out
+      </button>
+    </div>
+  </div>
+</div>
+`;

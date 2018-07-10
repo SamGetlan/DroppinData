@@ -11,7 +11,7 @@ class FullMap extends React.Component {
 
   componentDidMount() {
     const element = document.getElementsByClassName('imageButtonsContainer')[0];
-    const width = window.getComputedStyle(element, null).getPropertyValue('width');
+    const width = (element.test === 'inside MullMap-test.js' ? '1000px' : window.getComputedStyle(element, null).getPropertyValue('width'));
     if (this.state.height !== width) {
       this.setState({
         height: width,
@@ -27,8 +27,8 @@ class FullMap extends React.Component {
             <div id="fullMap">
               <img className="fullMapImage" src="/locationPics/fullMapSmall.jpg" alt="Full Map" height="100%" width="100%"/>
               <div className="imageButtonsContainer" style={this.state}>
-                {this.props.locations.map((location, index, locations) => {
-                  return <div className="chooseLocationButton" id={location.camelCase} onClick={(e) => { this.props.handleMapChoiceClick(e); this.props.resetMarker(); } } />
+                {this.props.locations.map((location, i) => {
+                  return <div key={`button${i}`} className="chooseLocationButton" id={location.camelCase} onClick={(e) => { this.props.handleMapChoiceClick(e); this.props.resetMarker(); } } />
                 })}
               </div>
             </div>

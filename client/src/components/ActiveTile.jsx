@@ -21,7 +21,7 @@ class ActiveTile extends React.Component {
   render() {
     let gridSpots = [];
     for (var i = 0; i < 5184; i++) {
-      gridSpots.push(<div className="chooseCoordinateButton" id={`gridSpot${i}`} onClick={(e) => this.props.handleCoordinateChoiceClick(e)} />);
+      gridSpots.push(<div key={`gs${i}`} className="chooseCoordinateButton" id={`gridSpot${i}`} onClick={(e) => this.props.handleCoordinateChoiceClick(e)} />);
     };
     
     return (

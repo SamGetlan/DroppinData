@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountRecovery renders correctly 1`] = `
+<div
+  id="userFormContainerWrapperNoStorm"
+>
+  <div
+    className="mobile-85"
+    id="userFormContainer"
+  >
+    <div
+      id="userFormBox"
+    >
+      <div
+        id="userFormMain"
+      >
+        <h2
+          id="userFormTitle"
+        >
+          Account Recovery
+        </h2>
+        <h4
+          id="userFormSubTitle"
+        >
+          Please enter your email address associated with your account
+        </h4>
+        <form
+          id="signUpForm"
+        >
+          <label
+            htmlFor="emailInput"
+          >
+            Email 
+          </label>
+          <input
+            className="passwordsNotChecked"
+            id="emailInput"
+            onChange={[Function]}
+            placeholder="Email for account recovery"
+            type="text"
+          />
+        </form>
+        <button
+          className="disabled"
+          id="submitSignUpForm"
+        >
+          Send Email
+        </button>
+      </div>
+    </div>
+    <a
+      href="/home"
+      id="closeButtonContainer"
+      onClick={[Function]}
+    >
+      <button
+        className="closeButton"
+      >
+        Close
+      </button>
+    </a>
+  </div>
+</div>
+`;
