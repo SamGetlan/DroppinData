@@ -29,10 +29,10 @@ class DashboardMap extends React.Component {
     if (games) {
       for (var i = 0; i < games.length; i++) {
         if (games[i].deathCoordinates.length > 0 && games[i].deathCoordinates[0] !== 0) {
-          const fromX = (Math.floor(games[i].startCoordinates[1] / 3) * (this.state.canvasSize/84));
-          const fromY = (Math.floor(games[i].startCoordinates[0] / 3) * (this.state.canvasSize/84));
-          const toX = (games[i].deathCoordinates[1] * (this.state.canvasSize/84));
-          const toY = (games[i].deathCoordinates[0] * (this.state.canvasSize/84));
+          const fromX = (Math.floor(games[i].startCoordinates[1] / 3) * (this.state.canvasSize/82));
+          const fromY = (Math.floor(games[i].startCoordinates[0] / 3) * (this.state.canvasSize/82));
+          const toX = (games[i].deathCoordinates[1] * (this.state.canvasSize/82));
+          const toY = (games[i].deathCoordinates[0] * (this.state.canvasSize/82));
           ctx.beginPath();
           canvasArrow(ctx, fromX, fromY, toX, toY);
           ctx.strokeStyle = '#ff0000';
@@ -75,7 +75,7 @@ class DashboardMap extends React.Component {
   render() {
     return (
       <div id="dashboardMapContainer">
-        <img id="dashboardMapImage" src="/locationPics/season5/season5fullMap.jpg" alt-src="Full Map" height="100%" width="100%" />
+        <img id="dashboardMapImage" src="/locationPics/season5/season5fullMap.jpg" alt-src="Full Map" height="95.4551%" width="100%" />
         <canvas id="dashboardMapCanvas" width={this.state.canvasSize} height={this.state.canvasSize} />
       </div>
     );
