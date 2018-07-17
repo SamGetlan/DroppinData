@@ -51,8 +51,8 @@
   width: 100%;
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(84, 1fr);
-  grid-template-rows: repeat(84, 1fr);
+  grid-template-columns: repeat(82, 1fr);
+  grid-template-rows: repeat(82, 1fr);
 }
 
 #deathMapMarker {
@@ -80,15 +80,15 @@
   grid-area: 3 / 20 / 11 / 27;
 }
 
-#townWestOfMotel {
-  grid-area: 11 / 20 / 19 / 28;
-}
+// #townWestOfMotel {
+//   grid-area: 11 / 20 / 19 / 28;
+// }
 
 #motel {
   grid-area: 11 / 29 / 19 / 37;
 }
 
-#anarchyAcres {
+#lazyLinks {
   grid-area: 15 / 40 / 27 / 51;
 }
 
@@ -97,7 +97,7 @@
 }
 
 #wailingWoods {
-  grid-area: 19 / 61 / 32 / 77;
+  grid-area: 19 / 63 / 32 / 79;
 }
 
 #pleasantPark {
@@ -120,6 +120,10 @@
   grid-area: 35 / 3 / 43 / 11;
 }
 
+#vikingVista {
+  grid-area: 43 / 11 / 48 / 16;
+}
+
 #siloNortheastOfSnobbyShores {
   grid-area: 31 / 11 / 39 / 19;
 }
@@ -130,7 +134,7 @@
 }
 
 #shiftyShafts {
-  grid-area: 49 / 27 / 57 / 37;
+  grid-area: 50 / 27 / 58 / 37;
 }
 
 #greasyGrove {
@@ -138,12 +142,12 @@
 }
 
 #townNorthEastOfFlushFactory {
-  grid-area: 65 / 34 / 73 / 41;
+  grid-area: 66 / 34 / 74 / 41;
   z-index: 5;
 }
 
 #flushFactory {
-  grid-area: 70 / 25 / 78 / 37;
+  grid-area: 71 / 25 / 79 / 37;
 }
 
 #chair {
@@ -151,12 +155,12 @@
 }
 
 #riskyReels {
-  grid-area: 11 / 58 / 22 / 67;
+  grid-area: 11 / 59 / 22 / 68;
   z-index: 5;
 }
 
 #tiltedTowers {
-  grid-area: 37 / 27 / 47 / 37;
+  grid-area: 38 / 27 / 48 / 37;
 }
 
 #luckyLanding {
@@ -164,46 +168,66 @@
 }
 
 #houseOnHill {
-  grid-area: 57 / 39 / 63 / 46;
+  grid-area: 58 / 40 / 64 / 47;
 }
 
 #fatalFields {
   grid-area: 59 / 46 / 71 / 58;
 }
 
-#moistyMire {
-  grid-area: 59 / 62 / 77 / 80;
+#h9Hideout {
+  grid-area: 64 / 54 / 69 / 59;
 }
 
-#prison {
-  grid-area: 59 / 62 / 65 / 68;
-  z-index: 5;
+#g9Building {
+  grid-area: 61 / 49 / 64 / 52;
 }
+
+// #moistyMire {
+//   grid-area: 59 / 62 / 77 / 80;
+// }
+
+// #prison {
+//   grid-area: 59 / 62 / 65 / 68;
+//   z-index: 5;
+// }
 
 #saltySprings {
-  grid-area: 49 / 43 / 57 / 53;
+  grid-area: 49 / 45 / 57 / 55;
 }
 
 #dustyDivot {
-  grid-area: 39 / 47 / 49 / 55;
+  grid-area: 40 / 48 / 50 / 56;
 }
 
 #retailRow {
   grid-area: 41 / 59 / 49 / 68;
 }
 
+#i7Buildings {
+  grid-area: 52 / 71 / 55 / 74; 
+}
+
 #shippingContainers {
-  grid-area: 32 / 59 / 38 / 65;
+  grid-area: 32 / 60 / 38 / 66;
   z-index: 5;
 }
 
 #trailerPark {
-  grid-area: 39 / 67 / 46 / 74;
+  grid-area: 39 / 69 / 46 / 76;
   z-index: 5;
 }
 
 #lonelyLodge {
   grid-area: 32 / 72 / 42 / 79;
+}
+
+#i9Scrapyard {
+  grid-area: 71 / 72 / 74 / 75
+}
+
+#i6Scrapyard {
+  grid-area: 49 / 72 / 57 / 79;
 }
 
 #mansionSouthOfLonelyLodge {
@@ -215,7 +239,11 @@
   grid-area: 49 / 67 / 57 / 72;
 }
 #dustyDepot {
-  grid-area: 36 / 46 / 39 / 54;
+  grid-area: 37 / 46 / 40 / 54;
+}
+
+#paradisePalms {
+  grid-area: 59 / 54 / 71 / 70;
 }
 
 .chooseLocationButton:hover {

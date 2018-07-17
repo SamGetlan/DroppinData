@@ -11,18 +11,20 @@ class DashboardMap extends React.Component {
   }
 
   updateCanvas() {
-    const ctx = document.getElementById('dashboardMapCanvas').getContext('2d');
-    ctx.clearRect(0, 0, this.state.canvasSize, this.state.canvasSize);
-    // draw lines for each game
     const games = this.props.filteredUserGames;
-    function canvasArrow(context, fromx, fromy, tox, toy){
-      var headlen = 10;   // length of head in pixels
-      var angle = Math.atan2(toy-fromy,tox-fromx);
-      context.moveTo(fromx, fromy);
-      context.lineTo(tox, toy);
-      context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
-      context.moveTo(tox, toy);
-      context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
+    const ctx = document.getElementById('dashboardMapCanvas').getContext('2d');
+    // if (ctx.test !== 'inside DashboardMap-test.js') {
+      ctx.clearRect(0, 0, this.state.canvasSize, this.state.canvasSize);
+      // draw lines for each game
+      function canvasArrow(context, fromx, fromy, tox, toy){
+        var headlen = 10;   // length of head in pixels
+        var angle = Math.atan2(toy-fromy,tox-fromx);
+        context.moveTo(fromx, fromy);
+        context.lineTo(tox, toy);
+        context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
+        context.moveTo(tox, toy);
+        context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
+    // } // figure out how to test without this breaking
   }
     if (games) {
       for (var i = 0; i < games.length; i++) {
@@ -73,7 +75,7 @@ class DashboardMap extends React.Component {
   render() {
     return (
       <div id="dashboardMapContainer">
-        <img id="dashboardMapImage" src="/locationPics/fortNite-s4map.jpg" alt-src="Full Map" height="100%" width="100%" />
+        <img id="dashboardMapImage" src="/locationPics/season5/season5fullMap.jpg" alt-src="Full Map" height="100%" width="100%" />
         <canvas id="dashboardMapCanvas" width={this.state.canvasSize} height={this.state.canvasSize} />
       </div>
     );

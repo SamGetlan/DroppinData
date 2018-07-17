@@ -14,14 +14,14 @@ class GameCardFull extends React.Component {
       originalStartLocationMarker: this.props.game.startCoordinates,
       startLocationMarker: this.props.game.startCoordinates,
       startLocationMarkerStyle: {
-        top: `${(Math.floor(this.props.game.startCoordinates[0] / 3) + 0.5) * (100 / 84)}%`,
-        left: `${(Math.floor(this.props.game.startCoordinates[1] / 3) + 0.5) * (100 / 84)}%`,
+        top: `${(Math.floor(this.props.game.startCoordinates[0] / 3) + 0.5) * (100 / 82)}%`,
+        left: `${(Math.floor(this.props.game.startCoordinates[1] / 3) + 0.5) * (100 / 82)}%`,
       },
       originalEndLocationMarker: this.props.game.deathCoordinates,
       endLocationMarker: this.props.game.deathCoordinates,
       endLocationMarkerStyle: {
-        top: `${(Math.floor(this.props.game.deathCoordinates[0]) + 0.5) * (100 / 84)}%`,
-        left: `${(Math.floor(this.props.game.deathCoordinates[1]) + 0.5) * (100 / 84)}%`,
+        top: `${(Math.floor(this.props.game.deathCoordinates[0]) + 0.5) * (100 / 82)}%`,
+        left: `${(Math.floor(this.props.game.deathCoordinates[1]) + 0.5) * (100 / 82)}%`,
       },
       originalLocation: this.props.game.location,
       location: this.props.game.location,
@@ -55,10 +55,10 @@ class GameCardFull extends React.Component {
 
   handleEditStartLocationCoordinate(e) {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
-    const rows = Math.floor(gridSpot / 84);
-    const cols = (gridSpot % 84);
-    const top = (`${(rows + 0.5) * (100 / 84)}%`);
-    const left = (`${(cols + 0.5) * (100 / 84)}%`);
+    const rows = Math.floor(gridSpot / 82);
+    const cols = (gridSpot % 82);
+    const top = (`${(rows + 0.5) * (100 / 82)}%`);
+    const left = (`${(cols + 0.5) * (100 / 82)}%`);
     this.setState({
       startLocationMarker: [(rows * 3), (cols * 3)],
       startLocationMarkerStyle: {
@@ -70,10 +70,10 @@ class GameCardFull extends React.Component {
 
   handleEditEndLocationCoordinate(e) {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
-    const rows = Math.floor(gridSpot / 84);
-    const cols = (gridSpot % 84);
-    const top = (`${(rows + 0.5) * (100 / 84)}%`);
-    const left = (`${(cols + 0.5) * (100 / 84)}%`);
+    const rows = Math.floor(gridSpot / 82);
+    const cols = (gridSpot % 82);
+    const top = (`${(rows + 0.5) * (100 / 82)}%`);
+    const left = (`${(cols + 0.5) * (100 / 82)}%`);
     this.setState({
       endLocationMarker: [rows, cols],
       endLocationMarkerStyle: {
@@ -183,7 +183,7 @@ class GameCardFull extends React.Component {
 
   render() {
     let gridSpots = [];
-    for (var i = 0; i < 7056; i++) {
+    for (var i = 0; i < 6724; i++) {
       gridSpots.push(<div className="chooseCoordinateButton" id={`gridSpot${i}`} onClick={(this.state.editStartLocation ? (e) => this.handleEditStartLocationCoordinate(e) : (e) => this.handleEditEndLocationCoordinate(e))} />);
     };
 
@@ -196,7 +196,7 @@ class GameCardFull extends React.Component {
               <button className="userFormOptionsButton" id="editEndLocation" onClick={this.alterEndLocation}>End Location</button>
             </div>
             <div id="fullMap">
-              <img className="fullMapImage" src="/locationPics/fullMapSmall.jpg" alt="Full Map" height="100%" width="100%"/>
+              <img className="fullMapImage" src="/locationPics/season5/season5fullMap.jpg" alt="Full Map" height="100%" width="100%"/>
               {this.state.editStartLocation && 
                 <img id="deathMapMarker" alt={'Map Marker'} src={'/locationPics/MapMarker.png'} style={this.state.startLocationMarkerStyle}/>
               }

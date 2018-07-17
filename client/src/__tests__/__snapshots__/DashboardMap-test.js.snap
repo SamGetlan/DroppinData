@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardMap renders correctly 1`] = `
+<div
+  id="dashboardMapContainer"
+>
+  <img
+    alt-src="Full Map"
+    height="100%"
+    id="dashboardMapImage"
+    src="/locationPics/fortNite-s4map.jpg"
+    width="100%"
+  />
+  <canvas
+    height={460.8}
+    id="dashboardMapCanvas"
+    width={460.8}
+  />
+</div>
+`;

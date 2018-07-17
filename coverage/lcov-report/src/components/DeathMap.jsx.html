@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">64.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>9/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>5/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">69.23% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>9/13</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -101,28 +101,24 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -131,6 +127,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7056x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,15 +166,18 @@
 import { Link } from 'react-router-dom';
 &nbsp;
 class FullMap extends React.Component {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >    this.state = {</span>
+  constructor(props) {
+    super(props);
+    this.state = {
       height: '0px',
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount() {
-    const element = <span class="cstat-no" title="statement not covered" >document.getElementsByClassName('imageButtonsContainer')[0];</span>
+  componentDidMount() {
+    const element = document.getElementsByClassName('imageButtonsContainer')[0];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (element.test === 'inside DeathMap-test.js') {
+      return;
+    }
     const width = <span class="cstat-no" title="statement not covered" >window.getComputedStyle(element, null).getPropertyValue('width');</span>
 <span class="cstat-no" title="statement not covered" >    if (this.state.height !== width) {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
@@ -178,15 +187,15 @@ class FullMap extends React.Component {
 <span class="cstat-no" title="statement not covered" >    this.props.checkDeathMarkerLocation();</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
-    let gridSpots = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; 7056; i++) {</span>
-<span class="cstat-no" title="statement not covered" >      gridSpots.push(&lt;div className="chooseCoordinateButton" id={`gridSpot${i}`} onClick={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.props.handleCoordinateChoiceClick(e)}</span> /&gt;);</span>
+  render() {
+    let gridSpots = [];
+    for (var i = 0; i &lt; 7056; i++) {
+      gridSpots.push(&lt;div className="chooseCoordinateButton" id={`gridSpot${i}`} onClick={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.props.handleCoordinateChoiceClick(e)}</span> /&gt;);
     };
 &nbsp;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
-      &lt;div id={this.props.userSettings.stormBackground ? "userFormContainerWrapper" : 'userFormContainerWrapperNoStorm'}&gt;
+    return (
+      &lt;div id={this.props.userSettings.stormBackground ? <span class="branch-0 cbranch-no" title="branch not covered" >"userFormContainerWrapper" </span>: 'userFormContainerWrapperNoStorm'}&gt;
         &lt;div id="fullMapContainer"&gt;
           &lt;div id="userFormBox"&gt;
             &lt;div id="fullMap"&gt;
@@ -199,7 +208,7 @@ class FullMap extends React.Component {
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;Link className="submitGameButtonContainer" to="/home"&gt;
-              &lt;button className={`submitGameButton ${this.props.submitButtonState ? 'enabledButton' : 'disabledButton'}`} onClick={this.props.submitGame}&gt;Submit&lt;/button&gt;
+              &lt;button className={`submitGameButton ${this.props.submitButtonState ? <span class="branch-0 cbranch-no" title="branch not covered" >'enabledButton' </span>: 'disabledButton'}`} onClick={this.props.submitGame}&gt;Submit&lt;/button&gt;
             &lt;/Link&gt;
             &lt;Link id="closeButtonContainer" to="/home"&gt;
               &lt;button className="closeButton" &gt;Close&lt;/button&gt;
@@ -217,7 +226,7 @@ export default FullMap;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 10 2018 11:23:15 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 10 2018 13:30:59 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -11,6 +11,9 @@ class FullMap extends React.Component {
 
   componentDidMount() {
     const element = document.getElementsByClassName('imageButtonsContainer')[0];
+    if (element.test === 'inside DeathMap-test.js') {
+      return;
+    }
     const width = window.getComputedStyle(element, null).getPropertyValue('width');
     if (this.state.height !== width) {
       this.setState({
@@ -22,7 +25,7 @@ class FullMap extends React.Component {
 
   render() {
     let gridSpots = [];
-    for (var i = 0; i < 7056; i++) {
+    for (var i = 0; i < 6724; i++) {
       gridSpots.push(<div className="chooseCoordinateButton" id={`gridSpot${i}`} onClick={(e) => this.props.handleCoordinateChoiceClick(e)} />);
     };
 
@@ -32,7 +35,7 @@ class FullMap extends React.Component {
         <div id="fullMapContainer">
           <div id="userFormBox">
             <div id="fullMap">
-              <img className="fullMapImage" src="/locationPics/fullMapSmall.jpg" alt="Full Map" height="100%" width="100%"/>
+              <img className="fullMapImage" src="/locationPics/season5/season5fullMap.jpg" alt="Full Map" height="100%" width="100%"/>
               {this.props.deathMapMarker && 
                 <img id="deathMapMarker" alt={'Map Marker'} src={'/locationPics/MapMarker.png'} style={this.props.deathMapMarkerStyle}/>
               }

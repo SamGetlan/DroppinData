@@ -817,6 +817,7 @@ class App extends React.Component {
     const gridSpot = Number(e.target.id.split('Spot')[1])
     const rows = Math.floor(gridSpot / 72);
     const cols = (gridSpot % 72);
+    console.log([rows, cols]);
     const getCoordinate = (location, rows, cols) => {
       const { topLeft } = location;
       return [(topLeft[0] + rows), (topLeft[1] + cols)];
@@ -836,10 +837,12 @@ class App extends React.Component {
 
   handleDeathCoordinateChoiceClick(e) {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
-    const rows = Math.floor(gridSpot / 84);
-    const cols = (gridSpot % 84);
-    const top = (`${(rows + 0.5) * (100 / 84)}%`);
-    const left = (`${(cols + 0.5) * (100 / 84)}%`);
+    const rows = Math.floor(gridSpot / 82);
+    const cols = (gridSpot % 82);
+    console.log('gridSpot:', gridSpot);
+    console.log([rows, cols]);
+    const top = (`${(rows + 0.5) * (100 / 82)}%`);
+    const left = (`${(cols + 0.5) * (100 / 82)}%`);
     this.setState({
       deathMapMarker: [rows, cols],
       deathMapMarkerStyle: {
@@ -856,16 +859,23 @@ class App extends React.Component {
         const location = this.state.filteredLocations[this.state.activeIndex];
         const rows = (this.state.filteredLocations[this.state.activeIndex].start[0] / 3);
         const cols = (this.state.filteredLocations[this.state.activeIndex].start[1] / 3);
+        console.log('location:', location);
+        console.log('rows:', rows);
+        console.log('cols:', cols);
         const getCoordinate = (location, rows, cols) => {
           const { topLeft } = location;
           return [Math.floor((topLeft[0] / 3) + rows), Math.floor((topLeft[1] / 3) + cols)];
         }
         const deathMapMarker = getCoordinate(location, rows, cols);
+        const top = `${(deathMapMarker[0] + 0.5) * (100 / 82)}%`;
+        const left = `${(deathMapMarker[1] + 0.5) * (100 / 82)}%`;
+        console.log('top:', top);
+        console.log('left:', left);
         this.setState({
           deathMapMarker,
           deathMapMarkerStyle: {
-            top: `${(deathMapMarker[0] + 0.5) * (100 / 84)}%`,
-            left: `${(deathMapMarker[1] + 0.5) * (100 / 84)}%`,
+            top,
+            left,
           },
         });
       }
@@ -994,7 +1004,7 @@ class App extends React.Component {
       if (stormDeath !== undefined) {
         games = this.handleFilterOnStormDeath(games, stormDeath);
       }
-      if (minRow !== undefined && (minRow !== 0 || maxRow !== 84 || minCol !== 0 || maxCol !== 84)) {
+      if (minRow !== undefined && (minRow !== 0 || maxRow !== 82 || minCol !== 0 || maxCol !== 82)) {
         games = this.handleFilterOnDeathCoordinates(games, minRow, maxRow, minCol, maxCol);
       }
       this.setState({
