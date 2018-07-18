@@ -219,6 +219,9 @@ class App extends React.Component {
         }
       })
       .catch((err) => {
+        if (err.statusCode === 500) {
+          console.log('good guess');
+        }
         context.setState({
           deadCenterFlashText: `There was an error: ${err}`,
         });
