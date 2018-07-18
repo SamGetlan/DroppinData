@@ -195,16 +195,11 @@ class FilterMyGames extends React.Component {
     e.stopPropagation();
     console.log('stopped Propagation', e);
   }
+  
   render() {
     return (
       <div className="filterMyGamesContainer">
         <div className="filterOptionsBar">
-          {/* <select onChange={(e) => this.handleStartLocationChange(e.target.value)}>
-            <option value="All" selected={this.props.filterOptions.startLocation === 'All'}>All Locations</option>
-            {this.props.locations.map(location => 
-            <option value={location.name} selected={location.name === this.props.filterOptions.startLocation} >{location.name}</option>
-            )}
-          </select> */}
           <div className="filterOption">
             <label>Season</label>
             <Select 
@@ -300,21 +295,6 @@ class FilterMyGames extends React.Component {
               </div>
             </div>}
           </div>
-          {/* <input type="number" id="worstPlaceInput" defaultValue={this.state.worstPlace} onChange={(e) => this.handlePlaceChange(e.target.value, this.state.bestPlace)} />
-          <label>Best Place</label>
-          <input type="number" id="bestPlaceInput" defaultValue={this.state.bestPlace} onChange={(e) => this.handlePlaceChange(this.state.worstPlace, e.target.value)} />
-          <label>Min Kills</label>
-          <input type="number" id="minKillsInput" defaultValue={this.state.minKills} onChange={(e) => this.handleKillsChange(e.target.value, this.state.maxKills)} />
-          <label>Max Kills</label>
-          <input type="number" id="maxKillsInput" defaultValue={this.state.maxKills} onChange={(e) => this.handleKillsChange(this.state.minKills, e.target.value)} />
-          <label>Min Loot</label>
-          <input type="number" id="minLootInput" defaultValue={this.state.minLoot} onChange={(e) => this.handleLootChange(e.target.value, this.state.maxLoot)} />
-          <label>Max Loot</label>
-          <input type="number" id="maxLootInput" defaultValue={this.state.maxLoot} onChange={(e) => this.handleLootChange(this.state.minLoot, e.target.value)} />
-          <label>Min Distance</label>
-          <input type="number" id="minDistanceInput" defaultValue={this.state.minDistanceTraveled} onChange={(e) => this.handleDistanceTraveledChange(e.target.value, this.state.maxDistanceTraveled)} />
-          <label>Max Distance</label>
-          <input type="number" id="maxDistanceInput" defaultValue={this.state.maxDistanceTraveled} onChange={(e) => this.handleDistanceTraveledChange(this.state.minDistanceTraveled, e.target.value)} /> */}
         </div>
         <div className="submitGameButtonContainer">
           <button className="submitGameButton" onClick={() => this.props.handleFiltering(false, this.state.gameType, this.state.startLocation, this.state.worstPlace, this.state.bestPlace, this.state.minKills, this.state.maxKills, this.state.minLoot, this.state.maxLoot, undefined, this.state.seasons, 0, 82, 0, 82)}>Filter!</button>

@@ -15,6 +15,7 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           presets: ['env', 'react'],
+          plugins: ['syntax-dynamic-import'],
         },
       },
     ],

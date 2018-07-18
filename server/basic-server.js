@@ -29,6 +29,14 @@ require('./routes.js')(app, passport);
 
 app.use(express.static(`${__dirname}/../client/dist`));
 
+app.get('/stats/0.bundle.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, `../client/dist`, `0.bundle.js`));
+})
+
+app.get('/stats/1.bundle.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, `../client/dist`, `1.bundle.js`));
+})
+
 app.get(`*`, function(req, res) {
   res.sendFile(path.resolve(__dirname, `../client/dist`, `index.html`));
 });

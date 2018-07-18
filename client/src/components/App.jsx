@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect, Link, Route, withRouter } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
+import Loadable from 'react-loadable';
 import Navbar from './Navbar.jsx';
 import Body from './Body.jsx';
 import UserForm from './UserForm.jsx';
@@ -11,6 +12,7 @@ import AccountRecovery from './AccountRecovery.jsx';
 import ResetPassword from './ResetPassword.jsx';
 import AccountSettings from './AccountSettings.jsx';
 import Stats from './Stats.jsx';
+// import Stats from './LoadableStats.jsx';
 import locations from '../data.js';
 
 
