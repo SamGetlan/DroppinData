@@ -1,7 +1,6 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import CheckBox from '@material-ui/core/CheckBox';
 import ListItemText from '@material-ui/core/ListItemText';
 import PurpleCheckBox from './PurpleCheckBox.jsx';
 
@@ -13,6 +12,7 @@ class FilterMyGames extends React.Component {
       gameType: ['solo', 'duo', 'squad'],
       startLocation: this.props.locations.map(location => location.name),
       deathLocation: 'All',
+      seasons: [5],
       worstPlace: 100,
       bestPlace: 1,
       minKills: 0,
@@ -37,6 +37,7 @@ class FilterMyGames extends React.Component {
     this.renderGameType = this.renderGameType.bind(this);
     this.toggleShowFilterStatsOptions = this.toggleShowFilterStatsOptions.bind(this);
     this.stopPropagation = this.stopPropagation.bind(this);
+    this.renderSeasons = this.renderSeasons.bind(this);
   }
 
   toggleShowFilterStatsOptions() {
@@ -145,6 +146,33 @@ class FilterMyGames extends React.Component {
     });
   }
 
+  handleSeasonsChange(seasons) {
+    if (seasons.indexOf('All') > -1) {
+      console.log('seasonsAll');
+      if (this.state.seasons.length === 3) {
+        this.setState({
+          seasons: [],
+        });
+      } else {
+        this.setState({
+          seasons: [3, 4, 5],
+        });
+      }
+    } else {
+      this.setState({
+        seasons,
+      });
+    }
+  }
+
+  renderSeasons() {
+    if (this.state.seasons.length < 3) {
+      return this.state.seasons.join(' and ');
+    } else {
+      return `${this.state.seasons[0]}, ${this.state.seasons[1]}, ...`;
+    }
+  } 
+
   renderStartLocation() {
     if (this.state.startLocation.length < 3) {
       return this.state.startLocation.join(', ');
@@ -177,6 +205,26 @@ class FilterMyGames extends React.Component {
             <option value={location.name} selected={location.name === this.props.filterOptions.startLocation} >{location.name}</option>
             )}
           </select> */}
+          <div className="filterOption">
+            <label>Season</label>
+            <Select 
+              multiple
+              value={this.state.seasons}
+              onChange={(e) => this.handleSeasonsChange(e.target.value)}
+              renderValue={this.renderSeasons}
+            >
+              <MenuItem key={'All'} value={'All'}>
+                <PurpleCheckBox checked={this.state.seasons.length === 3}></PurpleCheckBox>
+                <ListItemText primary={'All'} />
+              </MenuItem>
+              {[3, 4, 5].map(season => 
+              <MenuItem key={`s${season}`} value={season}>
+                <PurpleCheckBox checked={(this.state.seasons.indexOf('All') > -1 ? true : this.state.seasons.indexOf(season) > -1)} />
+                <ListItemText primary={season} />
+              </MenuItem>
+              )}
+            </Select>
+          </div>
           <div className="filterOption">
             <label>Start Location</label>
             <Select 
@@ -269,7 +317,7 @@ class FilterMyGames extends React.Component {
           <input type="number" id="maxDistanceInput" defaultValue={this.state.maxDistanceTraveled} onChange={(e) => this.handleDistanceTraveledChange(this.state.minDistanceTraveled, e.target.value)} /> */}
         </div>
         <div className="submitGameButtonContainer">
-          <button className="submitGameButton" onClick={() => this.props.handleFiltering(false, this.state.gameType, this.state.startLocation, this.state.worstPlace, this.state.bestPlace, this.state.minKills, this.state.maxKills, this.state.minLoot, this.state.maxLoot, undefined, 0, 84, 0, 84)}>Filter!</button>
+          <button className="submitGameButton" onClick={() => this.props.handleFiltering(false, this.state.gameType, this.state.startLocation, this.state.worstPlace, this.state.bestPlace, this.state.minKills, this.state.maxKills, this.state.minLoot, this.state.maxLoot, undefined, this.state.seasons, 0, 82, 0, 82)}>Filter!</button>
         </div>
       </div>
     );

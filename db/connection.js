@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const config = require('./config.js');
 const { Game, User } = require('./models.js');
+const s4Start = new Date('May 1, 2018').getTime();
+const s5Start = new Date('July 12, 2018').getTime();
+const s6Start = new Date('September 25, 2018').getTime();
 
 mongoose.connect(`mongodb://${config.username}:${config.password}@ds119585.mlab.com:19585/droppin_data`);
 
@@ -10,6 +13,25 @@ mongoose.connection.once('open', () => {
   console.log('Connection error:', error);
 });
 
+/* ---------------------------- */
+/* ~~~   Helper Functions   ~~~ */
+/* ---------------------------- */
+
+
+const getCurrentSeason = (date) => {
+  console.log('date:', date);
+  console.log('date getTime:', date.getTime());
+  if (date.getTime() < s4Start) {
+    return 3;
+  } else if (date.getTime() < s5Start) {
+    return 4;
+  } else if (date.getTime() < s6Start) {
+    return 5;
+  } else if (date.getTime() >= s6Start) {
+    return 6;
+  }
+}
+
 const checkGamePlayed = (gamePlayed) => {
   gamePlayed.place = Number(gamePlayed.place);
   gamePlayed.kills = Number(gamePlayed.kills);
@@ -17,13 +39,18 @@ const checkGamePlayed = (gamePlayed) => {
   return (typeof gamePlayed.user === 'string' && typeof gamePlayed.location === 'string' && typeof gamePlayed.place === 'number' && gamePlayed.place > 0 && gamePlayed.place < 101 && typeof gamePlayed.kills === 'number' && gamePlayed.kills >= 0 && gamePlayed.kills < 100 && typeof gamePlayed.loot === 'number' && gamePlayed.loot > 0 && gamePlayed.loot <= 10 && (gamePlayed.gameType === 'solo' || gamePlayed.gameType === 'duo' || gamePlayed.gameType === 'squad'));
 }
 
+/* ---------------------------- */
+/* ~~~  Exported Functions  ~~~ */
+/* ---------------------------- */
+
 const saveGame = (gamePlayed, callback) => {
   if (checkGamePlayed(gamePlayed)) {
-    console.log('gamePlayed.stormDeath:', gamePlayed.stormDeath);
+    const date = new Date();
     const game = new Game({
       user: gamePlayed.user,
       locationTracking: gamePlayed.locationTracking,
-      date: new Date(),
+      date,
+      season: getCurrentSeason(date),
       location: gamePlayed.location,
       startCoordinates: gamePlayed.startCoordinates,
       place: gamePlayed.place,
@@ -127,11 +154,3 @@ module.exports = {
   deleteGame,
   updateGame,
 };
-// module.exports.saveGame = saveGame;
-// module.exports.loadGames = loadGames;
-// module.exports.checkUsername = checkUsername;
-// module.exports.checkEmail = checkEmail;
-// module.exports.checkToken = checkToken;
-// module.exports.updateSettings = updateSettings;
-// module.exports.deleteGame = deleteGame;
-// module.exports.updateGame = updateGame;

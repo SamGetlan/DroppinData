@@ -71,3 +71,41 @@
 //     }
 //   }
 // })
+
+// const s4Start = new Date('May 1, 2018').getTime();
+// const s5Start = new Date('July 12, 2018').getTime();
+// const s6Start = new Date('September 25, 2018').getTime();
+
+// const getCurrentSeason = (date) => {
+//   console.log('date:', date);
+//   console.log('date getTime:', date.getTime());
+//   if (date.getTime() < s4Start) {
+//     return 3;
+//   } else if (date.getTime() < s5Start) {
+//     return 4;
+//   } else if (date.getTime() < s6Start) {
+//     return 5;
+//   } else if (date.getTime() >= s6Start) {
+//     return 6;
+//   }
+// }
+
+
+// Game.find({}, null, null, (err, games) => {
+//   if (err) {
+//     console.log('error:', err);
+//   } else {
+//     for (var i = 0; i < games.length; i++) {
+//       if (!games[i].season) {
+//         games[i].season = getCurrentSeason(games[i].date);
+//         games[i].save((err, results) => {
+//           if (err) {
+//             console.log('error on game save');
+//           } else {
+//             console.log('game saved');
+//           }
+//         })
+//       }
+//     }
+//   }
+// })

@@ -14,6 +14,8 @@ import Stats from './Stats.jsx';
 import locations from '../data.js';
 
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -55,6 +57,7 @@ class App extends React.Component {
       filterOptions: {
         startLocation: 'All',
         deathLocation: 'All',
+        season: 5,
         worstPlace: 100,
         bestPlace: 1,
         worstKills: 0,
@@ -219,9 +222,7 @@ class App extends React.Component {
         }
       })
       .catch((err) => {
-        if (err.statusCode === 500) {
-          console.log('good guess');
-        }
+        console.log('Error code:', err.response.status);
         context.setState({
           deadCenterFlashText: `There was an error: ${err}`,
         });
@@ -900,8 +901,9 @@ class App extends React.Component {
   }
 
   updateFilteredUserGames() {
+    console.log('updating updateFilteredUserGames for the first time');
     this.setState({
-      filteredUserGames: (this.state.userGames !== null ? this.state.userGames.slice() : null),
+      filteredUserGames: (this.state.userGames !== null ? this.state.userGames.slice().filter(game => game.season === 5) : null),
     })
   }
 
@@ -982,34 +984,52 @@ class App extends React.Component {
     return games.filter(game => gameTypes.indexOf(game.gameType) > -1);
   }
 
-  handleFiltering(reset, gameTypes, locations, worstPlace, bestPlace, minKills, maxKills, minLoot, maxLoot, stormDeath, minRow, maxRow, minCol, maxCol) {
+  handleFilterOnSeason(games, seasons) {
+    return games.filter(game => seasons.indexOf(game.season) > -1);
+  }
+
+  handleFiltering(reset, gameTypes, locations, worstPlace, bestPlace, minKills, maxKills, minLoot, maxLoot, stormDeath, seasons, minRow, maxRow, minCol, maxCol) {
     let games = this.state.userGames.slice();
+    console.log('filtering games from games.length:', games.length);
     if (reset) {
       this.setState({
         filteredUserGames: games,
       })
     } else {
+      if (seasons.length !== 3) {
+        console.log('filtering by season from seasons:', seasons);
+        console.log('filtering games from games.length:', games.length);
+        games = this.handleFilterOnSeason(games, seasons)
+      }
       if (locations.length !== this.state.locations.length) {
+        console.log('filtering locations from games.length:', games.length);
         games = this.handleFilterOnStartLocation(games, locations);
       }
       if (gameTypes.length !== 3) {
+        console.log('filtering gameTypes from games.length:', games.length);
         games = this.handleFilterOnGameType(games, gameTypes);
       }
       if (worstPlace !== 100 || bestPlace !== 1) {
+        console.log('filtering place from games.length:', games.length);
         games = this.handleFilterOnPlace(games, worstPlace, bestPlace);
       }
       if (minKills !== 0 || maxKills !== 99) {
+        console.log('filtering kills from games.length:', games.length);
         games = this.handleFilterOnKills(games, minKills, maxKills);
       }
       if (minLoot !== 0 || maxLoot !== 10) {
+        console.log('filtering loot from games.length:', games.length);
         games = this.handleFilterOnLoot(games, minLoot, maxLoot);
       }
       if (stormDeath !== undefined) {
+        console.log('filtering stormDeath from games.length:', games.length);
         games = this.handleFilterOnStormDeath(games, stormDeath);
       }
       if (minRow !== undefined && (minRow !== 0 || maxRow !== 82 || minCol !== 0 || maxCol !== 82)) {
+        console.log('filtering row&col from games.length:', games.length);
         games = this.handleFilterOnDeathCoordinates(games, minRow, maxRow, minCol, maxCol);
       }
+      console.log('final filter length:', games.length);
       this.setState({
         filteredUserGames: games,
       })

@@ -38,6 +38,7 @@ const gameSchema = mongoose.Schema({
     type: String,
   },
   date: Date,
+  season: Number,
   location: {
     type: String,
     required: true,
