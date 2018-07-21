@@ -32,7 +32,7 @@ TODO: Add unit tests.
 
 In order to deploy in a live environment use `npm run build` to bundle any changes and `npm run zip` to zip the relevant folders into a .zip file to deploy.
 
-## Build With
+## Built With
 
 * [React](https://www.reactjs.org) - Front-End Framework used
 * [Recharts](recharts.org) - Charting library built on React components
