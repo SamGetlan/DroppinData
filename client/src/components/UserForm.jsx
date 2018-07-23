@@ -8,10 +8,12 @@ class UserForm extends React.Component {
     this.state = {
       passwordsMatch: null,
       usernameUniq: null,
+      emailUniq: null,
       validEmail: '',
     };
     this.passwordCheck = this.passwordCheck.bind(this);
     this.checkUsername = this.checkUsername.bind(this);
+    this.checkEmail = this.checkEmail.bind(this);
     this.checkEmailValidity = this.checkEmailValidity.bind(this);
   }
 
@@ -49,7 +51,7 @@ class UserForm extends React.Component {
         }
       })
       .catch((err) => {
-        console.log('There was an error:', err);
+        console.log('There was an error checking username:', err);
       });
   }
 
@@ -81,6 +83,30 @@ class UserForm extends React.Component {
         validEmail: false,
       });
     }
+  }
+
+  checkEmail() {
+    const context = this;
+    console.log('inside checkEmail');
+    const email = (document.getElementById('emailInput').value).toLowerCase();
+    axios.post('/api/checkEmail', {
+      email,
+    })
+      .then((data) => {
+        console.log(data.data);
+        if (data.data === null) {
+          context.setState({
+            emailUniq: true,
+          });
+        } else {
+          context.setState({
+            emailUniq: false,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log('There was an error checking email:', err);
+      })
   }
 
   render() {
@@ -118,13 +144,13 @@ class UserForm extends React.Component {
                 <input type="password" onChange={this.passwordCheck} placeholder="Enter Password" id="passwordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
                 <label htmlFor="repeatPasswordInput" >Repeat Password {this.state.passwordsMatch === false && <span className="labelFalse"> - passwords do not match</span>}</label>
                 <input type="password" onChange={this.passwordCheck} placeholder="Repeat Password" id="repeatPasswordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
-                <label htmlFor="emailInput" >Email {this.state.validEmail === false && <span className="labelFalse"> - please enter a valid email</span>}</label>
-                <input type="text" onChange={this.checkEmailValidity} placeholder="Email for account recovery" id="emailInput" className={this.state.validEmail === true ? 'passwordsMatch' : (this.state.validEmail === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
+                <label htmlFor="emailInput" >Email {this.state.validEmail === false && <span className="labelFalse"> - please enter a valid email</span>} {(this.state.validEmail !== false && this.state.emailUniq === false) && <span className="labelFalse"> - email already associated with an account</span>}</label>
+                <input type="text" onChange={() => { this.checkEmailValidity(); this.checkEmail(); } } placeholder="Email for account recovery" id="emailInput" className={(this.state.validEmail === true && this.state.emailUniq) ? 'passwordsMatch' : ((this.state.validEmail === false || this.state.emailUniq === false) ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
               </form>
-              {(this.state.passwordsMatch === true && this.state.usernameUniq === true) &&
+              {(this.state.passwordsMatch === true && this.state.usernameUniq === true && this.state.emailUniq === true) &&
                 <button id="submitSignUpForm" onClick={() => this.props.handleAccountSignUp(document.getElementById('usernameInput').value, document.getElementById('passwordInput').value, document.getElementById('emailInput').value)} >Submit</button> 
               }
-              {(this.state.passwordsMatch === true && this.state.usernameUniq === true) ||
+              {(this.state.passwordsMatch === true && this.state.usernameUniq === true && this.state.emailUniq === true) ||
                 <button id="submitSignUpForm" className="disabled" >Submit</button>
               }
             </div>}

@@ -6,4 +6,5 @@ client/.DS_Store
 node_modules
 server/config.js
 .vscode
+config/
 

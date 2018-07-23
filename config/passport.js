@@ -25,21 +25,29 @@ module.exports = function configurePassport(passport) {
             console.log('Sorry, that username is already taken');
             return done(null, false, { message: 'That username is already taken' });
           }
-          const newUser = new User();
-          newUser.username = username;
-          newUser.password = newUser.generateHash(password);
-          newUser.createdAt = req.body.createdAt;
-          newUser.email = req.body.emailAddress;
-          newUser.settings = {
-            colorBlind: false,
-            stormBackground: true,
-            locationTracking: 'name',
-          }
+          let email = req.body.emailAddress;
+          User.findOne({ email }, (err, user) => {
+            if (err) { return done(err); }
+            if (user) {
+              console.log('Sorry, that email is already taken');
+              return done(null, false, { message: 'That email is already taken' });
+            }
+            const newUser = new User();
+            newUser.username = username;
+            newUser.password = newUser.generateHash(password);
+            newUser.createdAt = req.body.createdAt;
+            newUser.email = req.body.emailAddress.toLowerCase();
+            newUser.settings = {
+              colorBlind: false,
+              stormBackground: true,
+              locationTracking: 'name',
+            }
 
-          newUser.save((error) => {
-            if (error) { throw error; }
-            return done(null, newUser);
-          });
+            newUser.save((error) => {
+              if (error) { throw error; }
+              return done(null, newUser);
+            });
+          }) 
         });
       });
     },

@@ -76,6 +76,12 @@ module.exports = (app, passport) => {
     });
   });
 
+  app.post('/api/checkEmail', (req, res) => {
+    db.checkEmail(req.body.email, (err, user) => {
+      res.send(JSON.stringify(user));
+    });
+  });
+
   app.get('/api/logout', (req, res) => {
     req.logout();
     res.redirect('/');

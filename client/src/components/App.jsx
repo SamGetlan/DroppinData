@@ -160,7 +160,7 @@ class App extends React.Component {
       username,
       password,
       createdAt: new Date(),
-      emailAddress,
+      emailAddress: emailAddress.toLowerCase(),
     })
       .then((data) => {
         const user = JSON.parse(data.config.data).username;

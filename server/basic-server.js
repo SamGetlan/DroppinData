@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const path = require('path');
+const config = require('./config.js');
 
 const app = express();
 module.exports.app = app;
@@ -18,7 +19,7 @@ require('../config/passport')(passport);
 app.use(morgan('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded());
-app.use(session({ secret: 'Where we Droppin' }));
+app.use(session({ secret: config.secret }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
