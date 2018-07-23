@@ -12,7 +12,6 @@ class AccountSettings extends React.Component {
     }
     this.handleColorBlindChange = this.handleColorBlindChange.bind(this);
     this.handleStormBackgroundChange = this.handleStormBackgroundChange.bind(this);
-    this.handleLocationTrackingChange = this.handleLocationTrackingChange.bind(this);
   }
 
 
@@ -26,13 +25,6 @@ class AccountSettings extends React.Component {
     this.setState({
       stormBackground: event.target.value,
     });
-  }
-
-  handleLocationTrackingChange() {
-    const locationTracking = event.target.value;
-    this.setState({
-      locationTracking,
-    })
   }
 
   render() {
@@ -51,15 +43,6 @@ class AccountSettings extends React.Component {
               <select id="stormInput" onChange={this.handleStormBackgroundChange} value={this.state.stormBackground}>
                 <option value="true">True</option>
                 <option value="false">False</option>
-              </select>
-            </div>
-            <div className="entryContainer">
-              <h3 className="inputLabel">Location Tracking</h3> 
-              <select id="locationTrackingInput" value={this.state.locationTracking} onChange={this.handleLocationTrackingChange}>
-                <option value='name'>Location Name</option>
-                <option value='grid'>Map Grid</option>
-                <option value='nameCoordinates'>Map Coordinates by Location Name</option>
-                <option value='gridCoordinates'>Map Coordinates by Map Grid</option>
               </select>
             </div>
           </div>

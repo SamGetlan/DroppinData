@@ -1,7 +1,7 @@
 // const mongoose = require('mongoose');
 // const config = require('./config.js');
 // const { Game, User } = require('./models.js');
-// const locations = require('../client/src/data.js').locations;  // requires data.js to export locations as module.exports.locations rather than export default
+// // const locations = require('../client/src/data.js').locations;  // requires data.js to export locations as module.exports.locations rather than export default
 
 // mongoose.connect(`mongodb://${config.username}:${config.password}@ds119585.mlab.com:19585/droppin_data`);
 
@@ -106,6 +106,23 @@
 //           }
 //         })
 //       }
+//     }
+//   }
+// })
+
+// User.find({}, null, null, (err, users) => {
+//   if (err) {
+//     console.log('error:', err);
+//   } else {
+//     for (let i = 0; i < users.length; i++) {
+//       users[i].email = users[i].email.toLowerCase();
+//       users[i].save((err, results) => {
+//         if (err) {
+//           console.log('error on game save');
+//         } else {
+//           console.log(`user ${i} saved`);
+//         }
+//       })
 //     }
 //   }
 // })
