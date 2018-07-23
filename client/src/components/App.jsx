@@ -782,7 +782,7 @@ class App extends React.Component {
       .then((data) => {
         context.props.history.push('/home/login');
         context.setState({
-          deadCenterFlashText: `password reset accepted ${data}`,
+          deadCenterFlashText: `password reset accepted`,
         }, () => setTimeout(() => {
           context.setState({
             deadCenterFlashText: null,
