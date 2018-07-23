@@ -9,8 +9,8 @@ class PieChartTooltip extends React.Component {
     if (this.props.active) {
       return (
         <div className="pieChartTooltip">
-          <p>Location: {this.props.payload[0].payload.location}</p>
-          <p>Games at Location: {this.props.payload[0].payload.totalGames}</p>
+          <h2>{this.props.payload[0].payload.location}</h2>
+          <p>Games: {this.props.payload[0].payload.totalGames}</p>
           <p>{Math.round((this.props.payload[0].payload.totalGames / this.props.totalGames) * 10000) / 100}% of current filtered selection</p>
         </div>
       );

@@ -1475,7 +1475,17 @@ td.rdtYear:hover {
 
 .pieChartTooltip {
   background: white;
+  border-radius: 5px;
   border: 1px solid black;
+  padding: 2rem;
+}
+.pieChartTooltip h2 {
+  text-align: center;
+  font-size: 22px;
+}
+.pieChartTooltip p {
+  text-align: center;
+  font-size: 16px;
 }
 
 .loadingCenterScreen {

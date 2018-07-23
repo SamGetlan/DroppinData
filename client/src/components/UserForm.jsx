@@ -139,7 +139,7 @@ class UserForm extends React.Component {
               <h4 id="userFormSubTitle">Please fill in this form to create an account</h4>
               <form id="signUpForm">
                 <label htmlFor="usernameInput" className={this.state.usernameUniq === false ? 'label labelFalse' : (this.state.usernameUniq === true ? 'label labelTrue' : 'label')}>{this.state.usernameUniq === false ? 'Username taken' : (this.state.usernameUniq === true ? 'Username available' : 'Username')}</label>
-                <input type="text" onBlur={this.checkUsername} placeholder="Enter Username" id="usernameInput" className={this.state.usernameUniq === true ? 'usernameUniq' : (this.state.usernameUniq === false ? 'usernameTaken' : 'usernameNotChecked')} />
+                <input type="text" onChange={this.checkUsername} placeholder="Enter Username" id="usernameInput" className={this.state.usernameUniq === true ? 'usernameUniq' : (this.state.usernameUniq === false ? 'usernameTaken' : 'usernameNotChecked')} />
                 <label htmlFor="passwordInput" >Password</label>
                 <input type="password" onChange={this.passwordCheck} placeholder="Enter Password" id="passwordInput" className={this.state.passwordsMatch === true ? 'passwordsMatch' : (this.state.passwordsMatch === false ? 'passwordsNoMatch' : 'passwordsNotChecked')} />
                 <label htmlFor="repeatPasswordInput" >Repeat Password {this.state.passwordsMatch === false && <span className="labelFalse"> - passwords do not match</span>}</label>
