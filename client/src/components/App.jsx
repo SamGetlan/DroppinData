@@ -754,17 +754,22 @@ class App extends React.Component {
     const context = this;
     axios.post('/api/forgot', { email })
       .then((data) => {
-        context.props.history.push('/home');
-      })
-      .catch(err => {
-        this.setState({
-          deadCenterFlashText: `There was an error: ${err}`,
-        });
-        setTimeout(() => {
+        context.setState({
+          deadCenterFlashText: 'Email sent if associated with an account: please remember to check your spam folder',
+        }, () => setTimeout(() => {
           context.setState({
             deadCenterFlashText: null,
           });
-        }, 3000)
+        }, 3000))
+      })
+      .catch(err => {
+        context.setState({
+          deadCenterFlashText: `There was an error: ${err}`,
+        }, () => setTimeout(() => {
+          context.setState({
+            deadCenterFlashText: null,
+          });
+        }, 3000));
       })
   }
 
@@ -775,17 +780,24 @@ class App extends React.Component {
       password: password,
     })
       .then((data) => {
-        context.props.history.push('/login');
-      })
-      .catch((err) => {
-        this.setState({
-          deadCenterFlashText: `Error resetting password: ${err}`,
-        });
-        setTimeout(() => {
+        context.props.history.push('/home/login');
+        context.setState({
+          deadCenterFlashText: `password reset accepted ${data}`,
+        }, () => setTimeout(() => {
           context.setState({
             deadCenterFlashText: null,
           });
         }, 3000)
+      )})
+      .catch((err) => {
+        context.setState({
+          deadCenterFlashText: `Error resetting password: ${err}`,
+        }, () => setTimeout(() => {
+            context.setState({
+              deadCenterFlashText: null,
+            });
+          }, 3000)
+        );
       })
   }
 
