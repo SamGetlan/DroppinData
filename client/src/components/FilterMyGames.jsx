@@ -174,12 +174,12 @@ class FilterMyGames extends React.Component {
   } 
 
   renderStartLocation() {
-    if (this.state.startLocation.length < 3) {
-      return this.state.startLocation.join(', ');
+    if (this.state.startLocation.length === 1) {
+      return 'One';
     } else if (this.state.startLocation.length === this.props.locations.length) {
-      return 'All';
+      return '...';
     } else {
-      return `${this.state.startLocation[0]}, ${this.state.startLocation[1]}, ...`;
+      return `Many`;
     }
   }
 
