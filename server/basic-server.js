@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const path = require('path');
+const compression = require('compression');
 const config = require('./config.js');
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(session({ secret: config.secret }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(compression());
 
 // routes
 require('./routes.js')(app, passport);

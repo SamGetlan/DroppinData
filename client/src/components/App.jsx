@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect, Route, withRouter } from 'react-router-dom';
-// import Loadable from 'react-loadable';
+//import Loadable from 'react-loadable';
 import Navbar from './Navbar.jsx';
 import Body from './Body.jsx';
 import UserForm from './UserForm.jsx';
@@ -1225,7 +1225,7 @@ class App extends React.Component {
         <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
           userGames={this.state.userGames}
           filteredUserGames={this.state.filteredUserGames}
-          data={this.state.dashboardData}
+          dashboardData={this.state.dashboardData}
           statLoading={this.state.statLoading}
           getDashboardData={this.getDashboardData}
           getPieChartData={this.getPieChartData}
