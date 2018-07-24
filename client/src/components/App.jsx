@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect, Route, withRouter } from 'react-router-dom';
-import Loadable from 'react-loadable';
+// import Loadable from 'react-loadable';
 import Navbar from './Navbar.jsx';
 import Body from './Body.jsx';
 import UserForm from './UserForm.jsx';
@@ -11,7 +11,10 @@ import FullMap from './FullMap.jsx';
 import AccountRecovery from './AccountRecovery.jsx';
 import ResetPassword from './ResetPassword.jsx';
 import AccountSettings from './AccountSettings.jsx';
-import Stats from './Stats.jsx';
+import FilterMyGames from './FilterMyGames.jsx';
+import MyGames from './MyGames.jsx';
+import StatDashboard from './StatDashboard.jsx';
+// import Stats from './Stats.jsx';
 // import Stats from './LoadableStats.jsx';
 import locations from '../data.js';
 
@@ -1177,7 +1180,7 @@ class App extends React.Component {
           applySettings={this.applySettings}
           userSettings={this.state.userSettings}
         />} />
-        <Route path="/stats" render={props => <Stats {...props}
+        {/* <Route path="/stats" render={props => <Stats {...props}
           userGames={this.state.userGames}
           navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
           classes={['home', 'dashboard', 'myGames', 'login']}
@@ -1193,6 +1196,36 @@ class App extends React.Component {
           handleFiltering={this.handleFiltering}
           handleNotCompliantEditGameSubmission={this.handleNotCompliantEditGameSubmission}
           dashboardData={this.state.dashboardData}
+          statLoading={this.state.statLoading}
+          getDashboardData={this.getDashboardData}
+          getPieChartData={this.getPieChartData}
+          pieChartData={this.state.pieChartData}
+        />} /> */}
+        <Route path="/stats" render={props => <Navbar {...props}
+          navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
+          classes={['home', 'dashboard', 'myGames', 'login']}
+          handleUserFormClick={this.handleUserFormClick}
+          loggedIn={this.state.loggedIn}
+          handleAccountOptionsClick={this.handleAccountOptionsClick}
+        />} />
+        <Route path="/stats" render={props => <FilterMyGames {...props}
+          handleFiltering={this.handleFiltering}
+          filterOptions={this.state.filterOptions}
+          locations={this.state.locations}
+        />} />
+        <Route path="/stats/myGames" render={props => <MyGames {...props}
+          userGames={this.state.userGames}
+          filteredUserGames={this.state.filteredUserGames}
+          confirmDeleteGameCard={this.confirmDeleteGameCard}
+          locations={this.state.locations}
+          updateLocalGame={this.updateLocalGame}
+          handleNotCompliantEditGameSubmission={this.handleNotCompliantEditGameSubmission}
+          statLoading={this.state.statLoading}
+        />} />
+        <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
+          userGames={this.state.userGames}
+          filteredUserGames={this.state.filteredUserGames}
+          data={this.state.dashboardData}
           statLoading={this.state.statLoading}
           getDashboardData={this.getDashboardData}
           getPieChartData={this.getPieChartData}
