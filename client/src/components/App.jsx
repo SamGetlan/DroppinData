@@ -202,7 +202,7 @@ class App extends React.Component {
           });
           axios.get('/api/games')
             .then((data) => {
-              console.log(data.data);
+              //console.log(data.data);
               const userGameData = context.getUserGameData(data.data);
               context.props.history.push('/home');
               context.setState({
@@ -224,7 +224,7 @@ class App extends React.Component {
         }
       })
       .catch((err) => {
-        console.log('Error code:', err.response.status);
+        //console.log('Error code:', err.response.status);
         context.setState({
           deadCenterFlashText: `There was an error: ${err}`,
         });
@@ -571,7 +571,7 @@ class App extends React.Component {
   }
 
   notRecentGroupClick() {
-    console.log('userGamedata', this.state.userGameData);
+    //console.log('userGamedata', this.state.userGameData);
     const context = this;
     const type = 'all';
     if (this.state.userGames !== null && this.state.userGames.length > 9) {
@@ -588,7 +588,7 @@ class App extends React.Component {
           }
         }
       }
-      console.log('results:', results);
+      //console.log('results:', results);
       this.setState({
         filteredLocations: results,
         activeIndex: false,
@@ -835,7 +835,7 @@ class App extends React.Component {
     const gridSpot = Number(e.target.id.split('Spot')[1])
     const rows = Math.floor(gridSpot / 72);
     const cols = (gridSpot % 72);
-    console.log([rows, cols]);
+    // console.log([rows, cols]);
     const getCoordinate = (location, rows, cols) => {
       const { topLeft } = location;
       return [(topLeft[0] + rows), (topLeft[1] + cols)];
@@ -857,8 +857,8 @@ class App extends React.Component {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
     const rows = Math.floor(gridSpot / 82);
     const cols = (gridSpot % 82);
-    console.log('gridSpot:', gridSpot);
-    console.log([rows, cols]);
+    // console.log('gridSpot:', gridSpot);
+    // console.log([rows, cols]);
     const top = (`${(rows + 0.5) * (100 / 82)}%`);
     const left = (`${(cols + 0.5) * (100 / 82)}%`);
     this.setState({
@@ -877,9 +877,9 @@ class App extends React.Component {
         const location = this.state.filteredLocations[this.state.activeIndex];
         const rows = (this.state.filteredLocations[this.state.activeIndex].start[0] / 3);
         const cols = (this.state.filteredLocations[this.state.activeIndex].start[1] / 3);
-        console.log('location:', location);
-        console.log('rows:', rows);
-        console.log('cols:', cols);
+        // console.log('location:', location);
+        // console.log('rows:', rows);
+        // console.log('cols:', cols);
         const getCoordinate = (location, rows, cols) => {
           const { topLeft } = location;
           return [Math.floor((topLeft[0] / 3) + rows), Math.floor((topLeft[1] / 3) + cols)];
@@ -887,8 +887,8 @@ class App extends React.Component {
         const deathMapMarker = getCoordinate(location, rows, cols);
         const top = `${(deathMapMarker[0] + 0.5) * (100 / 82)}%`;
         const left = `${(deathMapMarker[1] + 0.5) * (100 / 82)}%`;
-        console.log('top:', top);
-        console.log('left:', left);
+        // console.log('top:', top);
+        // console.log('left:', left);
         this.setState({
           deathMapMarker,
           deathMapMarkerStyle: {
@@ -915,7 +915,7 @@ class App extends React.Component {
   }
 
   updateFilteredUserGames() {
-    console.log('updating updateFilteredUserGames for the first time');
+    // console.log('updating updateFilteredUserGames for the first time');
     this.setState({
       filteredUserGames: (this.state.userGames !== null ? this.state.userGames.slice().filter(game => game.season === 5) : null),
     })
@@ -1004,46 +1004,46 @@ class App extends React.Component {
 
   handleFiltering(reset, gameTypes, locations, worstPlace, bestPlace, minKills, maxKills, minLoot, maxLoot, stormDeath, seasons, minRow, maxRow, minCol, maxCol) {
     let games = this.state.userGames.slice();
-    console.log('filtering games from games.length:', games.length);
+    // console.log('filtering games from games.length:', games.length);
     if (reset) {
       this.setState({
         filteredUserGames: games,
       })
     } else {
       if (seasons.length !== 3) {
-        console.log('filtering by season from seasons:', seasons);
-        console.log('filtering games from games.length:', games.length);
+        // console.log('filtering by season from seasons:', seasons);
+        // console.log('filtering games from games.length:', games.length);
         games = this.handleFilterOnSeason(games, seasons)
       }
       if (locations.length !== this.state.locations.length) {
-        console.log('filtering locations from games.length:', games.length);
+        // console.log('filtering locations from games.length:', games.length);
         games = this.handleFilterOnStartLocation(games, locations);
       }
       if (gameTypes.length !== 3) {
-        console.log('filtering gameTypes from games.length:', games.length);
+        // console.log('filtering gameTypes from games.length:', games.length);
         games = this.handleFilterOnGameType(games, gameTypes);
       }
       if (worstPlace !== 100 || bestPlace !== 1) {
-        console.log('filtering place from games.length:', games.length);
+        // console.log('filtering place from games.length:', games.length);
         games = this.handleFilterOnPlace(games, worstPlace, bestPlace);
       }
       if (minKills !== 0 || maxKills !== 99) {
-        console.log('filtering kills from games.length:', games.length);
+        //console.log('filtering kills from games.length:', games.length);
         games = this.handleFilterOnKills(games, minKills, maxKills);
       }
       if (minLoot !== 0 || maxLoot !== 10) {
-        console.log('filtering loot from games.length:', games.length);
+        //console.log('filtering loot from games.length:', games.length);
         games = this.handleFilterOnLoot(games, minLoot, maxLoot);
       }
       if (stormDeath !== undefined) {
-        console.log('filtering stormDeath from games.length:', games.length);
+        //console.log('filtering stormDeath from games.length:', games.length);
         games = this.handleFilterOnStormDeath(games, stormDeath);
       }
       if (minRow !== undefined && (minRow !== 0 || maxRow !== 82 || minCol !== 0 || maxCol !== 82)) {
-        console.log('filtering row&col from games.length:', games.length);
+        //console.log('filtering row&col from games.length:', games.length);
         games = this.handleFilterOnDeathCoordinates(games, minRow, maxRow, minCol, maxCol);
       }
-      console.log('final filter length:', games.length);
+      //console.log('final filter length:', games.length);
       this.setState({
         filteredUserGames: games,
       })
