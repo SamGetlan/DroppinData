@@ -44,7 +44,7 @@ class DashboardMap extends React.Component {
   }
 
   updateCanvasSize(screenWidth) {
-    console.log('screenWidth:', screenWidth);
+    // console.log('screenWidth:', screenWidth);
     if (screenWidth > 700) {
       this.setState({
         canvasSize: (screenWidth * 0.45),

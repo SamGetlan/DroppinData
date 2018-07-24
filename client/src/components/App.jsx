@@ -1225,7 +1225,7 @@ class App extends React.Component {
         <Route path="/stats/dashboard" render={props => <StatDashboard {...props}
           userGames={this.state.userGames}
           filteredUserGames={this.state.filteredUserGames}
-          dashboardData={this.state.dashboardData}
+          data={this.state.dashboardData}
           statLoading={this.state.statLoading}
           getDashboardData={this.getDashboardData}
           getPieChartData={this.getPieChartData}
