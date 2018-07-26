@@ -6,6 +6,7 @@ class DashboardMap extends React.Component {
     super(props);
     this.state = {
       canvasSize: null,
+      mobile: true,
     };
     this.updateCanvasSize = this.updateCanvasSize.bind(this);
   }
@@ -44,29 +45,31 @@ class DashboardMap extends React.Component {
   }
 
   updateCanvasSize(screenWidth) {
-    // console.log('screenWidth:', screenWidth);
     if (screenWidth > 700) {
       this.setState({
         canvasSize: (screenWidth * 0.45),
+        mobile: false,
       })
     } else {
       this.setState({
-        canvasSize: screenWidth,
+        canvasSize: (screenWidth - 20),
+        mobile: true,
       })
     }
   }
 
   componentDidUpdate() {
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === width)) {
+    const width = (window.visualViewport ? window.visualViewport.width : (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth));
+
+    if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === (width - 20))) {
       this.updateCanvasSize(width);
     }
     this.updateCanvas();
   }
 
   componentDidMount() {
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === width)) {
+    const width = (window.visualViewport ? window.visualViewport.width : (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth));
+    if (!(this.state.canvasSize === width * 0.45 || this.state.canvasSize === (width - 20))) {
       this.updateCanvasSize(width);  
     }
     this.updateCanvas();
@@ -75,7 +78,10 @@ class DashboardMap extends React.Component {
   render() {
     return (
       <div id="dashboardMapContainer">
-        <img id="dashboardMapImage" src="/locationPics/season5/season5fullMap.jpg" alt-src="Full Map" height="95.4551%" width="100%" />
+        {this.state.mobile &&
+        <img id="dashboardMapImage" src="/locationPics/season5/season5fullMap.jpg" alt-src="Full Map" height="100%" width="100%" />}
+        {this.state.mobile ||
+        <img id="dashboardMapImage" src="/locationPics/season5/season5fullMap.jpg" alt-src="Full Map" height="95.4551%" width="100%" />}
         <canvas id="dashboardMapCanvas" width={this.state.canvasSize} height={this.state.canvasSize} />
       </div>
     );

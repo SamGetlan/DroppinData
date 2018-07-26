@@ -54,7 +54,7 @@ class AccountSettings extends React.Component {
               </select>
             </div>
             <div className="entryContainer">
-              <h3 className="inputLabel">Canvas Arrow Color</h3> 
+              <h3 className="inputLabel">Arrow Color on Stat Dashboard Map</h3> 
               <select id="canvasInput" onChange={this.handleCanvasArrowColorChange} value={this.state.canvasArrowColor}>
                 <option value="red">Red</option>
                 <option value="blue">Blue</option>
