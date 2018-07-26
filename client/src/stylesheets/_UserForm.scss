@@ -71,6 +71,12 @@
   padding: 0;
 }
 
+@media only screen and (max-width: 700px) {
+  #x {
+    right: -0.5rem;
+  }
+}
+
 #closeButtonContainer {
   display: flex;
   padding-top: 1.3rem;
@@ -87,6 +93,7 @@
   color: gray;
   text-decoration: underline;
   padding: 0;
+  background: white;
 }
 
 #signUpForm {

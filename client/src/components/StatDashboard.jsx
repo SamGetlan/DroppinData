@@ -2,7 +2,6 @@ import React from 'react';
 import DashboardMap from './DashboardMap.jsx';
 import PieChartTooltip from './PieChartTooltip.jsx';
 import moment from 'moment';
-import { withRouter } from 'react-router';
 import { Tooltip, Cell, PieChart, Pie, LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer } from 'recharts';
 class StatDashboard extends React.Component {
   constructor(props) {
@@ -32,7 +31,7 @@ class StatDashboard extends React.Component {
     return (
       <div className="statDashboardContainer">
         {this.props.filteredUserGames !== null && 
-        <DashboardMap filteredUserGames={this.props.filteredUserGames} />
+        <DashboardMap arrowColor={this.props.arrowColor} filteredUserGames={this.props.filteredUserGames} />
         }
         {this.props.filteredUserGames !== null &&
         <div id="quickDashboardStats">
@@ -106,4 +105,4 @@ class StatDashboard extends React.Component {
 }
 
 
-export default withRouter(StatDashboard);
+export default StatDashboard;

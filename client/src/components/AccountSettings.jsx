@@ -9,9 +9,11 @@ class AccountSettings extends React.Component {
       colorBlind: this.props.userSettings.colorBlind,
       stormBackground: this.props.userSettings.stormBackground,
       locationTracking: this.props.userSettings.locationTracking,
+      canvasArrowColor: this.props.userSettings.canvasArrowColor,
     }
     this.handleColorBlindChange = this.handleColorBlindChange.bind(this);
     this.handleStormBackgroundChange = this.handleStormBackgroundChange.bind(this);
+    this.handleCanvasArrowColorChange = this.handleCanvasArrowColorChange.bind(this);
   }
 
 
@@ -24,6 +26,12 @@ class AccountSettings extends React.Component {
   handleStormBackgroundChange() {
     this.setState({
       stormBackground: event.target.value,
+    });
+  }
+
+  handleCanvasArrowColorChange() {
+    this.setState({
+      canvasArrowColor: event.target.value
     });
   }
 
@@ -43,6 +51,16 @@ class AccountSettings extends React.Component {
               <select id="stormInput" onChange={this.handleStormBackgroundChange} value={this.state.stormBackground}>
                 <option value="true">True</option>
                 <option value="false">False</option>
+              </select>
+            </div>
+            <div className="entryContainer">
+              <h3 className="inputLabel">Arrow Color on Stat Dashboard Map</h3> 
+              <select id="canvasInput" onChange={this.handleCanvasArrowColorChange} value={this.state.canvasArrowColor}>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="yellow">Yellow</option>
+                <option value="white">White</option>
+                <option value="black">Black</option>
               </select>
             </div>
           </div>

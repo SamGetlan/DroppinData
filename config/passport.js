@@ -41,6 +41,7 @@ module.exports = function configurePassport(passport) {
               colorBlind: false,
               stormBackground: true,
               locationTracking: 'name',
+              canvasArrowColor: 'red',
             }
 
             newUser.save((error) => {
