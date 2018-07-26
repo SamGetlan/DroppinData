@@ -35,7 +35,7 @@ class DashboardMap extends React.Component {
           const toY = (games[i].deathCoordinates[0] * (this.state.canvasSize/82));
           ctx.beginPath();
           canvasArrow(ctx, fromX, fromY, toX, toY);
-          ctx.strokeStyle = '#ff0000';
+          ctx.strokeStyle = this.props.arrowColor;
           ctx.stroke();
         }
       }

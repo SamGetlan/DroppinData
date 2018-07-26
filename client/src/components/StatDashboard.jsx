@@ -31,7 +31,7 @@ class StatDashboard extends React.Component {
     return (
       <div className="statDashboardContainer">
         {this.props.filteredUserGames !== null && 
-        <DashboardMap filteredUserGames={this.props.filteredUserGames} />
+        <DashboardMap arrowColor={this.props.arrowColor} filteredUserGames={this.props.filteredUserGames} />
         }
         {this.props.filteredUserGames !== null &&
         <div id="quickDashboardStats">

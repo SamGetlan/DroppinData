@@ -15,6 +15,7 @@ const userSchema = mongoose.Schema({
     colorBlind: Boolean,
     stormBackground: Boolean,
     locationTracking: String,
+    canvasArrowColor: String,
   },
   createdAt: Date,
   resetPasswordToken: String,

@@ -1230,6 +1230,7 @@ class App extends React.Component {
           getDashboardData={this.getDashboardData}
           getPieChartData={this.getPieChartData}
           pieChartData={this.state.pieChartData}
+          arrowColor={this.state.userSettings.canvasArrowColor}
         />} />
         {this.state.deadCenterFlashText &&
         <div className="deadCenterFlashTextContainer">
