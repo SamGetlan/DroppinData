@@ -1550,6 +1550,7 @@ body {
 
 button {
   font-family: "fortNite";
+  margin: 0;
 }
 
 .disabledButton:hover {
