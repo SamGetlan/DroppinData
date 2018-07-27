@@ -1,6 +1,5 @@
 import React from 'react';
 import GameCard from './GameCard.jsx';
-import { withRouter } from 'react-router';
 
 const MyGames = props => (
   <div className="myGamesContainer">
@@ -13,4 +12,4 @@ const MyGames = props => (
   </div>
 );
 
-export default withRouter(MyGames);
+export default MyGames;

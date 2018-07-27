@@ -17,7 +17,7 @@
   text-align: center;
   justify-content: space-evenly;
   .filterOption {
-    flex: 1;
+    width: 25%;
     font-size: 1.8rem;
     z-index: 50;
     h3 {
@@ -32,8 +32,9 @@
     display: flex;
     text-align: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     .filterOption {
-      flex: 1;
+      width: 50%;
       font-size: 1.4rem;
       h3 {
         margin: 6px;

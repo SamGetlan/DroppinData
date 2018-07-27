@@ -74,6 +74,11 @@
   padding: 0;
 }
 
+@media only screen and (max-width: 700px) {
+  #x {
+    right: -0.5rem;
+  }
+}
 #closeButtonContainer {
   display: flex;
   padding-top: 1.3rem;
@@ -88,6 +93,7 @@
   color: gray;
   text-decoration: underline;
   padding: 0;
+  background: white;
 }
 
 #signUpForm {
@@ -1088,6 +1094,7 @@ input:focus {
 
 @media only screen and (max-width: 700px) {
   .chartContainer {
+    width: 85%;
     flex-wrap: wrap;
   }
   .chartContainer .lineChart {
@@ -1423,7 +1430,7 @@ td.rdtYear:hover {
   justify-content: space-evenly;
 }
 .filterOptionsBar .filterOption {
-  flex: 1;
+  width: 25%;
   font-size: 1.8rem;
   z-index: 50;
 }
@@ -1437,9 +1444,10 @@ td.rdtYear:hover {
     display: flex;
     text-align: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
   }
   .filterOptionsBar .filterOption {
-    flex: 1;
+    width: 50%;
     font-size: 1.4rem;
   }
   .filterOptionsBar .filterOption h3 {
@@ -1548,6 +1556,7 @@ body {
 
 button {
   font-family: "fortNite";
+  margin: 0;
 }
 
 .disabledButton:hover {
