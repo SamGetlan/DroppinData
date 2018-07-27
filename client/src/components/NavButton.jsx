@@ -38,7 +38,7 @@ const NavButton = (props) => {
   } else if (props.class === 'stats' || props.class ==='dashboard') {
     return (
       <Link className="navButtonContainer" to="/stats/dashboard">
-        <button data-step="8" data-intro="Once you have submitted games, you can check out your stats filtered by different metrics, and you can view, updated, and delete individual games" className={`navButton col-2 col-s-6 ${props.class}`} onClick={props.updateFilteredUserGames} >
+        <button data-step="8" data-intro="Once you have submitted games, you can check out your stats filtered by different metrics, and you can view, update, and delete individual games" className={`navButton col-2 col-s-6 ${props.class}`} onClick={props.updateFilteredUserGames} >
           {props.value}
         </button>
       </Link>

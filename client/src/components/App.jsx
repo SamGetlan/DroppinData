@@ -122,13 +122,6 @@ class App extends React.Component {
     this.handleFiltering = this.handleFiltering.bind(this);
     this.getPieChartData = this.getPieChartData.bind(this);
     this.playIntroduction = this.playIntroduction.bind(this);
-    // this.steps = [
-    //   {
-    //     element: '#actionButton',
-    //     intro: 'test 1',
-    //     position: 'right',
-    //   }
-    // ];
   }
 
   handleUserFormClick() {
@@ -1108,7 +1101,9 @@ class App extends React.Component {
     this.setState({
       activeIndex: 7,
       active: 'tiltedTowers',
-    }, () => introJs().start());
+    }, () => introJs().setOptions({
+      exitOnOverlayClick: false,
+    }).start());
   }
 
   render() {
