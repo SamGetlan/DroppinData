@@ -351,7 +351,7 @@ class App extends React.Component {
         suggestion = 'There seems to be an error with your settings, please logout and log back in,';
       };
       context.setState({
-        statBoxFlashText: suggesstion,
+        statBoxFlashText: suggestion,
       });
       setTimeout(() => {
         context.setState({
