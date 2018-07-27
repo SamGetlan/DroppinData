@@ -6,8 +6,6 @@ import { Tooltip, Cell, PieChart, Pie, LineChart, Line, CartesianGrid, XAxis, YA
 class StatDashboard extends React.Component {
   constructor(props) {
     super(props);
-    // this.colors = ['#E47866', '#E1768D', '#C681B1', '#9592C5', '#56A0C3', '#1AA8AA', '#35AA84', '#67A75C', '#959E3E', '#BE903A', '#DC8050' ];
-    // this.colors = ['gray', 'green', 'blue', 'indigo', 'orange'];
     this.formatDate = this.formatDate.bind(this);
     this.renderPieLabel = this.renderPieLabel.bind(this);
   }

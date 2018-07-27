@@ -34,7 +34,7 @@ class FullMap extends React.Component {
             </div>
           </div>
           <Link id="closeButtonContainer" to="/home">
-            <button className="closeButton" onClick={this.props.handleShowMapClick}>Close</button>
+            <button className="closeButton">Close</button>
           </Link>
         </div>
       </div>

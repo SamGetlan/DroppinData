@@ -39,7 +39,6 @@ class App extends React.Component {
       accountOptionsForm: false,
       logInFailed: null,
       userGameData: {},
-      showFullMap: false,
       userSettings: {},
       rows: null,
       cols: null,
@@ -75,7 +74,6 @@ class App extends React.Component {
       },
       statLoading: false,
       dashboardData: null,
-      // stepsEnabled: false,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -98,7 +96,6 @@ class App extends React.Component {
     this.popularGroupClick = this.popularGroupClick.bind(this);
     this.filterAllIn = this.filterAllIn.bind(this);
     this.filterAllOut = this.filterAllOut.bind(this);
-    this.handleShowMapClick = this.handleShowMapClick.bind(this);
     this.handleMapChoiceClick = this.handleMapChoiceClick.bind(this);
     this.handleRecoveryAttempt = this.handleRecoveryAttempt.bind(this);
     this.handlePasswordReset = this.handlePasswordReset.bind(this);
@@ -206,7 +203,6 @@ class App extends React.Component {
           });
           axios.get('/api/games')
             .then((data) => {
-              //console.log(data.data);
               const userGameData = context.getUserGameData(data.data);
               context.props.history.push('/home');
               context.setState({
@@ -228,7 +224,6 @@ class App extends React.Component {
         }
       })
       .catch((err) => {
-        //console.log('Error code:', err.response.status);
         context.setState({
           deadCenterFlashText: `There was an error: ${err}`,
         });
@@ -575,7 +570,6 @@ class App extends React.Component {
   }
 
   notRecentGroupClick() {
-    //console.log('userGamedata', this.state.userGameData);
     const context = this;
     const type = 'all';
     if (this.state.userGames !== null && this.state.userGames.length > 9) {
@@ -592,7 +586,6 @@ class App extends React.Component {
           }
         }
       }
-      //console.log('results:', results);
       this.setState({
         filteredLocations: results,
         activeIndex: false,
@@ -730,12 +723,6 @@ class App extends React.Component {
     });
   }
 
-  handleShowMapClick() {
-    this.setState({
-      showFullMap: !this.state.showFullMap,
-    });
-  }
-
   handleMapChoiceClick(e) {
     for (var i = 0; i < locations.length; i++) {
       if (locations[i].camelCase === e.target.id) {
@@ -747,7 +734,7 @@ class App extends React.Component {
         this.setState({
           active: e.target.id,
           activeIndex: k,
-          showFullMap: false,
+          // showFullMap: false,
         });
       }
     }
@@ -839,7 +826,6 @@ class App extends React.Component {
     const gridSpot = Number(e.target.id.split('Spot')[1])
     const rows = Math.floor(gridSpot / 72);
     const cols = (gridSpot % 72);
-    // console.log([rows, cols]);
     const getCoordinate = (location, rows, cols) => {
       const { topLeft } = location;
       return [(topLeft[0] + rows), (topLeft[1] + cols)];
@@ -861,8 +847,6 @@ class App extends React.Component {
     const gridSpot = Number(e.target.id.split('Spot')[1]);
     const rows = Math.floor(gridSpot / 82);
     const cols = (gridSpot % 82);
-    // console.log('gridSpot:', gridSpot);
-    // console.log([rows, cols]);
     const top = (`${(rows + 0.5) * (100 / 82)}%`);
     const left = (`${(cols + 0.5) * (100 / 82)}%`);
     this.setState({
@@ -881,9 +865,6 @@ class App extends React.Component {
         const location = this.state.filteredLocations[this.state.activeIndex];
         const rows = (this.state.filteredLocations[this.state.activeIndex].start[0] / 3);
         const cols = (this.state.filteredLocations[this.state.activeIndex].start[1] / 3);
-        // console.log('location:', location);
-        // console.log('rows:', rows);
-        // console.log('cols:', cols);
         const getCoordinate = (location, rows, cols) => {
           const { topLeft } = location;
           return [Math.floor((topLeft[0] / 3) + rows), Math.floor((topLeft[1] / 3) + cols)];
@@ -891,8 +872,6 @@ class App extends React.Component {
         const deathMapMarker = getCoordinate(location, rows, cols);
         const top = `${(deathMapMarker[0] + 0.5) * (100 / 82)}%`;
         const left = `${(deathMapMarker[1] + 0.5) * (100 / 82)}%`;
-        // console.log('top:', top);
-        // console.log('left:', left);
         this.setState({
           deathMapMarker,
           deathMapMarkerStyle: {
@@ -919,7 +898,6 @@ class App extends React.Component {
   }
 
   updateFilteredUserGames() {
-    // console.log('updating updateFilteredUserGames for the first time');
     this.setState({
       filteredUserGames: (this.state.userGames !== null ? this.state.userGames.slice().filter(game => game.season === 5) : null),
     })
@@ -1008,46 +986,35 @@ class App extends React.Component {
 
   handleFiltering(reset, gameTypes, locations, worstPlace, bestPlace, minKills, maxKills, minLoot, maxLoot, stormDeath, seasons, minRow, maxRow, minCol, maxCol) {
     let games = this.state.userGames.slice();
-    // console.log('filtering games from games.length:', games.length);
     if (reset) {
       this.setState({
         filteredUserGames: games,
       })
     } else {
       if (seasons.length !== 3) {
-        // console.log('filtering by season from seasons:', seasons);
-        // console.log('filtering games from games.length:', games.length);
         games = this.handleFilterOnSeason(games, seasons)
       }
       if (locations.length !== this.state.locations.length) {
-        // console.log('filtering locations from games.length:', games.length);
         games = this.handleFilterOnStartLocation(games, locations);
       }
       if (gameTypes.length !== 3) {
-        // console.log('filtering gameTypes from games.length:', games.length);
         games = this.handleFilterOnGameType(games, gameTypes);
       }
       if (worstPlace !== 100 || bestPlace !== 1) {
-        // console.log('filtering place from games.length:', games.length);
         games = this.handleFilterOnPlace(games, worstPlace, bestPlace);
       }
       if (minKills !== 0 || maxKills !== 99) {
-        //console.log('filtering kills from games.length:', games.length);
         games = this.handleFilterOnKills(games, minKills, maxKills);
       }
       if (minLoot !== 0 || maxLoot !== 10) {
-        //console.log('filtering loot from games.length:', games.length);
         games = this.handleFilterOnLoot(games, minLoot, maxLoot);
       }
       if (stormDeath !== undefined) {
-        //console.log('filtering stormDeath from games.length:', games.length);
         games = this.handleFilterOnStormDeath(games, stormDeath);
       }
       if (minRow !== undefined && (minRow !== 0 || maxRow !== 82 || minCol !== 0 || maxCol !== 82)) {
-        //console.log('filtering row&col from games.length:', games.length);
         games = this.handleFilterOnDeathCoordinates(games, minRow, maxRow, minCol, maxCol);
       }
-      //console.log('final filter length:', games.length);
       this.setState({
         filteredUserGames: games,
       })
@@ -1097,7 +1064,6 @@ class App extends React.Component {
   }
 
   playIntroduction() {
-    console.log('playIntroduction clicked');
     this.setState({
       activeIndex: 7,
       active: 'tiltedTowers',
@@ -1117,7 +1083,6 @@ class App extends React.Component {
           handleFilterClick={this.handleFilterClick}
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
-          handleShowMapClick={this.handleShowMapClick}
           updateFilteredUserGames={this.updateFilteredUserGames}
         />} />
         <Route path="/home" render={props => <Body {...props}
@@ -1176,7 +1141,6 @@ class App extends React.Component {
           playIntroduction={this.playIntroduction}
         />} />
         <Route path="/home/map" render={props => <FullMap {...props}
-          handleShowMapClick={this.handleShowMapClick}
           locations={this.state.locations}
           handleMapChoiceClick={this.handleMapChoiceClick}
           userSettings={this.state.userSettings}
@@ -1192,27 +1156,6 @@ class App extends React.Component {
           applySettings={this.applySettings}
           userSettings={this.state.userSettings}
         />} />
-        {/* <Route path="/stats" render={props => <Stats {...props}
-          userGames={this.state.userGames}
-          navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
-          classes={['home', 'dashboard', 'myGames', 'login']}
-          handleUserFormClick={this.handleUserFormClick}
-          loggedIn={this.state.loggedIn}
-          handleAccountOptionsClick={this.handleAccountOptionsClick}
-          confirmDeleteGameCard={this.confirmDeleteGameCard}
-          filteredUserGames={this.state.filteredUserGames}
-          filterOptions={this.state.filterOptions}
-          updateFilteredUserGames={this.updateFilteredUserGames}
-          locations={this.state.locations}
-          updateLocalGame={this.updateLocalGame}
-          handleFiltering={this.handleFiltering}
-          handleNotCompliantEditGameSubmission={this.handleNotCompliantEditGameSubmission}
-          dashboardData={this.state.dashboardData}
-          statLoading={this.state.statLoading}
-          getDashboardData={this.getDashboardData}
-          getPieChartData={this.getPieChartData}
-          pieChartData={this.state.pieChartData}
-        />} /> */}
         <Route path="/stats" render={props => <Navbar {...props}
           navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
           classes={['home', 'dashboard', 'myGames', 'login']}
