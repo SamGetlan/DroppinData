@@ -23,6 +23,8 @@
     "connect-flash": "^0.1.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "intro.js": "^2.9.3",
+    "intro.js-react": "^0.2.0",
     "moment": "^2.22.2",
     "mongoose": "^5.0.15",
     "morgan": "^1.9.0",

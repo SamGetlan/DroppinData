@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect, Route, withRouter } from 'react-router-dom';
-//import Loadable from 'react-loadable';
 import Navbar from './Navbar.jsx';
 import Body from './Body.jsx';
 import UserForm from './UserForm.jsx';
@@ -11,13 +10,12 @@ import FullMap from './FullMap.jsx';
 import AccountRecovery from './AccountRecovery.jsx';
 import ResetPassword from './ResetPassword.jsx';
 import AccountSettings from './AccountSettings.jsx';
+import Stats from './Stats.jsx';
 import FilterMyGames from './FilterMyGames.jsx';
 import MyGames from './MyGames.jsx';
 import StatDashboard from './StatDashboard.jsx';
-// import Stats from './Stats.jsx';
-// import Stats from './LoadableStats.jsx';
 import locations from '../data.js';
-
+import introJs from 'intro.js';
 
 
 
@@ -77,6 +75,7 @@ class App extends React.Component {
       },
       statLoading: false,
       dashboardData: null,
+      // stepsEnabled: false,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
@@ -122,6 +121,14 @@ class App extends React.Component {
     this.handleFilterOnGameType = this.handleFilterOnGameType.bind(this);
     this.handleFiltering = this.handleFiltering.bind(this);
     this.getPieChartData = this.getPieChartData.bind(this);
+    this.playIntroduction = this.playIntroduction.bind(this);
+    // this.steps = [
+    //   {
+    //     element: '#actionButton',
+    //     intro: 'test 1',
+    //     position: 'right',
+    //   }
+    // ];
   }
 
   handleUserFormClick() {
@@ -172,6 +179,7 @@ class App extends React.Component {
           userFormActive: false,
         });
         this.props.history.push('/home')
+        this.playIntroduction();
       })
       .catch((err) => {
         context.setState({
@@ -1095,6 +1103,14 @@ class App extends React.Component {
     }
   }
 
+  playIntroduction() {
+    console.log('playIntroduction clicked');
+    this.setState({
+      activeIndex: 7,
+      active: 'tiltedTowers',
+    }, () => introJs().start());
+  }
+
   render() {
     return (
       <div id="app">
@@ -1162,6 +1178,7 @@ class App extends React.Component {
           handleLogout={this.handleLogout}
           userSettings={this.state.userSettings}
           updateFilteredUserGames={this.updateFilteredUserGames}
+          playIntroduction={this.playIntroduction}
         />} />
         <Route path="/home/map" render={props => <FullMap {...props}
           handleShowMapClick={this.handleShowMapClick}

@@ -101,8 +101,8 @@ class StatBox extends React.Component {
 
   render() {
     return (
-      <div className="statBox">
-        <div className="temporaryGameTypeSelector">
+      <div data-step="5" data-intro="Once you have completed a game fill out game stats, choose where you died (or won), and submit your game" className="statBox">
+        <div data-step="4" data-intro="You can choose to look at stats from all submitted games of this location, or filtered by game type" className="temporaryGameTypeSelector">
           <span className={this.props.currentGameType === 'solo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('solo')}>Solo</span><span className={this.props.currentGameType === 'duo' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('duo')} >Duo</span><span className={this.props.currentGameType === 'squad' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('squad')} >Squad</span><span className={this.props.currentGameType === 'all' ? 'selected gameTypeSelector' : 'gameTypeSelector'} onClick={() => this.props.changeGameType('all')} >All</span>
         </div>
         <StatGrid stats={this.props.userGameData[this.props.location.name] ? this.props.userGameData[this.props.location.name][this.props.currentGameType] : undefined} />
