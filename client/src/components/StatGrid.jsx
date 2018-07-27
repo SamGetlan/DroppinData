@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const StatGrid = props => (
-  <div className="statGridContainer">
+  <div data-step="3" data-intro="Statistics about previously entered games at this location are displayed here" className="statGridContainer">
     <div className="gridItem" />
     <div className="gridItem">Kills</div>
     <div className="gridItem">Place</div>

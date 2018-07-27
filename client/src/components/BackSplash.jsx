@@ -2,7 +2,7 @@ import React from 'react';
 import Tile from './Tile.jsx';
 
 const BackSplash = props => (
-  <div id="backSplashContainerWrapper">
+  <div data-hint="Tiles will show quick stats about each location. You can also press on a tile to choose it as your drop location" id="backSplashContainerWrapper">
     <div id="backSplashContainer">
       {props.filteredLocations.map((location, index) =>
         <Tile 

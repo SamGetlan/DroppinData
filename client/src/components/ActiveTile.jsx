@@ -25,7 +25,7 @@ class ActiveTile extends React.Component {
     };
     
     return (
-      <div className={`tile ${this.props.location}`}>
+      <div data-position="right" data-step="2" data-intro="You can choose exactly where you are dropping in a location by pressing on the map and moving the marker" className={`tile ${this.props.location.name}`}>
         <p className="activeTileTitle">{this.props.location.name}</p>
         <div id="activeMapContainer">
           <img className="activeMapImage" alt={`Map of ${this.props.location.name}`} src={this.props.location.image} height="100%" width="100%"/>

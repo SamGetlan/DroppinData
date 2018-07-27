@@ -13,6 +13,9 @@ const AccountOptionsForm = props => (
             <button id="myGamesButton" className="accountOptionsButton" onClick={props.updateFilteredUserGames}>My Games</button>
           </Link>
           <Link to="/home">
+            <button id="introductionButton" className="accountOptionsButton" onClick={props.playIntroduction} >Replay Introduction</button>
+          </Link>
+          <Link to="/home">
             <button id="logoutButton" className="accountOptionsButton" onClick={props.handleLogout} >Logout</button>
           </Link>
         </div>
