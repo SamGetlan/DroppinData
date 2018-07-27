@@ -27,7 +27,6 @@ class App extends React.Component {
       locations,
       filteredLocations: locations.slice(),
       userFormActive: true,
-      filterLocationsActive: false,
       signUpForm: false,
       loggedIn: false,
       active: false,
@@ -76,7 +75,6 @@ class App extends React.Component {
       dashboardData: null,
     };
     this.handleUserFormClick = this.handleUserFormClick.bind(this);
-    this.handleFilterClick = this.handleFilterClick.bind(this);
     this.loginUserFormOption = this.loginUserFormOption.bind(this);
     this.signUpUserFormOption = this.signUpUserFormOption.bind(this);
     this.handleAccountSignUp = this.handleAccountSignUp.bind(this);
@@ -124,12 +122,6 @@ class App extends React.Component {
   handleUserFormClick() {
     this.setState({
       userFormActive: !this.state.userFormActive,
-    });
-  }
-
-  handleFilterClick() {
-    this.setState({
-      filterLocationsActive: !this.state.filterLocationsActive,
     });
   }
 
@@ -1080,7 +1072,6 @@ class App extends React.Component {
           navButtons={['Stats', 'Full Map', 'Filter Locations', 'Sign Up or Login']}
           classes={['stats', 'map', 'filter', 'login']}
           handleUserFormClick={this.handleUserFormClick}
-          handleFilterClick={this.handleFilterClick}
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           updateFilteredUserGames={this.updateFilteredUserGames}
@@ -1122,7 +1113,6 @@ class App extends React.Component {
           filteredLocations={this.state.filteredLocations}
           filterOut={this.filterOut}
           filterIn={this.filterIn}
-          handleFilterClick={this.handleFilterClick}
           hardGroupClick={this.hardGroupClick}
           notRecentGroupClick={this.notRecentGroupClick}
           killsGroupClick={this.killsGroupClick}

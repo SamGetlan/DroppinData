@@ -15,7 +15,7 @@ const FilterLocations = props => (
       <div id="closeButtonContainer">
         <button id="filterAllInButton" className="closeButton" onClick={props.filterAllIn}>Filter All In</button>
         <Link to='/home'>
-          <button className="closeButton" onClick={props.handleFilterClick}>Close</button>
+          <button className="closeButton">Close</button>
         </Link>
         <button id="filterAllOutButton" className="closeButton" onClick={props.filterAllOut}>Filter All Out</button>
       </div>
