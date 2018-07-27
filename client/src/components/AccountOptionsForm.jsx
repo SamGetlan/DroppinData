@@ -21,7 +21,7 @@ const AccountOptionsForm = props => (
         </div>
       </div>
       <Link id="closeButtonContainer" to="/home">
-        <button className="closeButton" onClick={props.handleAccountOptionsClick}>Close</button>
+        <button className="closeButton">Close</button>
       </Link>
     </div>
   </div>

@@ -34,7 +34,6 @@ class App extends React.Component {
       filteredUserGames: null,
       submitButtonState: true,
       pieChartData: null,
-      accountOptionsForm: false,
       logInFailed: null,
       userGameData: {},
       userSettings: {},
@@ -82,7 +81,6 @@ class App extends React.Component {
     this.handleGameSubmit = this.handleGameSubmit.bind(this);
     this.handleActionClick = this.handleActionClick.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
-    this.handleAccountOptionsClick = this.handleAccountOptionsClick.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.getUserGameData = this.getUserGameData.bind(this);
     this.hardGroupClick = this.hardGroupClick.bind(this);
@@ -181,7 +179,6 @@ class App extends React.Component {
           const user = (data.data.username);
           context.setState({
             loggedIn: user,
-            userFormActive: false,
             logInFailed: false,
             userSettings: data.data.settings,
           });
@@ -348,22 +345,16 @@ class App extends React.Component {
     document.documentElement.scrollTop = 0; // For everything else
   }
 
-  handleAccountOptionsClick() {
-    this.setState({
-      accountOptionsForm: !this.state.accountOptionsForm,
-    });
-  }
-
   handleLogout() {
     const context = this;
     axios.get('/api/logout')
       .then((data) => {
         context.setState({
           loggedIn: false,
-          accountOptionsForm: false,
           userGames: null,
           userGameData: {},
         })
+        context.props.history.push('/home');
       })
       .catch((err) => {
         context.setState({
@@ -1064,7 +1055,6 @@ class App extends React.Component {
           navButtons={['Stats', 'Full Map', 'Filter Locations', 'Sign Up or Login']}
           classes={['stats', 'map', 'filter', 'login']}
           loggedIn={this.state.loggedIn}
-          handleAccountOptionsClick={this.handleAccountOptionsClick}
           updateFilteredUserGames={this.updateFilteredUserGames}
         />} />
         <Route path="/home" render={props => <Body {...props}
@@ -1113,7 +1103,6 @@ class App extends React.Component {
           userSettings={this.state.userSettings}
         />} />
         <Route path="/home/accountOptions" render={props => <AccountOptionsForm {...props}
-          handleAccountOptionsClick={this.handleAccountOptionsClick}
           loggedIn={this.state.loggedIn}
           handleLogout={this.handleLogout}
           userSettings={this.state.userSettings}
@@ -1140,7 +1129,6 @@ class App extends React.Component {
           navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
           classes={['home', 'dashboard', 'myGames', 'login']}
           loggedIn={this.state.loggedIn}
-          handleAccountOptionsClick={this.handleAccountOptionsClick}
         />} />
         <Route path="/stats" render={props => <FilterMyGames {...props}
           handleFiltering={this.handleFiltering}
