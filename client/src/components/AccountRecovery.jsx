@@ -62,7 +62,7 @@ class AccountRecovery extends React.Component {
             </div>
           </div>
           <Link id="closeButtonContainer" to="/home">
-            <button className="closeButton" onClick={this.props.handleUserFormClick}>Close</button>
+            <button className="closeButton">Close</button>
           </Link>
         </div>
       </div>

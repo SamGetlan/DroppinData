@@ -14,7 +14,7 @@ const NavButton = (props) => {
   } else if (props.class === 'login') {
     return (
       <Link className="navButtonContainer" to="/home/login">
-        <button className={`navButton col-3 col-s-6 ${props.class}`} onClick={props.handleUserFormClick}>
+        <button className={`navButton col-3 col-s-6 ${props.class}`}>
           {props.value}
         </button>
       </Link>

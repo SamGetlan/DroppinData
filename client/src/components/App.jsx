@@ -26,7 +26,6 @@ class App extends React.Component {
       focus: '',
       locations,
       filteredLocations: locations.slice(),
-      userFormActive: true,
       signUpForm: false,
       loggedIn: false,
       active: false,
@@ -74,7 +73,6 @@ class App extends React.Component {
       statLoading: false,
       dashboardData: null,
     };
-    this.handleUserFormClick = this.handleUserFormClick.bind(this);
     this.loginUserFormOption = this.loginUserFormOption.bind(this);
     this.signUpUserFormOption = this.signUpUserFormOption.bind(this);
     this.handleAccountSignUp = this.handleAccountSignUp.bind(this);
@@ -117,12 +115,6 @@ class App extends React.Component {
     this.handleFiltering = this.handleFiltering.bind(this);
     this.getPieChartData = this.getPieChartData.bind(this);
     this.playIntroduction = this.playIntroduction.bind(this);
-  }
-
-  handleUserFormClick() {
-    this.setState({
-      userFormActive: !this.state.userFormActive,
-    });
   }
 
   handleActionClick() {
@@ -1071,7 +1063,6 @@ class App extends React.Component {
         <Route path="/home" render={props => <Navbar {...props}
           navButtons={['Stats', 'Full Map', 'Filter Locations', 'Sign Up or Login']}
           classes={['stats', 'map', 'filter', 'login']}
-          handleUserFormClick={this.handleUserFormClick}
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
           updateFilteredUserGames={this.updateFilteredUserGames}
@@ -1100,7 +1091,6 @@ class App extends React.Component {
           statBoxFlashText={this.state.statBoxFlashText}
         />} />
         <Route path="/home/login" render={props => <UserForm {...props}
-          handleUserFormClick={this.handleUserFormClick}
           signUpForm={this.state.signUpForm}
           loginUserFormOption={this.loginUserFormOption}
           signUpUserFormOption={this.signUpUserFormOption}
@@ -1149,7 +1139,6 @@ class App extends React.Component {
         <Route path="/stats" render={props => <Navbar {...props}
           navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
           classes={['home', 'dashboard', 'myGames', 'login']}
-          handleUserFormClick={this.handleUserFormClick}
           loggedIn={this.state.loggedIn}
           handleAccountOptionsClick={this.handleAccountOptionsClick}
         />} />

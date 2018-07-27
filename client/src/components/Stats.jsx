@@ -17,7 +17,7 @@ class Stats extends React.Component {
         <Navbar
           navButtons={['Home', 'Dashboard', 'My Games', 'Sign Up or Login']}
           classes={['home', 'dashboard', 'myGames', 'login']}
-          handleUserFormClick={this.props.handleUserFormClick}
+          // handleUserFormClick={this.props.handleUserFormClick}
           loggedIn={this.props.loggedIn}
           handleAccountOptionsClick={this.props.handleAccountOptionsClick}
         />

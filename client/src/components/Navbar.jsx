@@ -12,7 +12,6 @@ class Navbar extends React.Component {
         loggedIn={this.props.loggedIn}
         value={this.props.navButtons[i]}
         class={this.props.classes[i]}
-        handleUserFormClick={this.props.handleUserFormClick}
         handleFilterClick={this.props.handleFilterClick}
         handleAccountOptionsClick={this.props.handleAccountOptionsClick}
         handleShowMapClick={this.props.handleShowMapClick}
