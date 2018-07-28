@@ -2,7 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const parser = require('body-parser');
-const session = require('express-session');
+const session = require('cookie-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const path = require('path');
@@ -17,10 +17,10 @@ app.set('port', (process.env.PORT || 8081));
 require('../config/passport')(passport);
 
 // logging and parsing
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(parser.json());
 app.use(parser.urlencoded());
-app.use(session({ secret: config.secret }));
+app.use(session({ secret: config.secret, maxAge: 86400000 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

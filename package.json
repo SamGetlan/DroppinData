@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "webpack -w",
-    "start": "pm2 start server/basic-server.js",
+    "start": "NODE_ENV=production node server/basic-server.js",
     "devStart": "nodemon server/basic-server.js",
     "style": "sass ./client/src/stylesheets/styles.scss ./client/dist/styles.css",
     "zip": "zip ../droppinData.zip -r * .[^.]* -x \"node_modules/*\" \"client/src/*\" "
@@ -19,9 +19,9 @@
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
-    "chalk": "^2.4.1",
     "compression": "^1.7.3",
     "connect-flash": "^0.1.1",
+    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "intro.js": "^2.9.3",
@@ -33,7 +33,6 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "pm2": "^3.0.3",
     "react": "^16.3.2",
     "react-datetime": "^2.14.0",
     "react-dom": "^16.3.2",

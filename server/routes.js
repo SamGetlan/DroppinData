@@ -15,7 +15,6 @@ const isLoggedIn = (req, res, next) => {
 
 module.exports = (app, passport) => {
   app.post('/api/games', isLoggedIn, (req, res) => {
-    console.log('req.body:', req.body);
     db.saveGame(req.body, (postedGame) => {
       db.loadGames(postedGame.user, (results) => {
         res.send(JSON.stringify(results));
@@ -24,7 +23,6 @@ module.exports = (app, passport) => {
   });
 
   app.get('/api/games', isLoggedIn, (req, res) => {
-    // load games of user on login
     db.loadGames(req.user.username, (results) => {
       res.send(JSON.stringify(results));
     });
