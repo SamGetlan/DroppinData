@@ -3,8 +3,8 @@
 Code is live at https://www.droppindata.com
 
 <div id="bannerImages" style="overflow: hidden; display: inline-block;">
-  <img src="https://s3.amazonaws.com/droppin-data/displayPics/DroppinData.png" width="250" height="250" style="margin: 25px;" alt="DroppinData HomePage">
-  <img src="https://s3.amazonaws.com/droppin-data/displayPics/DroppinDataStatsPage.png" width="250" height="250" style="margin: 25px;" alt="DroppinData Stat Dashboard">
+  <img src="https://s3.amazonaws.com/droppin-data/displayPics/DroppinData.png" width="250" height="250" alt="DroppinData HomePage" >
+  <img src="https://s3.amazonaws.com/droppin-data/displayPics/DroppinDataStatsPage.png" width="250" height="250" alt="DroppinData Stat Dashboard">
 </div>
 
 DroppinData is a companion app to the video game Fortnite. This application can be used to track game data, reveal trends in how you perform at different locations, and select a location for you to drop to based on your data.
